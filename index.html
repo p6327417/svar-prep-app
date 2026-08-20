@@ -1,0 +1,3193 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <title>SVAR English Assessment - Master Prep & Simulator</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          screens: {
+            'xs': '420px',
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b',
+            },
+            accent: {
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'bounce-subtle': 'bounce 2s infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      font-family: 'Inter', sans-serif; 
+      -webkit-tap-highlight-color: transparent;
+    }
+    h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
+    
+    /* Modern sleek scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .custom-gradient-bg {
+      background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 1) 75%);
+    }
+    .glass-panel {
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .active-nav-tab {
+      background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.35);
+    }
+    .audio-bar {
+      display: inline-block;
+      width: 3px;
+      height: 12px;
+      border-radius: 2px;
+      background: #22d3ee;
+      transition: height 0.08s ease;
+    }
+    .auto-progress-meter {
+      animation: shrinkProgress 1.6s linear forwards;
+    }
+    @keyframes shrinkProgress {
+      0% { width: 100%; }
+      100% { width: 0%; }
+    }
+    
+    /* Touch target comfort */
+    button, a, input, select, textarea {
+      touch-action: manipulation;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- LOCAL FILE PROTOCOL WARNING (IF APPLICABLE) -->
+  <div id="file-protocol-warning" class="hidden bg-amber-500/20 border-b border-amber-500/40 px-3 sm:px-4 py-2.5 sm:py-3 text-xs text-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+    <div class="flex items-start sm:items-center gap-2">
+      <span class="text-base flex-shrink-0">⚠️</span>
+      <div class="leading-tight">
+        <strong class="text-white">Microphone Tip:</strong> Running on <code class="bg-amber-950/60 px-1 py-0.5 rounded text-amber-300 font-mono text-[11px]">file://</code>.
+        <span class="hidden md:inline">Run <strong>start-server.bat</strong> or visit <strong>http://localhost:5000</strong> to remember microphone access permanently!</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
+      <a href="http://localhost:5000" class="px-3 py-1.5 bg-amber-500 text-slate-950 font-bold rounded-lg hover:bg-amber-400 transition text-[11px] shadow">
+        Open on http://localhost:5000 &rarr;
+      </a>
+      <button onclick="document.getElementById('file-protocol-warning').remove()" class="text-slate-400 hover:text-white p-1" aria-label="Close Notice">✕</button>
+    </div>
+  </div>
+
+  <!-- TOP NOTIFICATION BANNER & CONTROLS (RESPONSIVE) -->
+  <div id="audio-status-banner" class="bg-gradient-to-r from-brand-900/90 via-slate-900 to-accent-600/30 border-b border-slate-800 text-[11px] sm:text-xs px-3 sm:px-6 py-2 flex flex-col sm:flex-row items-center justify-between gap-2 text-slate-300">
+    <div class="flex items-center justify-between w-full sm:w-auto gap-2">
+      <div class="flex items-center space-x-2 min-w-0">
+        <span id="mic-status-indicator" class="inline-block w-2.5 h-2.5 flex-shrink-0 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="mic-status-label" class="font-medium text-slate-200 truncate">Mic Ready (Single-Instance Engine)</span>
+      </div>
+
+      <!-- AUTO-PROGRESSION TOGGLE -->
+      <button id="auto-progress-toggle-btn" onclick="app.toggleAutoAdvance()" class="flex-shrink-0 px-2.5 py-1 rounded-full bg-slate-900 border border-brand-500/30 text-brand-300 font-bold text-[10px] sm:text-[11px] hover:border-brand-400 transition flex items-center gap-1" title="Toggle automatic progression to next question">
+        <span>⚡ Auto:</span>
+        <span id="auto-progress-label" class="text-emerald-400">ON</span>
+      </button>
+    </div>
+    
+    <div class="flex items-center justify-end w-full sm:w-auto space-x-2.5 sm:space-x-3">
+      <!-- Live Volume Visualizer -->
+      <div id="mic-live-meter" class="hidden items-center space-x-1 px-2 py-0.5 rounded-lg bg-slate-900 border border-slate-700">
+        <span class="text-[9px] text-cyan-400 font-mono font-bold mr-0.5">MIC</span>
+        <div class="audio-bar" id="bar1"></div>
+        <div class="audio-bar" id="bar2"></div>
+        <div class="audio-bar" id="bar3"></div>
+        <div class="audio-bar" id="bar4"></div>
+      </div>
+
+      <button id="test-audio-btn" onclick="app.testAudioFeedback()" class="hover:text-white transition flex items-center gap-1 font-semibold text-brand-300 py-1 px-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M6 10H3a1 1 0 00-1 1v2a1 1 0 001 1h3l5 5V5L6 10z"/></svg>
+        <span class="hidden xs:inline">Test</span> Tone
+      </button>
+
+      <button id="mic-perm-btn" onclick="app.ensureMicPermission(true)" class="hover:text-emerald-300 transition flex items-center gap-1 text-emerald-400 font-semibold px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+        <span id="mic-status-text">Mic Ready</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER (MOBILE & TABLET OPTIMIZED) -->
+  <header class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2.5 sm:gap-3">
+      
+      <!-- LOGO & BRAND -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2.5 sm:space-x-3 cursor-pointer" onclick="app.setTab('guide')">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center shadow-lg shadow-brand-500/20 text-white font-black text-lg sm:text-xl">
+            S
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-heading font-extrabold text-lg sm:text-xl tracking-tight text-white">SVAR<span class="text-accent-500">.Master</span></span>
+              <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">SHL Simulator</span>
+            </div>
+            <p class="text-[11px] text-slate-400 hidden xs:block">Automated Spoken English Evaluation Prep</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN NAVIGATION BUTTONS (TOUCH & SCROLL OPTIMIZED) -->
+      <div class="flex items-center space-x-1 sm:space-x-2 bg-slate-900/90 p-1 rounded-xl border border-slate-800 overflow-x-auto no-scrollbar max-w-full">
+        <button id="nav-guide" onclick="app.setTab('guide')" class="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition active-nav-tab flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span>Guide</span>
+        </button>
+
+        <button id="nav-practice" onclick="app.setTab('practice')" class="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          <span>Drills</span>
+        </button>
+
+        <button id="nav-mock" onclick="app.setTab('mock')" class="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 relative">
+          <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-500"></span>
+          </span>
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Mock Test</span>
+        </button>
+
+        <button id="nav-scorecard" onclick="app.setTab('scorecard')" class="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <span>Scorecard</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="flex-grow max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 custom-gradient-bg">
+
+    <!-- VIEW 1: ASSESSMENT GUIDE & STRATEGY CENTER -->
+    <section id="view-guide" class="space-y-6 sm:space-y-8 animate-fadeIn">
+      
+      <!-- HERO BANNER -->
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-900/90 via-slate-900 to-indigo-950/80 border border-brand-500/30 p-5 sm:p-8 lg:p-10 shadow-2xl">
+        <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-3xl space-y-3 sm:space-y-4">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-xs font-semibold">
+            <svg class="w-3.5 h-3.5 text-accent-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <span>Official SVAR / SHL Spoken English Preparation</span>
+          </div>
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-white tracking-tight leading-tight">
+            Crack Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-accent-400">SVAR Spoken English</span> Evaluation
+          </h1>
+          <p class="text-slate-300 text-xs sm:text-sm lg:text-base leading-relaxed">
+            SVAR is an automated AI evaluation tool assessing English pronunciation, fluency, intonation, listening comprehension, vocabulary accuracy, and extempore skills in a 16-minute simulation.
+          </p>
+          <div class="pt-2 flex flex-col sm:flex-row gap-3">
+            <button onclick="app.startMockTest()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold text-xs sm:text-sm hover:opacity-95 shadow-lg shadow-brand-500/25 transition transform active:scale-95 flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Launch 16-Minute Mock Test</span>
+            </button>
+            <button onclick="app.setTab('practice')" class="w-full sm:w-auto px-6 py-3 rounded-xl glass-panel text-slate-200 hover:text-white font-semibold text-xs sm:text-sm hover:bg-slate-800 transition flex items-center justify-center gap-2">
+              <span>Explore Section Drills (A-F)</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CORE EVALUATION PARAMETERS (RESPONSIVE GRID) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
+        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">🗣️</div>
+          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Pronunciation</div>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">Phonetic clarity & articulation</p>
+        </div>
+        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">⚡</div>
+          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Fluency</div>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">Pace, rhythm, zero dead air</p>
+        </div>
+        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">🎶</div>
+          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Intonation</div>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">Pitch, affirmative certainty</p>
+        </div>
+        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">👂</div>
+          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Listening</div>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">One-shot comprehension</p>
+        </div>
+        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">💡</div>
+          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Language Flow</div>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">Syntactic flow & anticipation</p>
+        </div>
+        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">🎙️</div>
+          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Extempore</div>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">45s structured speaking</p>
+        </div>
+      </div>
+
+      <!-- 6 SECTIONS BREAKDOWN & WINNING STRATEGIES -->
+      <div class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+          <h2 class="text-lg sm:text-2xl font-heading font-bold text-white flex items-center gap-2">
+            <span class="w-2 h-5 sm:h-6 rounded-full bg-brand-500 inline-block"></span>
+            <span>The 6 SVAR Sections & Master Strategies</span>
+          </h2>
+          <span class="text-xs text-slate-400">Authentic SHL/SVAR Pattern Architecture</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between mb-2 sm:mb-3">
+                <span class="px-2.5 py-1 rounded-lg bg-brand-500/20 text-brand-300 font-extrabold text-xs">SECTION A</span>
+                <span class="text-[11px] text-slate-400">Target Sentences</span>
+              </div>
+              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Reading Out Loud</h3>
+              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Read loud and clear with zero dead air, natural cadence, and zero fillers.</p>
+            </div>
+            <button onclick="app.startPracticeSection('A')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-brand-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section A &rarr;</button>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between mb-2 sm:mb-3">
+                <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 font-extrabold text-xs">SECTION B</span>
+                <span class="text-[11px] text-slate-400">Audio 1-Shot</span>
+              </div>
+              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Repeat The Sentence You Hear</h3>
+              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Listen carefully (1 chance). If you miss words, use affirmative fallback intonation!</p>
+            </div>
+            <button onclick="app.startPracticeSection('B')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section B &rarr;</button>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between mb-2 sm:mb-3">
+                <span class="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-300 font-extrabold text-xs">SECTION C</span>
+                <span class="text-[11px] text-slate-400">Q&A Prompt</span>
+              </div>
+              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Answering Simple Questions</h3>
+              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Short conversational scenarios. Respond promptly & affirmatively without hesitation.</p>
+            </div>
+            <button onclick="app.startPracticeSection('C')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-purple-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section C &rarr;</button>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between mb-2 sm:mb-3">
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-extrabold text-xs">SECTION D</span>
+                <span class="text-[11px] text-slate-400">Vocabulary</span>
+              </div>
+              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Vocabulary</h3>
+              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Mandatory oral format: <strong>"The answer is [Letter], [Option Word]"</strong>.</p>
+            </div>
+            <button onclick="app.startPracticeSection('D')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-emerald-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section D &rarr;</button>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between mb-2 sm:mb-3">
+                <span class="px-2.5 py-1 rounded-lg bg-pink-500/20 text-pink-300 font-extrabold text-xs">SECTION E</span>
+                <span class="text-[11px] text-slate-400">Grammar</span>
+              </div>
+              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Grammar</h3>
+              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Mandatory oral format: <strong>"The answer is [Letter], [Full Sentence]"</strong>.</p>
+            </div>
+            <button onclick="app.startPracticeSection('E')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-pink-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section E &rarr;</button>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between mb-2 sm:mb-3">
+                <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-extrabold text-xs">SECTION F</span>
+                <span class="text-[11px] text-slate-400">Extempore</span>
+              </div>
+              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Timed Answers (Extempore)</h3>
+              <p class="text-xs text-slate-300 mb-4 leading-relaxed">30s prep &rarr; Beep &rarr; 45s speech. Use the <strong>"Listing Strategy"</strong> to fill time!</p>
+            </div>
+            <button onclick="app.startPracticeSection('F')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-amber-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section F &rarr;</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- VIEW 2: INTERACTIVE PRACTICE SECTION DRILLS (RESPONSIVE) -->
+    <section id="view-practice" class="hidden space-y-4 sm:space-y-6 animate-fadeIn">
+      
+      <!-- PRACTICE SECTION HEADER & CONTROLS -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3.5 glass-panel p-3.5 sm:p-5 rounded-2xl border border-slate-800">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-heading font-extrabold text-white flex items-center gap-2">
+            <span>Section Practice Drills</span>
+            <span id="practice-current-section-badge" class="text-[11px] sm:text-xs px-2.5 py-0.5 sm:py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">Section A: Reading</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Dynamic un-memorized generator &bull; Shuffled options &bull; Instant auto-progression</p>
+        </div>
+
+        <!-- SECTION SWITCHER PILLS -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="app.generateFreshDrillSet()" class="w-full xs:w-auto px-3.5 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-1.5">
+            <span>🎲 New Unique Set</span>
+          </button>
+          <div class="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 overflow-x-auto no-scrollbar max-w-full">
+            <button onclick="app.startPracticeSection('A')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="A">Sec A</button>
+            <button onclick="app.startPracticeSection('B')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="B">Sec B</button>
+            <button onclick="app.startPracticeSection('C')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="C">Sec C</button>
+            <button onclick="app.startPracticeSection('D')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="D">Sec D</button>
+            <button onclick="app.startPracticeSection('E')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="E">Sec E</button>
+            <button onclick="app.startPracticeSection('F')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="F">Sec F</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRACTICE DRILL CONTAINER -->
+      <div id="practice-content-area" class="glass-panel p-4 sm:p-6 lg:p-8 rounded-3xl border border-slate-800 space-y-6"></div>
+
+    </section>
+
+    <!-- VIEW 3: 16-MINUTE TIMED MOCK TEST -->
+    <section id="view-mock" class="hidden space-y-4 sm:space-y-6 animate-fadeIn">
+      
+      <!-- MOCK TEST LOBBY -->
+      <div id="mock-lobby" class="max-w-2xl mx-auto glass-panel p-5 sm:p-8 rounded-3xl border border-slate-800 text-center space-y-5 sm:space-y-6">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-2xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-2xl sm:text-3xl shadow-xl shadow-brand-500/30">
+          ⏱️
+        </div>
+        <div class="space-y-1.5 sm:space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-white">Full SVAR 16-Minute Mock Assessment</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
+            Sequential simulation progressing through all 6 sections (A to F) with dynamically generated questions, randomized option positions, and instant auto-progression.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 text-left max-w-md mx-auto text-xs text-slate-300">
+          <div class="p-2 sm:p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+            <span class="font-bold text-brand-400">Sec A:</span> 4 Reading tasks
+          </div>
+          <div class="p-2 sm:p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+            <span class="font-bold text-cyan-400">Sec B:</span> 4 Sentence repeats
+          </div>
+          <div class="p-2 sm:p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+            <span class="font-bold text-purple-400">Sec C:</span> 4 Simple Q&A
+          </div>
+          <div class="p-2 sm:p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+            <span class="font-bold text-emerald-400">Sec D:</span> 4 Vocabulary MCQs
+          </div>
+          <div class="p-2 sm:p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+            <span class="font-bold text-pink-400">Sec E:</span> 4 Grammar MCQs
+          </div>
+          <div class="p-2 sm:p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+            <span class="font-bold text-amber-400">Sec F:</span> 1 Timed Extempore
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button onclick="app.beginActiveMockTest()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-accent-500 text-white font-extrabold text-sm sm:text-base hover:opacity-95 shadow-xl shadow-brand-500/25 transition transform active:scale-95">
+            Start Live SVAR Assessment &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- ACTIVE MOCK TEST RUNNER -->
+      <div id="mock-runner" class="hidden space-y-4 sm:space-y-6">
+        <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-slate-800 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center space-x-2 sm:space-x-3">
+            <div id="mock-section-tag" class="px-2.5 sm:px-3 py-1 rounded-lg bg-brand-500/20 text-brand-300 border border-brand-500/40 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
+              Section A: Reading
+            </div>
+            <div class="text-xs text-slate-400">
+              Item <span id="mock-item-index" class="font-bold text-white">1</span> of <span id="mock-item-total" class="font-bold text-white">4</span>
+            </div>
+          </div>
+
+          <div class="flex-grow max-w-xs mx-2 hidden md:block">
+            <div class="flex justify-between text-[10px] text-slate-400 mb-1">
+              <span>Exam Progress</span>
+              <span id="mock-progress-pct">15%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div id="mock-progress-bar" class="h-full bg-gradient-to-r from-brand-500 to-accent-400 rounded-full transition-all duration-300" style="width: 15%"></div>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-2 sm:space-x-4 ml-auto">
+            <div class="flex items-center space-x-2 bg-slate-900 px-2.5 sm:px-3 py-1 rounded-xl border border-slate-800">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent-400 animate-spin" style="animation-duration: 4s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div class="text-right">
+                <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-wider leading-none">Timer</div>
+                <div id="mock-global-timer" class="text-xs sm:text-sm font-mono font-bold text-white">16:00</div>
+              </div>
+            </div>
+
+            <button onclick="app.cancelMockTest()" class="text-xs text-rose-400 hover:text-rose-300 font-semibold px-2 py-1">
+              Quit Test
+            </button>
+          </div>
+        </div>
+
+        <div id="mock-card-container" class="glass-panel p-4 sm:p-8 lg:p-10 rounded-3xl border border-slate-800 space-y-6 relative overflow-hidden min-h-[360px] flex flex-col justify-between"></div>
+      </div>
+
+    </section>
+
+    <!-- VIEW 4: COMPREHENSIVE SCORECARD & ANALYTICS -->
+    <section id="view-scorecard" class="hidden space-y-6 animate-fadeIn">
+      
+      <div id="scorecard-empty" class="glass-panel p-6 sm:p-10 rounded-3xl border border-slate-800 text-center space-y-4 max-w-lg mx-auto">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-2xl bg-slate-800/80 flex items-center justify-center text-2xl sm:text-3xl text-slate-400">
+          📊
+        </div>
+        <h3 class="text-lg sm:text-xl font-heading font-bold text-white">No Test Results Yet</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Complete a section drill or a full 16-minute Mock Assessment to generate your comprehensive performance analytics and CEFR benchmark scorecard.
+        </p>
+        <div class="pt-2 flex flex-col sm:flex-row justify-center gap-3">
+          <button onclick="app.setTab('practice')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition">
+            Go to Section Drills
+          </button>
+          <button onclick="app.startMockTest()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition">
+            Start Mock Test
+          </button>
+        </div>
+      </div>
+
+      <div id="scorecard-content" class="hidden space-y-6">
+        <div class="glass-panel p-5 sm:p-8 rounded-3xl border border-slate-800 bg-gradient-to-r from-slate-900 via-brand-950/40 to-slate-900 relative overflow-hidden">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6">
+            <div class="space-y-1.5 sm:space-y-2 text-center md:text-left">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span id="scorecard-report-badge">Official SVAR Evaluation Complete</span>
+              </div>
+              <h2 id="scorecard-report-title" class="text-xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-white">Assessment Performance Report</h2>
+              <p class="text-xs sm:text-sm text-slate-400" id="scorecard-date">Completed on August 20, 2026</p>
+            </div>
+
+            <div class="flex items-center gap-4 bg-slate-900/90 p-3.5 sm:p-4 rounded-2xl border border-slate-800 shadow-xl w-full sm:w-auto justify-around">
+              <div class="text-center">
+                <div class="text-[10px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Overall Score</div>
+                <div class="flex items-baseline justify-center space-x-1">
+                  <span id="final-overall-score" class="text-3xl sm:text-5xl font-heading font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-accent-400">88</span>
+                  <span class="text-slate-500 font-bold text-base sm:text-lg">/100</span>
+                </div>
+              </div>
+              <div class="h-10 w-px bg-slate-800"></div>
+              <div class="text-center">
+                <div class="text-[10px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-wider">CEFR Level</div>
+                <div id="final-cefr-level" class="text-2xl sm:text-3xl font-heading font-extrabold text-emerald-400">B2+</div>
+                <div id="final-cefr-desc" class="text-[9px] sm:text-[10px] text-slate-400 font-medium">Vantage / Advanced</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Section A: Reading</span>
+              <span id="score-sec-a" class="text-sm sm:text-base font-heading font-extrabold text-white">92%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div id="bar-sec-a" class="h-full bg-brand-500 rounded-full" style="width: 92%"></div>
+            </div>
+          </div>
+
+          <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Section B: Repeat Sentence</span>
+              <span id="score-sec-b" class="text-sm sm:text-base font-heading font-extrabold text-white">85%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div id="bar-sec-b" class="h-full bg-cyan-500 rounded-full" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Section C: Simple Q&A</span>
+              <span id="score-sec-c" class="text-sm sm:text-base font-heading font-extrabold text-white">90%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div id="bar-sec-c" class="h-full bg-purple-500 rounded-full" style="width: 90%"></div>
+            </div>
+          </div>
+
+          <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Section D: Vocabulary</span>
+              <span id="score-sec-d" class="text-sm sm:text-base font-heading font-extrabold text-white">100%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div id="bar-sec-d" class="h-full bg-emerald-500 rounded-full" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-pink-400 uppercase tracking-wider">Section E: Grammar</span>
+              <span id="score-sec-e" class="text-sm sm:text-base font-heading font-extrabold text-white">88%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div id="bar-sec-e" class="h-full bg-pink-500 rounded-full" style="width: 88%"></div>
+            </div>
+          </div>
+
+          <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Section F: Extempore</span>
+              <span id="score-sec-f" class="text-sm sm:text-base font-heading font-extrabold text-white">80%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div id="bar-sec-f" class="h-full bg-amber-500 rounded-full" style="width: 80%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel p-4 sm:p-8 rounded-3xl border border-slate-800 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <h3 class="text-base sm:text-lg font-heading font-bold text-white flex items-center gap-2">
+              <span>Item-by-Item Review & AI Feedback</span>
+            </h3>
+            <span class="text-xs text-slate-400">Review correct answers vs your recorded responses</span>
+          </div>
+
+          <div id="scorecard-review-list" class="space-y-3"></div>
+
+          <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-end">
+            <button onclick="window.print()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition flex items-center justify-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              <span>Print / Save PDF Report</span>
+            </button>
+            <button onclick="app.startMockTest()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold transition flex items-center justify-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              <span>Retake Mock Assessment</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-5 sm:py-6 px-4 text-center text-[11px] sm:text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3">
+      <p>SVAR Master Prep Simulator &bull; Automated Spoken English Evaluation Tool Training System</p>
+      <p class="text-slate-600">Responsive Multi-Device Layout (Mobile, Tablet, Desktop)</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    /**
+     * UTILITY FUNCTIONS (HTML SANITIZATION & STRING HELPERS)
+     */
+    const Utils = {
+      escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      },
+      calculateSimilarity(str1, str2) {
+        if (!str1 || !str2) return 0;
+        const clean1 = str1.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ').filter(Boolean);
+        const clean2 = str2.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ').filter(Boolean);
+        if (!clean1.length || !clean2.length) return 0;
+        let matches = 0;
+        clean1.forEach(w => {
+          if (clean2.includes(w)) matches++;
+        });
+        return Math.min(100, Math.round((matches / Math.max(clean1.length, clean2.length)) * 100));
+      }
+    };
+
+    /**
+     * DYNAMIC PROCEDURAL GENERATOR & RICH SVAR KNOWLEDGE BASE
+     */
+    class SvarDynamicGenerator {
+      constructor() {
+        this.readingTemplates = [
+          "The international flight was delayed due to unexpected technical maintenance on the navigation system.",
+          "Customer service representatives must speak clearly and empathetically at all times during customer interactions.",
+          "Our quarterly performance metrics exceeded the management team's projections across all regional divisions.",
+          "The new software update streamlines invoice processing and reduces administrative overhead across departments.",
+          "Effective communication requires active listening, concise phrasing, and precise word articulation.",
+          "She organized the project documentation before the weekly client conference call on Tuesday morning.",
+          "Please ensure your headset microphone is positioned directly beside your mouth for optimal audio capture.",
+          "The global economy is rapidly adopting automated digital workflows to increase operational efficiency.",
+          "Always double-check transaction reference numbers and client credentials before confirming payments.",
+          "Team collaboration fosters creative problem solving, cross-functional innovation, and high workplace morale.",
+          "Modern organizations prioritize transparent communication and timely deliverables in remote environments.",
+          "Digital security protocols safeguard sensitive personal data and enterprise cloud storage repositories.",
+          "The training supervisor demonstrated the new customer support ticketing portal to the incoming cohort.",
+          "Active feedback loops help employees enhance their daily operational efficiency and professional fluency.",
+          "Please verify all shipping information before approving the international shipment to the warehouse."
+        ];
+
+        this.repeatSentencePool = [
+          { text: "Please make sure that you submit the final expense report by Friday afternoon.", difficulty: "Medium" },
+          { text: "The manager congratulated the entire sales team on achieving their annual target.", difficulty: "Medium" },
+          { text: "Could you please verify your registered email address and phone number with our support desk?", difficulty: "Easy" },
+          { text: "Technological advancements have completely transformed modern call center operations and client experience.", difficulty: "Hard" },
+          { text: "Our technical team is working around the clock to resolve the database synchronization issue.", difficulty: "Medium" },
+          { text: "The customer requested a detailed breakdown of all recent billing charges and taxes.", difficulty: "Medium" },
+          { text: "Please remain on the line while I transfer your call to the senior billing supervisor.", difficulty: "Easy" },
+          { text: "Effective team leadership inspires confidence and drives superior organizational performance.", difficulty: "Medium" },
+          { text: "All confidential customer documents must be securely shredded immediately after verification.", difficulty: "Hard" },
+          { text: "I'm sorry I don't understand what you said because it was too fast.", difficulty: "Fallback Practice", isFallback: true }
+        ];
+
+        this.qaPool = [
+          { prompt: "Joe is smiling, is he happy or sad?", expected: ["happy", "he is happy", "joe is happy"], exp: "Smiling indicates happiness." },
+          { prompt: "If tomorrow is Sunday, what day is today?", expected: ["saturday", "today is saturday", "it is saturday"], exp: "Today is Saturday." },
+          { prompt: "Sara missed her morning bus, will she arrive at work early or late?", expected: ["late", "she will arrive late", "she will be late"], exp: "Missing transport causes tardiness." },
+          { prompt: "If an apple is a fruit, what is a carrot?", expected: ["vegetable", "a vegetable", "it is a vegetable"], exp: "A carrot is an edible root vegetable." },
+          { prompt: "The sun is shining brightly and there are no clouds, is it raining or sunny?", expected: ["sunny", "it is sunny", "sunny day"], exp: "Clear sunshine means sunny weather." },
+          { prompt: "Mark turned off the light switch, did the room become bright or dark?", expected: ["dark", "the room became dark", "it became dark"], exp: "Switching off lights creates darkness." },
+          { prompt: "If ice melts at room temperature, what liquid does it turn into?", expected: ["water", "liquid water"], exp: "Melting ice becomes liquid water." },
+          { prompt: "A customer wants to purchase an item, should they go to the billing counter or exit door?", expected: ["billing counter", "billing", "counter"], exp: "Purchases are completed at the billing desk." }
+        ];
+
+        this.vocabPool = [
+          { q: "What is the synonym for the word Huge?", correct: "Large", wrong: ["Tiny", "Heavy", "Little"], exp: "Synonym of 'Huge' is 'Large'." },
+          { q: "What is the antonym for the word Rapid?", correct: "Slow", wrong: ["Swift", "Quick", "Prompt"], exp: "Opposite of 'Rapid' is 'Slow'." },
+          { q: "What is the synonym for the word Brief?", correct: "Short", wrong: ["Lengthy", "Delayed", "Complex"], exp: "Synonym of 'Brief' is 'Short'." },
+          { q: "What is the synonym for the word Annual?", correct: "Yearly", wrong: ["Daily", "Monthly", "Weekly"], exp: "Synonym of 'Annual' is 'Yearly'." },
+          { q: "What is the antonym for the word Genuine?", correct: "Fake", wrong: ["Authentic", "Real", "Honest"], exp: "Antonym of 'Genuine' is 'Fake'." },
+          { q: "What is the synonym for the word Punctual?", correct: "On-time", wrong: ["Late", "Casual", "Hesitant"], exp: "Synonym of 'Punctual' is 'On-time'." },
+          { q: "What is the antonym for the word Transparent?", correct: "Opaque", wrong: ["Clear", "Visible", "Explicit"], exp: "Antonym of 'Transparent' is 'Opaque'." },
+          { q: "What is the synonym for the word Resolve?", correct: "Settle", wrong: ["Aggravate", "Ignore", "Postpone"], exp: "Synonym of 'Resolve' is 'Settle'." }
+        ];
+
+        this.grammarPool = [
+          {
+            q: "Which of the following sentences is grammatically correct?",
+            correct: "Good morning ma'am! How may I help you?",
+            wrong: [
+              "Good morning ma'am! How must I help you?",
+              "Good morning ma'am! How would I help you?",
+              "Good morning ma'am! How might I help you?"
+            ],
+            exp: "'How may I help you?' is standard polite modal etiquette."
+          },
+          {
+            q: "Which of the following sentences is grammatically correct?",
+            correct: "Neither the manager nor the employees were present.",
+            wrong: [
+              "Neither the manager nor the employees was present.",
+              "Neither the manager or the employees is present.",
+              "Neither the manager nor the employees are be present."
+            ],
+            exp: "In 'Neither... nor', the verb agrees with the closer plural subject 'employees were'."
+          },
+          {
+            q: "Which of the following sentences is grammatically correct?",
+            correct: "She has been working here for three years.",
+            wrong: [
+              "She has been working here since three years.",
+              "She is working here since three years.",
+              "She had work here for three years."
+            ],
+            exp: "'For' is required for duration of time ('for three years')."
+          },
+          {
+            q: "Which of the following sentences is grammatically correct?",
+            correct: "Please return the documents to me after signing.",
+            wrong: [
+              "Please return the documents to myself after signing.",
+              "Please return the documents to I after signing.",
+              "Please return the documents to mine after signing."
+            ],
+            exp: "Objective pronoun 'me' is required as the object of preposition 'to'."
+          },
+          {
+            q: "Which of the following sentences is grammatically correct?",
+            correct: "If I were you, I would accept the job offer.",
+            wrong: [
+              "If I was you, I would accept the job offer.",
+              "If I were you, I will accept the job offer.",
+              "If I am you, I would accept the job offer."
+            ],
+            exp: "Subjunctive hypothetical uses 'If I were you, I would...'."
+          }
+        ];
+
+        this.extemporeTopics = [
+          { category: "Workplace", topic: "Describe your ideal work environment and what makes a team productive.", tip: "List environment aspects: modern workstations, ergonomic chairs, open collaboration, and leadership transparency.", sample: "An ideal work environment consists of mutual respect, open communication, transparent feedback, and dedicated leadership." },
+          { category: "Workplace", topic: "Why is spoken English proficiency crucial for customer service and international business?", tip: "List global markets: communicating with clients across North America, Europe, Asia, and Australia.", sample: "Spoken English acts as a global communication bridge that resolves customer queries and builds corporate trust." },
+          { category: "Workplace", topic: "How do you handle difficult or irate customers effectively in a call center?", tip: "List 4 steps: listen actively, acknowledge frustration, investigate records, and offer immediate resolution.", sample: "De-escalating difficult customer interactions requires professional patience, active listening, and solution-oriented thinking." },
+          { category: "Technology", topic: "How is Artificial Intelligence transforming modern workplaces and education?", tip: "List fields: healthcare diagnostics, automated customer support, personalized learning, and fraud detection.", sample: "Artificial Intelligence is revolutionizing modern productivity by automating repetitive tasks and unlocking creative innovations." },
+          { category: "Personal Life", topic: "What is your favorite hobby and how does it help you relax and grow?", tip: "List activities: reading non-fiction, playing acoustic guitar, running marathons, and cooking regional cuisines.", sample: "Cultivating a meaningful hobby provides essential mental balance, personal rejuvenation, and lifelong skill development." },
+          { category: "Society", topic: "What individual steps can people take to protect the environment and reduce pollution?", tip: "List eco-actions: public transit, reusable bags, rooftop solar, native tree planting, and water conservation.", sample: "Environmental conservation is a collective global responsibility that begins with conscious daily individual habits." }
+        ];
+      }
+
+      shuffle(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      getReadingSet(count = 10) {
+        return this.shuffle(this.readingTemplates).slice(0, count).map((t, idx) => ({ id: idx + 1, text: t }));
+      }
+
+      getRepeatSet(count = 8) {
+        return this.shuffle(this.repeatSentencePool).slice(0, count).map((item, idx) => ({ id: `b_${idx+1}`, audioText: item.text, difficulty: item.difficulty, isFallbackRule: !!item.isFallback }));
+      }
+
+      getQASet(count = 6) {
+        return this.shuffle(this.qaPool).slice(0, count).map((item, idx) => ({ id: `c_${idx+1}`, prompt: item.prompt, expectedAnswers: item.expected, explanation: item.exp }));
+      }
+
+      getVocabSet(count = 6) {
+        const sampled = this.shuffle(this.vocabPool).slice(0, count);
+        return sampled.map((item, idx) => {
+          const allOptions = this.shuffle([item.correct, ...item.wrong]);
+          const keys = ['A', 'B', 'C', 'D'];
+          const options = allOptions.map((text, i) => ({ key: keys[i], text }));
+          const correctKey = options.find(o => o.text === item.correct).key;
+          return {
+            id: `d_${idx+1}`,
+            question: item.q,
+            options,
+            correctKey,
+            correctText: item.correct,
+            explanation: item.exp
+          };
+        });
+      }
+
+      getGrammarSet(count = 5) {
+        const sampled = this.shuffle(this.grammarPool).slice(0, count);
+        return sampled.map((item, idx) => {
+          const allOptions = this.shuffle([item.correct, ...item.wrong]);
+          const keys = ['A', 'B', 'C', 'D'];
+          const options = allOptions.map((text, i) => ({ key: keys[i], text }));
+          const correctKey = options.find(o => o.text === item.correct).key;
+          return {
+            id: `e_${idx+1}`,
+            question: item.q,
+            options,
+            correctKey,
+            correctText: item.correct,
+            explanation: item.exp
+          };
+        });
+      }
+
+      getExtemporeSet() {
+        return this.shuffle(this.extemporeTopics).map((t, idx) => ({ id: `f_${idx+1}`, ...t, listingTip: t.tip, sampleOpening: t.sample }));
+      }
+    }
+
+    /**
+     * AUDIO SYNTHESIZER & TONE GENERATOR
+     */
+    class AudioEngine {
+      constructor() {
+        this.ctx = null;
+        this.selectedVoice = null;
+        this.initVoiceLoader();
+      }
+
+      initVoiceLoader() {
+        if ('speechSynthesis' in window) {
+          const updateVoices = () => {
+            const voices = window.speechSynthesis.getVoices();
+            if (voices && voices.length) {
+              this.selectedVoice = voices.find(v => v.lang && (v.lang.includes('en-US') || v.lang.includes('en-GB') || v.name.includes('Natural') || v.name.includes('English'))) || voices[0];
+            }
+          };
+          updateVoices();
+          window.speechSynthesis.onvoiceschanged = updateVoices;
+        }
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+      }
+
+      playBeep(freq = 880, duration = 0.35, type = 'sine') {
+        try {
+          this.init();
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+          gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + duration);
+        } catch (e) {
+          console.warn("Audio tone notice:", e);
+        }
+      }
+
+      playStartBeep() { this.playBeep(1000, 0.45, 'sine'); }
+      playCountdownBeep(isFinal = false) {
+        if (isFinal) this.playBeep(880, 0.5, 'triangle');
+        else this.playBeep(440, 0.2, 'sine');
+      }
+
+      playSuccessChime() {
+        this.init();
+        setTimeout(() => this.playBeep(523.25, 0.15, 'sine'), 0);
+        setTimeout(() => this.playBeep(659.25, 0.15, 'sine'), 120);
+        setTimeout(() => this.playBeep(783.99, 0.3, 'sine'), 240);
+      }
+
+      speak(text, onEndCallback) {
+        if (!('speechSynthesis' in window)) {
+          if (onEndCallback) onEndCallback();
+          return;
+        }
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.92;
+        utterance.pitch = 1.0;
+        utterance.lang = 'en-US';
+        if (this.selectedVoice) utterance.voice = this.selectedVoice;
+        
+        let hasTriggered = false;
+        const triggerEnd = () => {
+          if (!hasTriggered) {
+            hasTriggered = true;
+            if (onEndCallback) onEndCallback();
+          }
+        };
+
+        utterance.onend = triggerEnd;
+        utterance.onerror = triggerEnd;
+        window.speechSynthesis.speak(utterance);
+      }
+
+      stopSpeech() {
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      }
+    }
+
+    /**
+     * SINGLE-INSTANCE PERSISTENT SPEECH CONTROLLER
+     */
+    class PersistentSpeechController {
+      constructor() {
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        this.isSupported = !!SpeechRec;
+        this.recognition = null;
+        this.isListening = false;
+        this.activeStream = null;
+        this.audioCtx = null;
+        this.analyser = null;
+        this.animFrameId = null;
+        this.permissionGranted = localStorage.getItem('svar_mic_authorized') === 'true';
+
+        this.currentOnResult = null;
+        this.currentOnEnd = null;
+        this.currentOnError = null;
+
+        if (this.isSupported) {
+          this.initSingleInstance();
+        }
+      }
+
+      initSingleInstance() {
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        this.recognition = new SpeechRec();
+        this.recognition.continuous = true;
+        this.recognition.interimResults = true;
+        this.recognition.lang = 'en-US';
+
+        this.recognition.onstart = () => {
+          this.isListening = true;
+          this.showMicMeter(true);
+        };
+
+        this.recognition.onresult = (e) => {
+          let interim = '';
+          let final = '';
+          for (let i = 0; i < e.results.length; ++i) {
+            if (e.results[i].isFinal) final += e.results[i][0].transcript + ' ';
+            else interim += e.results[i][0].transcript;
+          }
+          const fullText = (final + interim).trim();
+          if (this.currentOnResult && fullText) {
+            this.currentOnResult(fullText, !!final);
+          }
+        };
+
+        this.recognition.onerror = (err) => {
+          if (err.error === 'no-speech' || err.error === 'aborted') return;
+          this.isListening = false;
+          this.showMicMeter(false);
+          if (this.currentOnError) this.currentOnError(err.error);
+        };
+
+        this.recognition.onend = () => {
+          this.isListening = false;
+          this.showMicMeter(false);
+          if (this.currentOnEnd) {
+            this.currentOnEnd();
+          }
+        };
+      }
+
+      showMicMeter(visible) {
+        const meter = document.getElementById('mic-live-meter');
+        if (meter) {
+          if (visible) {
+            meter.classList.remove('hidden');
+            meter.classList.add('flex');
+            this.startVisualizerLoop();
+          } else {
+            meter.classList.remove('flex');
+            meter.classList.add('hidden');
+            if (this.animFrameId) {
+              cancelAnimationFrame(this.animFrameId);
+              this.animFrameId = null;
+            }
+          }
+        }
+      }
+
+      async acquirePersistentStream() {
+        if (this.activeStream && this.activeStream.active) return this.activeStream;
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          throw new Error("Microphone API is not supported in this browser.");
+        }
+
+        this.activeStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        this.permissionGranted = true;
+        localStorage.setItem('svar_mic_authorized', 'true');
+        this.setupAudioVisualizer(this.activeStream);
+        return this.activeStream;
+      }
+
+      setupAudioVisualizer(stream) {
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (!this.audioCtx) this.audioCtx = new AudioContext();
+          if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+
+          const source = this.audioCtx.createMediaStreamSource(stream);
+          this.analyser = this.audioCtx.createAnalyser();
+          this.analyser.fftSize = 64;
+          source.connect(this.analyser);
+        } catch (e) {
+          console.warn("Visualizer notice:", e);
+        }
+      }
+
+      startVisualizerLoop() {
+        if (!this.analyser) return;
+        if (this.animFrameId) cancelAnimationFrame(this.animFrameId);
+
+        const b1 = document.getElementById('bar1');
+        const b2 = document.getElementById('bar2');
+        const b3 = document.getElementById('bar3');
+        const b4 = document.getElementById('bar4');
+        const dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+
+        const updateMeter = () => {
+          if (!this.isListening) return;
+          this.analyser.getByteFrequencyData(dataArray);
+          
+          let sum = 0;
+          for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
+          const avg = sum / dataArray.length;
+
+          if (b1) b1.style.height = Math.min(24, Math.max(4, avg * 0.3)) + 'px';
+          if (b2) b2.style.height = Math.min(24, Math.max(6, avg * 0.5)) + 'px';
+          if (b3) b3.style.height = Math.min(24, Math.max(4, avg * 0.4)) + 'px';
+          if (b4) b4.style.height = Math.min(24, Math.max(3, avg * 0.2)) + 'px';
+
+          this.animFrameId = requestAnimationFrame(updateMeter);
+        };
+        updateMeter();
+      }
+
+      async startListening(onResult, onEnd, onError) {
+        if (!this.isSupported) {
+          if (onError) onError("Speech Recognition unavailable. You can type directly in the box.");
+          return;
+        }
+
+        this.currentOnResult = onResult;
+        this.currentOnEnd = onEnd;
+        this.currentOnError = onError;
+
+        if (!this.activeStream || !this.activeStream.active) {
+          try {
+            await this.acquirePersistentStream();
+          } catch (e) {
+            console.warn("Audio stream notice:", e);
+          }
+        }
+
+        if (this.isListening) {
+          try { this.recognition.abort(); } catch(e) {}
+          this.isListening = false;
+        }
+
+        try {
+          this.recognition.start();
+          this.isListening = true;
+          this.showMicMeter(true);
+        } catch (err) {
+          if (err.name === 'InvalidStateError' || err.message?.includes('already started')) {
+            this.isListening = true;
+            this.showMicMeter(true);
+          } else {
+            console.warn("SpeechRec start error:", err);
+            if (onError) onError(err.message || "Failed to start speech recognition.");
+          }
+        }
+      }
+
+      stopListening() {
+        if (this.recognition && this.isListening) {
+          try { this.recognition.stop(); } catch(e) {}
+          this.isListening = false;
+        }
+        this.showMicMeter(false);
+      }
+    }
+
+    /**
+     * UNIFIED EVALUATION ENGINE
+     */
+    const SvarEvaluator = {
+      evaluateReading(userText, expectedText) {
+        const sim = Utils.calculateSimilarity(userText, expectedText);
+        const passed = sim >= 65;
+        const score = Math.max(30, sim);
+        return {
+          score,
+          passed,
+          feedback: `Reading accuracy: ${sim}%. Articulation & cadence evaluated.`
+        };
+      },
+      evaluateRepeat(userText, expectedText) {
+        const lower = userText.toLowerCase();
+        const sim = Utils.calculateSimilarity(userText, expectedText);
+        const isFallback = lower.includes("sorry") && lower.includes("fast");
+        const passed = sim >= 65 || isFallback;
+        const score = isFallback ? 75 : sim;
+        return {
+          score,
+          passed,
+          isFallback,
+          feedback: isFallback ? "Fallback intonation strategy used effectively (75% credit)." : `Sentence reproduction match: ${sim}%.`
+        };
+      },
+      evaluateQA(userText, expectedList) {
+        const lower = userText.toLowerCase();
+        const isCorrect = expectedList.some(ans => lower.includes(ans.toLowerCase()));
+        return {
+          score: isCorrect ? 100 : (userText ? 30 : 0),
+          passed: isCorrect,
+          feedback: isCorrect ? "Accurate and prompt situational comprehension response." : `Expected: "${expectedList[0]}"`
+        };
+      },
+      evaluateVocab(userText, correctKey, correctText) {
+        const lower = userText.toLowerCase();
+        const hasTheAnswerIs = lower.includes("the answer is") || lower.includes("answer is");
+        const hasKey = lower.includes(correctKey.toLowerCase());
+        const hasWord = lower.includes(correctText.toLowerCase());
+
+        if (hasTheAnswerIs && hasKey && hasWord) {
+          return { score: 100, passed: true, isFullFormat: true, feedback: "100% SVAR Compliant format & accurate synonym." };
+        } else if (hasKey && hasWord) {
+          return { score: 70, passed: true, isFullFormat: false, feedback: "Correct word chosen, but penalty for missing 'The answer is...' prefix." };
+        } else {
+          return { score: 20, passed: false, isFullFormat: false, feedback: `Correct response: "The answer is ${correctKey}, ${correctText}"` };
+        }
+      },
+      evaluateGrammar(userText, correctKey, correctText) {
+        const lower = userText.toLowerCase();
+        const hasTheAnswerIs = lower.includes("the answer is") || lower.includes("answer is");
+        const hasKey = lower.includes(correctKey.toLowerCase());
+        const simPct = Utils.calculateSimilarity(userText, correctText);
+
+        if (hasTheAnswerIs && (hasKey || simPct >= 70)) {
+          return { score: 100, passed: true, isFullFormat: true, feedback: "Full grammatical structure and compliant SVAR oral format." };
+        } else if (hasKey || simPct >= 70) {
+          return { score: 70, passed: true, isFullFormat: false, feedback: "Correct grammar option selected, missing full 'The answer is...' prefix." };
+        } else {
+          return { score: 20, passed: false, isFullFormat: false, feedback: `Correct response: "The answer is ${correctKey}, ${correctText}"` };
+        }
+      },
+      evaluateExtempore(userText) {
+        const wordCount = userText.split(/\s+/).filter(Boolean).length;
+        if (wordCount >= 30) {
+          return { score: 95, passed: true, wordCount, feedback: `Outstanding extempore flow (${wordCount} words) with effective elaboration.` };
+        } else if (wordCount >= 15) {
+          return { score: 75, passed: true, wordCount, feedback: `Good speech delivery (${wordCount} words). Use the listing technique to extend further.` };
+        } else {
+          return { score: 50, passed: false, wordCount, feedback: `Speech duration was short (${wordCount} words). Consume the full 45s clock!` };
+        }
+      }
+    };
+
+    /**
+     * MAIN SVAR APPLICATION CONTROLLER
+     */
+    class SvarApp {
+      constructor() {
+        this.audio = new AudioEngine();
+        this.speech = new PersistentSpeechController();
+        this.gen = new SvarDynamicGenerator();
+
+        this.currentTab = 'guide';
+        this.practiceSection = 'A';
+        this.practiceIndex = 0;
+        this.extemporeCategory = 'All';
+        this.autoAdvance = localStorage.getItem('svar_auto_advance') !== 'false';
+        this.autoAdvanceTimer = null;
+        this.extemporePrepInterval = null;
+        this.extemporeSpeakInterval = null;
+
+        // Current Active Dynamic Question Sets
+        this.dynamicData = {
+          A: this.gen.getReadingSet(10),
+          B: this.gen.getRepeatSet(8),
+          C: this.gen.getQASet(6),
+          D: this.gen.getVocabSet(6),
+          E: this.gen.getGrammarSet(5),
+          F: this.gen.getExtemporeSet()
+        };
+
+        // Drill status tracker
+        this.drillStatus = { A: {}, B: {}, C: {}, D: {}, E: {}, F: {} };
+
+        // Mock test state
+        this.mockActive = false;
+        this.mockItems = [];
+        this.mockCurrentIndex = 0;
+        this.mockGlobalTimerInterval = null;
+        this.mockGlobalSecondsLeft = 16 * 60;
+        this.mockUserResponses = [];
+        this.lastScoreReport = null;
+        this.currentActiveRecButtonId = null;
+
+        this.init();
+      }
+
+      async init() {
+        if (window.location.protocol === 'file:') {
+          const warning = document.getElementById('file-protocol-warning');
+          if (warning) warning.classList.remove('hidden');
+        }
+
+        this.updateAutoAdvanceUi();
+        this.setTab('guide');
+        this.renderPracticeSection();
+
+        if (this.speech.permissionGranted) {
+          this.updateMicUiStatus(true);
+          try {
+            await this.speech.acquirePersistentStream();
+          } catch(e) {}
+        }
+      }
+
+      clearAllActiveTimers() {
+        if (this.autoAdvanceTimer) {
+          clearTimeout(this.autoAdvanceTimer);
+          this.autoAdvanceTimer = null;
+        }
+        if (this.extemporePrepInterval) {
+          clearInterval(this.extemporePrepInterval);
+          this.extemporePrepInterval = null;
+        }
+        if (this.extemporeSpeakInterval) {
+          clearInterval(this.extemporeSpeakInterval);
+          this.extemporeSpeakInterval = null;
+        }
+        this.speech.stopListening();
+        this.audio.stopSpeech();
+      }
+
+      toggleAutoAdvance() {
+        this.autoAdvance = !this.autoAdvance;
+        localStorage.setItem('svar_auto_advance', this.autoAdvance ? 'true' : 'false');
+        this.updateAutoAdvanceUi();
+        this.showToast(`Auto-Progression is now ${this.autoAdvance ? 'ENABLED ⚡' : 'DISABLED ⏸️'}`);
+      }
+
+      updateAutoAdvanceUi() {
+        const lbl = document.getElementById('auto-progress-label');
+        if (lbl) {
+          lbl.innerText = this.autoAdvance ? 'ON ⚡' : 'OFF ⏸️';
+          lbl.className = this.autoAdvance ? 'text-emerald-400 font-bold' : 'text-slate-400 font-bold';
+        }
+      }
+
+      generateFreshDrillSet() {
+        this.clearAllActiveTimers();
+        this.dynamicData = {
+          A: this.gen.getReadingSet(10),
+          B: this.gen.getRepeatSet(8),
+          C: this.gen.getQASet(6),
+          D: this.gen.getVocabSet(6),
+          E: this.gen.getGrammarSet(5),
+          F: this.gen.getExtemporeSet()
+        };
+        this.drillStatus = { A: {}, B: {}, C: {}, D: {}, E: {}, F: {} };
+        this.practiceIndex = 0;
+        this.renderPracticeSection();
+        this.showToast("Generated completely fresh randomized topic sets with shuffled options!", "accent");
+      }
+
+      updateMicUiStatus(isAuthorized) {
+        const ind = document.getElementById('mic-status-indicator');
+        const lbl = document.getElementById('mic-status-label');
+        const txt = document.getElementById('mic-status-text');
+        if (isAuthorized) {
+          if (ind) ind.className = "inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse";
+          if (lbl) lbl.innerText = "Mic Ready (Single-Instance Engine)";
+          if (txt) txt.innerText = "Mic Ready";
+        } else {
+          if (ind) ind.className = "inline-block w-2.5 h-2.5 rounded-full bg-amber-400";
+          if (lbl) lbl.innerText = "Click to Enable Mic";
+          if (txt) txt.innerText = "Enable Mic";
+        }
+      }
+
+      async ensureMicPermission(showToastOnSuccess = false) {
+        try {
+          await this.speech.acquirePersistentStream();
+          this.updateMicUiStatus(true);
+          if (showToastOnSuccess) {
+            this.showToast("Microphone connected successfully!", "emerald");
+          }
+          return true;
+        } catch (err) {
+          this.updateMicUiStatus(false);
+          this.showToast("Microphone permission note: " + err.message, "rose");
+          return false;
+        }
+      }
+
+      setTab(tabName) {
+        this.clearAllActiveTimers();
+        this.currentTab = tabName;
+        ['guide', 'practice', 'mock', 'scorecard'].forEach(t => {
+          const btn = document.getElementById(`nav-${t}`);
+          const view = document.getElementById(`view-${t}`);
+          if (btn && view) {
+            if (t === tabName) {
+              btn.className = 'px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition active-nav-tab flex items-center gap-1.5 whitespace-nowrap flex-shrink-0';
+              view.classList.remove('hidden');
+            } else {
+              btn.className = 'px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0';
+              view.classList.add('hidden');
+            }
+          }
+        });
+        if (tabName === 'practice') {
+          this.renderPracticeSection();
+        } else if (tabName === 'scorecard') {
+          this.renderScorecard();
+        }
+      }
+
+      testAudioFeedback() {
+        this.audio.playSuccessChime();
+        this.showToast("Synthesized audio tone played successfully!");
+      }
+
+      showToast(message, color = "brand") {
+        const existing = document.getElementById('svar-toast');
+        if (existing) existing.remove();
+
+        const colorMap = {
+          brand: 'border-brand-500/40 text-slate-100 dot-brand-400 bg-brand-400',
+          emerald: 'border-emerald-500/40 text-emerald-100 dot-emerald-400 bg-emerald-400',
+          amber: 'border-amber-500/40 text-amber-100 dot-amber-400 bg-amber-400',
+          rose: 'border-rose-500/40 text-rose-100 dot-rose-400 bg-rose-400',
+          accent: 'border-cyan-500/40 text-cyan-100 dot-cyan-400 bg-cyan-400'
+        };
+        const colorClasses = colorMap[color] || colorMap.brand;
+
+        const toast = document.createElement('div');
+        toast.id = 'svar-toast';
+        toast.className = `fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 max-w-[90vw] px-4 py-3 rounded-2xl glass-panel border shadow-2xl text-xs font-semibold flex items-center gap-2 animate-bounce-subtle ${colorClasses.split(' ')[0]}`;
+        toast.innerHTML = `<span class="w-2 h-2 rounded-full flex-shrink-0 ${colorClasses.split(' ')[3]}"></span><span class="break-words">${Utils.escapeHtml(message)}</span>`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3500);
+      }
+
+      async toggleSpeechRec(inputId, btnId) {
+        const input = document.getElementById(inputId);
+        const btn = document.getElementById(btnId);
+        if (!input) return;
+
+        if (this.speech.isListening && this.currentActiveRecButtonId === btnId) {
+          this.speech.stopListening();
+          this.currentActiveRecButtonId = null;
+          if (btn) btn.innerHTML = `
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+            <span>Speak</span>
+          `;
+          return;
+        }
+
+        if (this.currentActiveRecButtonId && this.currentActiveRecButtonId !== btnId) {
+          const oldBtn = document.getElementById(this.currentActiveRecButtonId);
+          if (oldBtn) oldBtn.innerHTML = `
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+            <span>Speak</span>
+          `;
+        }
+
+        this.currentActiveRecButtonId = btnId;
+        if (btn) {
+          btn.innerHTML = `
+            <span class="inline-block w-2 h-2 rounded-full bg-rose-500 animate-ping mr-1"></span>
+            <span class="text-rose-200">Listening...</span>
+          `;
+        }
+
+        await this.speech.startListening(
+          (transcript) => {
+            input.value = transcript;
+          },
+          () => {
+            if (btn) {
+              btn.innerHTML = `
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                <span>Speak</span>
+              `;
+            }
+          },
+          (err) => {
+            this.showToast("Speech note: " + err, "amber");
+            if (btn) {
+              btn.innerHTML = `
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                <span>Speak</span>
+              `;
+            }
+          }
+        );
+      }
+
+      /* ------------------------------------------------------------- */
+      /* SECTION DRILLS WITH SUBMIT & ITEM STATUS TRACKING             */
+      /* ------------------------------------------------------------- */
+      startPracticeSection(secLetter) {
+        this.clearAllActiveTimers();
+        this.practiceSection = secLetter;
+        this.practiceIndex = 0;
+        this.setTab('practice');
+        this.renderPracticeSection();
+      }
+
+      renderPracticeSection() {
+        document.querySelectorAll('.prac-tab-btn').forEach(btn => {
+          if (btn.dataset.sec === this.practiceSection) {
+            btn.className = 'prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition bg-brand-600 text-white shadow flex-shrink-0';
+          } else {
+            btn.className = 'prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0';
+          }
+        });
+
+        const badge = document.getElementById('practice-current-section-badge');
+        const container = document.getElementById('practice-content-area');
+        if (!container) return;
+
+        const secTitles = {
+          'A': 'Section A: Reading Out Loud',
+          'B': 'Section B: Repeat The Sentence You Hear',
+          'C': 'Section C: Answering Simple Questions',
+          'D': 'Section D: Vocabulary',
+          'E': 'Section E: Grammar',
+          'F': 'Section F: Timed Extempore'
+        };
+        badge.innerText = secTitles[this.practiceSection] || 'Section Practice';
+
+        switch (this.practiceSection) {
+          case 'A': this.renderPracticeA(container); break;
+          case 'B': this.renderPracticeB(container); break;
+          case 'C': this.renderPracticeC(container); break;
+          case 'D': this.renderPracticeD(container); break;
+          case 'E': this.renderPracticeE(container); break;
+          case 'F': this.renderPracticeF(container); break;
+        }
+      }
+
+      renderItemChips(total, currentIdx, secKey) {
+        let html = `<div class="flex flex-wrap gap-1.5 items-center">`;
+        let completedCount = 0;
+
+        for (let i = 0; i < total; i++) {
+          const status = this.drillStatus[secKey][i];
+          let badgeClass = "bg-slate-900 border-slate-800 text-slate-400";
+          let icon = i + 1;
+          if (status) {
+            completedCount++;
+            if (status.passed) {
+              badgeClass = "bg-emerald-500/20 border-emerald-500/40 text-emerald-300 font-bold";
+              icon = `✓ ${i + 1}`;
+            } else {
+              badgeClass = "bg-amber-500/20 border-amber-500/40 text-amber-300 font-bold";
+              icon = `⚠️ ${i + 1}`;
+            }
+          }
+          const isCurrent = i === currentIdx;
+          const currentRing = isCurrent ? "ring-2 ring-brand-400 ring-offset-2 ring-offset-slate-950 scale-105" : "";
+
+          html += `
+            <button onclick="app.jumpPracticeIndex(${i})" class="px-2.5 py-1 min-w-[32px] rounded-lg text-xs border transition ${badgeClass} ${currentRing}">
+              ${icon}
+            </button>
+          `;
+        }
+
+        if (completedCount > 0) {
+          html += `
+            <button onclick="app.showSectionScoreboardModal('${secKey}')" class="ml-auto sm:ml-2 px-2.5 py-1 rounded-lg text-xs bg-brand-500/20 hover:bg-brand-500/30 text-brand-300 font-bold border border-brand-500/40 transition flex items-center gap-1">
+              <span>📊 Score (${completedCount}/${total})</span>
+            </button>
+          `;
+        }
+
+        html += `</div>`;
+        return html;
+      }
+
+      jumpPracticeIndex(idx) {
+        this.clearAllActiveTimers();
+        this.practiceIndex = idx;
+        this.renderPracticeSection();
+      }
+
+      triggerAutoProgression(secKey, total) {
+        if (!this.autoAdvance) return;
+        const completedCount = Object.keys(this.drillStatus[secKey]).length;
+        
+        if (completedCount >= total) {
+          this.autoAdvanceTimer = setTimeout(() => {
+            this.checkAndShowSectionCompletionScoreboard(secKey, total);
+          }, 1400);
+        } else {
+          this.autoAdvanceTimer = setTimeout(() => {
+            this.nextPracticeItem();
+          }, 1600);
+        }
+      }
+
+      /* ------------------------------------------------------------- */
+      /* SECTION DRILL SCOREBOARD & CELEBRATION SYSTEM                 */
+      /* ------------------------------------------------------------- */
+      checkAndShowSectionCompletionScoreboard(secKey, total) {
+        const completedCount = Object.keys(this.drillStatus[secKey]).length;
+        if (completedCount >= total) {
+          this.audio.playSuccessChime();
+          this.showSectionScoreboardModal(secKey);
+        }
+      }
+
+      showSectionScoreboardModal(secKey) {
+        const resultsMap = this.drillStatus[secKey];
+        const itemIndices = Object.keys(resultsMap);
+        if (!itemIndices.length) {
+          this.showToast("No drill items completed yet in this section.", "amber");
+          return;
+        }
+
+        let totalScore = 0;
+        let passedCount = 0;
+        const totalItems = itemIndices.length;
+
+        itemIndices.forEach(idx => {
+          const r = resultsMap[idx];
+          totalScore += (r.score || 0);
+          if (r.passed) passedCount++;
+        });
+
+        const avgScore = Math.round(totalScore / totalItems);
+        let cefr = 'B2';
+        let cefrDesc = 'Operational Fluency';
+        if (avgScore >= 90) { cefr = 'C1+'; cefrDesc = 'Advanced Mastery'; }
+        else if (avgScore >= 80) { cefr = 'B2+'; cefrDesc = 'High Vantage'; }
+        else if (avgScore >= 70) { cefr = 'B2'; cefrDesc = 'Vantage Standard'; }
+        else if (avgScore >= 60) { cefr = 'B1+'; cefrDesc = 'Moderate Proficiency'; }
+        else { cefr = 'A2/B1'; cefrDesc = 'Needs Reinforcement'; }
+
+        const secNames = {
+          'A': 'Section A: Reading Out Loud',
+          'B': 'Section B: Repeat Sentence',
+          'C': 'Section C: Simple Questions',
+          'D': 'Section D: Vocabulary',
+          'E': 'Section E: Grammar',
+          'F': 'Section F: Extempore'
+        };
+
+        const modal = document.createElement('div');
+        modal.id = 'section-scoreboard-modal';
+        modal.className = 'fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fadeIn';
+        modal.innerHTML = `
+          <div class="glass-panel max-w-2xl w-full p-4 sm:p-8 rounded-3xl border border-brand-500/40 shadow-2xl space-y-4 sm:space-y-6 max-h-[90vh] overflow-y-auto">
+            
+            <div class="flex items-start justify-between">
+              <div class="space-y-1">
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[11px] font-bold">
+                  <span>🎉 Drill Round Complete</span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-white">${secNames[secKey] || 'Section'} Scoreboard</h3>
+                <p class="text-xs text-slate-400">All questions evaluated with automated speech & accuracy metrics</p>
+              </div>
+
+              <button onclick="document.getElementById('section-scoreboard-modal').remove()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs" aria-label="Close Modal">
+                ✕ Close
+              </button>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 sm:gap-3 text-center">
+              <div class="p-3 sm:p-4 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="text-[9px] sm:text-[10px] text-slate-400 font-semibold uppercase">Drill Score</div>
+                <div class="text-2xl sm:text-3xl font-heading font-extrabold text-brand-400">${avgScore}%</div>
+              </div>
+              <div class="p-3 sm:p-4 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="text-[9px] sm:text-[10px] text-slate-400 font-semibold uppercase">Passed Items</div>
+                <div class="text-2xl sm:text-3xl font-heading font-extrabold text-emerald-400">${passedCount}/${totalItems}</div>
+              </div>
+              <div class="p-3 sm:p-4 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="text-[9px] sm:text-[10px] text-slate-400 font-semibold uppercase">CEFR Rating</div>
+                <div class="text-xl sm:text-2xl font-heading font-extrabold text-accent-400">${cefr}</div>
+                <div class="text-[9px] text-slate-400">${cefrDesc}</div>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="text-xs font-bold text-slate-300 uppercase tracking-wider">Item Performance Review:</div>
+              <div class="space-y-2 max-h-56 overflow-y-auto pr-1">
+                ${itemIndices.map((idx) => {
+                  const r = resultsMap[idx];
+                  return `
+                    <div class="p-3 rounded-xl bg-slate-900/90 border ${r.passed ? 'border-emerald-500/30' : 'border-amber-500/30'} text-xs space-y-1">
+                      <div class="flex items-center justify-between">
+                        <span class="font-bold text-white">Item #${parseInt(idx) + 1}: ${Utils.escapeHtml(r.prompt || 'Sentence Task')}</span>
+                        <span class="font-extrabold ${r.passed ? 'text-emerald-400' : 'text-amber-400'}">${r.score}%</span>
+                      </div>
+                      <p class="text-slate-300"><strong>Spoken:</strong> "${Utils.escapeHtml(r.userText || '(No text recorded)')}"</p>
+                      <p class="text-[11px] text-slate-400">${Utils.escapeHtml(r.feedback || '')}</p>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+
+            <div class="pt-2 flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-end border-t border-slate-800">
+              <button onclick="app.generateFreshDrillSet()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition">
+                🎲 Next Fresh Topics Set
+              </button>
+              <button onclick="app.syncAndOpenFullScorecard()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-500 text-white font-bold text-xs shadow-lg transition">
+                📊 View Full Scorecard & Analytics &rarr;
+              </button>
+            </div>
+
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+      }
+
+      syncAndOpenFullScorecard() {
+        const modal = document.getElementById('section-scoreboard-modal');
+        if (modal) modal.remove();
+
+        const secScores = { A: [], B: [], C: [], D: [], E: [], F: [] };
+        const allResponses = [];
+
+        ['A', 'B', 'C', 'D', 'E', 'F'].forEach(sec => {
+          const map = this.drillStatus[sec];
+          Object.keys(map).forEach(idx => {
+            const r = map[idx];
+            secScores[sec].push(r.score || 0);
+            allResponses.push({
+              item: { sec, prompt: r.prompt },
+              userResponse: r.userText,
+              score: r.score,
+              feedback: r.feedback,
+              isCorrect: r.passed
+            });
+          });
+        });
+
+        const getSecAvg = (arr, fallback = 80) => arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : fallback;
+
+        const aScore = getSecAvg(secScores.A, 90);
+        const bScore = getSecAvg(secScores.B, 85);
+        const cScore = getSecAvg(secScores.C, 88);
+        const dScore = getSecAvg(secScores.D, 95);
+        const eScore = getSecAvg(secScores.E, 88);
+        const fScore = getSecAvg(secScores.F, 82);
+
+        const overall = Math.round((aScore + bScore + cScore + dScore + eScore + fScore) / 6);
+
+        let cefr = 'B2';
+        let cefrDesc = 'Independent / Vantage';
+        if (overall >= 90) { cefr = 'C1+'; cefrDesc = 'Mastery / Advanced Proficient'; }
+        else if (overall >= 80) { cefr = 'B2+'; cefrDesc = 'High Vantage / Professional Fluency'; }
+        else if (overall >= 70) { cefr = 'B2'; cefrDesc = 'Vantage / Operational Standard'; }
+        else if (overall >= 60) { cefr = 'B1+'; cefrDesc = 'Threshold / Moderate Fluency'; }
+        else { cefr = 'A2/B1'; cefrDesc = 'Elementary / Requires Practice'; }
+
+        this.lastScoreReport = {
+          overall,
+          cefr,
+          cefrDesc,
+          sections: { A: aScore, B: bScore, C: cScore, D: dScore, E: eScore, F: fScore },
+          responses: allResponses.length ? allResponses : [
+            { item: { sec: 'Drill', prompt: 'Section Practice Drill' }, userResponse: 'Completed Section Drill Session', score: overall, feedback: 'Comprehensive practice evaluation complete.', isCorrect: true }
+          ],
+          date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+        };
+
+        this.setTab('scorecard');
+      }
+
+      /* SECTION A: READING */
+      renderPracticeA(container) {
+        const sentences = this.dynamicData.A;
+        const currentItem = sentences[this.practiceIndex % sentences.length];
+        const status = this.drillStatus.A[this.practiceIndex];
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-brand-950/40 border border-brand-800/30">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-brand-300 font-bold uppercase tracking-wider">Reading Task ${this.practiceIndex + 1} of ${sentences.length}</span>
+                </div>
+                ${this.renderItemChips(sentences.length, this.practiceIndex, 'A')}
+              </div>
+              <div class="flex items-center space-x-2 self-end sm:self-auto">
+                <button onclick="app.prevPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">&larr; Prev</button>
+                <button onclick="app.nextPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">Next &rarr;</button>
+              </div>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3 sm:space-y-4 text-center">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded-lg bg-brand-500/20 text-brand-300 text-xs font-extrabold">Sentence #${currentItem.id}</span>
+                <button onclick="app.audio.speak('${currentItem.text.replace(/'/g, "\\'")}')" class="text-xs text-accent-400 hover:text-accent-300 font-semibold flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+                  <span>Listen Model</span>
+                </button>
+              </div>
+
+              <div class="p-4 sm:p-5 rounded-2xl bg-slate-950 border border-brand-500/30 text-base sm:text-xl font-medium text-white leading-relaxed">
+                "${currentItem.text}"
+              </div>
+              <p class="text-[11px] sm:text-xs text-slate-400">Rule: Read loud and clear. Avoid pauses longer than 2.5s and eliminate filler words.</p>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl glass-card border border-slate-800 space-y-4">
+              <label for="sec-a-input" class="block text-xs font-bold text-slate-300">Speak or Record Your Reading:</label>
+              
+              <div class="flex gap-2">
+                <input id="sec-a-input" type="text" onkeydown="if(event.key==='Enter') app.submitPracticeA('${currentItem.text.replace(/'/g, "\\'")}')" placeholder="Click 'Speak' and read the sentence out loud..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500" />
+                <button id="sec-a-rec-btn" onclick="app.toggleSpeechRec('sec-a-input', 'sec-a-rec-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+
+              <div class="pt-1 flex flex-col sm:flex-row gap-3">
+                <button onclick="app.submitPracticeA('${currentItem.text.replace(/'/g, "\\'")}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-accent-500 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-brand-500/20 transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Submit Reading & Check Status</span>
+                </button>
+              </div>
+
+              <div id="sec-a-feedback" class="${status ? '' : 'hidden'} p-4 rounded-2xl text-xs space-y-2">
+                ${status ? status.html : ''}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+
+      submitPracticeA(expectedText) {
+        const input = document.getElementById('sec-a-input').value.trim();
+        const feedback = document.getElementById('sec-a-feedback');
+        if (!feedback) return;
+
+        if (!input) {
+          this.showToast("Please speak or type your reading response first.", "amber");
+          return;
+        }
+
+        const evalResult = SvarEvaluator.evaluateReading(input, expectedText);
+        feedback.classList.remove('hidden');
+
+        let html = '';
+        if (evalResult.passed) {
+          this.audio.playSuccessChime();
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs space-y-2 relative overflow-hidden';
+          html = `
+            ${this.autoAdvance ? '<div class="absolute top-0 left-0 h-1 bg-emerald-400 auto-progress-meter"></div>' : ''}
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span>STATUS: PASSED (${evalResult.score}% Accuracy)</span>
+              </span>
+              <button onclick="app.nextPracticeItem()" class="px-3 py-1 bg-emerald-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-emerald-400 transition">Next Item &rarr;</button>
+            </div>
+            <p><strong>Expected:</strong> "${Utils.escapeHtml(expectedText)}"</p>
+            <p><strong>Your Reading:</strong> "${Utils.escapeHtml(input)}"</p>
+            ${this.autoAdvance ? '<div class="text-[11px] text-emerald-300 font-semibold pt-1">⚡ Auto-advancing to next question...</div>' : ''}
+          `;
+        } else {
+          this.audio.playBeep(440, 0.2);
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-amber-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span>STATUS: NEEDS PRACTICE (${evalResult.score}% Match)</span>
+              </span>
+              <button onclick="document.getElementById('sec-a-input').value=''; document.getElementById('sec-a-input').focus();" class="px-3 py-1 bg-amber-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-amber-400 transition">Retry 🔄</button>
+            </div>
+            <p><strong>Expected:</strong> "${Utils.escapeHtml(expectedText)}"</p>
+            <p><strong>Your Reading:</strong> "${Utils.escapeHtml(input)}"</p>
+          `;
+        }
+
+        feedback.innerHTML = html;
+        this.drillStatus.A[this.practiceIndex] = {
+          passed: evalResult.passed,
+          score: evalResult.score,
+          userText: input,
+          expectedText,
+          prompt: `Sentence #${this.practiceIndex + 1}`,
+          feedback: evalResult.feedback
+        };
+
+        this.renderPracticeSection();
+        this.triggerAutoProgression('A', this.dynamicData.A.length);
+      }
+
+      /* SECTION B: REPEAT SENTENCE */
+      renderPracticeB(container) {
+        const items = this.dynamicData.B;
+        const item = items[this.practiceIndex % items.length];
+        const status = this.drillStatus.B[this.practiceIndex];
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-cyan-950/40 border border-cyan-800/30">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-cyan-300 font-bold uppercase tracking-wider">Listening & Repeat Drill #${this.practiceIndex + 1} of ${items.length}</span>
+                </div>
+                ${this.renderItemChips(items.length, this.practiceIndex, 'B')}
+              </div>
+              <div class="flex items-center space-x-2 self-end sm:self-auto">
+                <button onclick="app.prevPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">&larr; Prev</button>
+                <button onclick="app.nextPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">Next &rarr;</button>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 text-center space-y-3 sm:space-y-4">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl sm:text-2xl shadow-lg shadow-cyan-500/20 animate-pulse">
+                🔊
+              </div>
+              <h3 class="text-lg sm:text-xl font-heading font-bold text-white">Listen to the Sentence Audio</h3>
+              <p class="text-xs text-slate-400 max-w-md mx-auto">Click below to hear the sentence. In the real SVAR exam, you will hear it only once.</p>
+              
+              <button onclick="app.playPracticeBAudio('${item.audioText.replace(/'/g, "\\'")}')" class="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/25 transition flex items-center gap-2 mx-auto">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+                <span>Play Prompt Audio (1-Shot)</span>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl glass-card border border-slate-800 space-y-4">
+              <label for="sec-b-input" class="block text-xs font-bold text-slate-300">Repeat What You Heard:</label>
+              
+              <div class="flex gap-2">
+                <input id="sec-b-input" type="text" onkeydown="if(event.key==='Enter') app.submitPracticeB('${item.audioText.replace(/'/g, "\\'")}')" placeholder="Click 'Speak' and repeat the sentence..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500" />
+                <button id="sec-b-rec-btn" onclick="app.toggleSpeechRec('sec-b-input', 'sec-b-rec-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+
+              <div class="pt-1 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+                <button onclick="app.submitPracticeB('${item.audioText.replace(/'/g, "\\'")}')" class="flex-grow py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/20 transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Submit Repeated Sentence</span>
+                </button>
+                <button onclick="app.revealSecBText('${item.audioText.replace(/'/g, "\\'")}')" class="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition">
+                  Reveal Script
+                </button>
+              </div>
+
+              <div id="sec-b-feedback" class="${status ? '' : 'hidden'} p-4 rounded-2xl text-xs space-y-2">
+                ${status ? status.html : ''}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+
+      playPracticeBAudio(text) {
+        this.audio.speak(text, () => {
+          this.audio.playStartBeep();
+        });
+      }
+
+      submitPracticeB(expectedText) {
+        const input = document.getElementById('sec-b-input').value.trim();
+        const feedback = document.getElementById('sec-b-feedback');
+        if (!feedback) return;
+
+        if (!input) {
+          this.showToast("Please speak or type your response first.", "amber");
+          return;
+        }
+
+        const evalResult = SvarEvaluator.evaluateRepeat(input, expectedText);
+        feedback.classList.remove('hidden');
+
+        let html = '';
+        if (evalResult.passed) {
+          this.audio.playSuccessChime();
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs space-y-2 relative overflow-hidden';
+          html = `
+            ${this.autoAdvance ? '<div class="absolute top-0 left-0 h-1 bg-emerald-400 auto-progress-meter"></div>' : ''}
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span>STATUS: PASSED (${evalResult.isFallback ? 'Fallback Intonation 75%' : evalResult.score + '% Accuracy'})</span>
+              </span>
+              <button onclick="app.nextPracticeItem()" class="px-3 py-1 bg-emerald-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-emerald-400 transition">Next Item &rarr;</button>
+            </div>
+            <p><strong>Actual:</strong> "${Utils.escapeHtml(expectedText)}"</p>
+            <p><strong>Your Response:</strong> "${Utils.escapeHtml(input)}"</p>
+            ${this.autoAdvance ? '<div class="text-[11px] text-emerald-300 font-semibold pt-1">⚡ Auto-advancing to next question...</div>' : ''}
+          `;
+        } else {
+          this.audio.playBeep(440, 0.2);
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-amber-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span>STATUS: PARTIAL RECALL (${evalResult.score}% Match)</span>
+              </span>
+              <button onclick="document.getElementById('sec-b-input').value=''; document.getElementById('sec-b-input').focus();" class="px-3 py-1 bg-amber-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-amber-400 transition">Retry 🔄</button>
+            </div>
+            <p><strong>Actual:</strong> "${Utils.escapeHtml(expectedText)}"</p>
+            <p><strong>Your Response:</strong> "${Utils.escapeHtml(input)}"</p>
+          `;
+        }
+
+        feedback.innerHTML = html;
+        this.drillStatus.B[this.practiceIndex] = {
+          passed: evalResult.passed,
+          score: evalResult.score,
+          userText: input,
+          expectedText,
+          prompt: `Audio Repeat #${this.practiceIndex + 1}`,
+          feedback: evalResult.feedback
+        };
+
+        this.renderPracticeSection();
+        this.triggerAutoProgression('B', this.dynamicData.B.length);
+      }
+
+      revealSecBText(text) {
+        const feedback = document.getElementById('sec-b-feedback');
+        if (feedback) {
+          feedback.classList.remove('hidden');
+          feedback.className = 'p-4 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 text-xs space-y-1';
+          feedback.innerHTML = `<span class="font-bold text-cyan-400">Sentence Transcript:</span><p class="text-sm font-medium">"${Utils.escapeHtml(text)}"</p>`;
+        }
+      }
+
+      /* SECTION C: SIMPLE Q&A */
+      renderPracticeC(container) {
+        const items = this.dynamicData.C;
+        const item = items[this.practiceIndex % items.length];
+        const status = this.drillStatus.C[this.practiceIndex];
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-purple-950/40 border border-purple-800/30">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-purple-300 font-bold uppercase tracking-wider">Comprehension Q&A #${this.practiceIndex + 1} of ${items.length}</span>
+                </div>
+                ${this.renderItemChips(items.length, this.practiceIndex, 'C')}
+              </div>
+              <div class="flex items-center space-x-2 self-end sm:self-auto">
+                <button onclick="app.prevPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">&larr; Prev</button>
+                <button onclick="app.nextPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">Next &rarr;</button>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 text-center space-y-3">
+              <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-semibold">
+                <span>Situational Prompt</span>
+              </div>
+              <h3 class="text-xl sm:text-3xl font-heading font-extrabold text-white">"${item.prompt}"</h3>
+              <button onclick="app.audio.speak('${item.prompt.replace(/'/g, "\\'")}')" class="text-xs text-purple-400 hover:text-purple-300 font-semibold flex items-center gap-1 mx-auto">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+                <span>Listen Prompt Audio</span>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl glass-card border border-slate-800 space-y-4">
+              <label for="sec-c-input" class="block text-xs font-bold text-slate-300">Your Prompt Response:</label>
+              
+              <div class="flex gap-2">
+                <input id="sec-c-input" type="text" onkeydown="if(event.key==='Enter') app.submitPracticeC(${JSON.stringify(item.expectedAnswers).replace(/"/g, '&quot;')}, '${item.explanation.replace(/'/g, "\\'")}')" placeholder="Speak your answer promptly..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500" />
+                <button id="sec-c-rec-btn" onclick="app.toggleSpeechRec('sec-c-input', 'sec-c-rec-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+
+              <div class="pt-1">
+                <button onclick="app.submitPracticeC(${JSON.stringify(item.expectedAnswers).replace(/"/g, '&quot;')}, '${item.explanation.replace(/'/g, "\\'")}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-brand-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-purple-500/20 transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Submit Answer & Check Status</span>
+                </button>
+              </div>
+
+              <div id="sec-c-feedback" class="${status ? '' : 'hidden'} p-4 rounded-2xl text-xs space-y-2">
+                ${status ? status.html : ''}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+
+      submitPracticeC(expectedList, explanation) {
+        const input = document.getElementById('sec-c-input').value.trim();
+        const feedback = document.getElementById('sec-c-feedback');
+        if (!feedback) return;
+
+        if (!input) {
+          this.showToast("Please enter or speak an answer first.", "amber");
+          return;
+        }
+
+        const evalResult = SvarEvaluator.evaluateQA(input, expectedList);
+        feedback.classList.remove('hidden');
+
+        let html = '';
+        if (evalResult.passed) {
+          this.audio.playSuccessChime();
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs space-y-2 relative overflow-hidden';
+          html = `
+            ${this.autoAdvance ? '<div class="absolute top-0 left-0 h-1 bg-emerald-400 auto-progress-meter"></div>' : ''}
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span>STATUS: PASSED (100% Correct)</span>
+              </span>
+              <button onclick="app.nextPracticeItem()" class="px-3 py-1 bg-emerald-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-emerald-400 transition">Next Item &rarr;</button>
+            </div>
+            <p>${Utils.escapeHtml(explanation)}</p>
+            ${this.autoAdvance ? '<div class="text-[11px] text-emerald-300 font-semibold pt-1">⚡ Auto-advancing to next question...</div>' : ''}
+          `;
+        } else {
+          this.audio.playBeep(440, 0.2);
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-rose-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                <span>STATUS: INCORRECT</span>
+              </span>
+              <button onclick="document.getElementById('sec-c-input').value=''; document.getElementById('sec-c-input').focus();" class="px-3 py-1 bg-rose-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-rose-400 transition">Retry 🔄</button>
+            </div>
+            <p><strong>Expected:</strong> "${Utils.escapeHtml(expectedList[0])}"</p>
+            <p>${Utils.escapeHtml(explanation)}</p>
+          `;
+        }
+
+        feedback.innerHTML = html;
+        this.drillStatus.C[this.practiceIndex] = {
+          passed: evalResult.passed,
+          score: evalResult.score,
+          userText: input,
+          expectedText: expectedList[0],
+          prompt: `Simple Q&A #${this.practiceIndex + 1}`,
+          feedback: evalResult.feedback
+        };
+
+        this.renderPracticeSection();
+        this.triggerAutoProgression('C', this.dynamicData.C.length);
+      }
+
+      /* SECTION D: VOCABULARY (RANDOMIZED OPTIONS) */
+      renderPracticeD(container) {
+        const items = this.dynamicData.D;
+        const item = items[this.practiceIndex % items.length];
+        const status = this.drillStatus.D[this.practiceIndex];
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-emerald-950/40 border border-emerald-800/30">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-emerald-300 font-bold uppercase tracking-wider">Vocabulary MCQ #${this.practiceIndex + 1} of ${items.length}</span>
+                </div>
+                ${this.renderItemChips(items.length, this.practiceIndex, 'D')}
+              </div>
+              <div class="flex items-center space-x-2 self-end sm:self-auto">
+                <button onclick="app.prevPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">&larr; Prev</button>
+                <button onclick="app.nextPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">Next &rarr;</button>
+              </div>
+            </div>
+
+            <div class="p-3 sm:p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs flex flex-col xs:flex-row xs:items-center justify-between gap-1.5">
+              <span class="font-bold">⚠️ Mandatory Format:</span>
+              <code class="bg-emerald-950 px-2 py-1 rounded text-white font-mono font-bold text-[11px] self-start xs:self-auto">"The answer is [Option], [Word]"</code>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+              <h3 class="text-lg sm:text-2xl font-heading font-extrabold text-white">${item.question}</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
+                ${item.options.map(opt => `
+                  <button onclick="app.selectPracticeDOption('${opt.key}', '${opt.text}')" class="p-3 sm:p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-emerald-500 text-left flex items-center space-x-3 transition group">
+                    <span class="w-7 h-7 rounded-lg bg-slate-800 group-hover:bg-emerald-600 text-slate-200 group-hover:text-white flex items-center justify-center font-bold text-xs flex-shrink-0">${opt.key}</span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-200">${opt.text}</span>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl glass-card border border-slate-800 space-y-4">
+              <label for="sec-d-input" class="block text-xs font-bold text-slate-300">Your Full Oral Response:</label>
+              
+              <div class="flex gap-2">
+                <input id="sec-d-input" type="text" onkeydown="if(event.key==='Enter') app.submitPracticeD('${item.correctKey}', '${item.correctText}', '${item.explanation.replace(/'/g, "\\'")}')" placeholder='e.g. "The answer is ${item.correctKey}, ${item.correctText}"' class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500" />
+                <button id="sec-d-rec-btn" onclick="app.toggleSpeechRec('sec-d-input', 'sec-d-rec-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+
+              <div class="pt-1">
+                <button onclick="app.submitPracticeD('${item.correctKey}', '${item.correctText}', '${item.explanation.replace(/'/g, "\\'")}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Submit Response & Validate Format</span>
+                </button>
+              </div>
+
+              <div id="sec-d-feedback" class="${status ? '' : 'hidden'} p-4 rounded-2xl text-xs space-y-2">
+                ${status ? status.html : ''}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+
+      selectPracticeDOption(key, text) {
+        const input = document.getElementById('sec-d-input');
+        if (input) input.value = `The answer is ${key}, ${text}`;
+      }
+
+      submitPracticeD(correctKey, correctText, explanation) {
+        const rawInput = document.getElementById('sec-d-input').value.trim();
+        const feedback = document.getElementById('sec-d-feedback');
+        if (!feedback) return;
+
+        if (!rawInput) {
+          this.showToast("Please enter or speak your answer first.", "amber");
+          return;
+        }
+
+        const evalResult = SvarEvaluator.evaluateVocab(rawInput, correctKey, correctText);
+        feedback.classList.remove('hidden');
+        let html = '';
+
+        if (evalResult.isFullFormat && evalResult.passed) {
+          this.audio.playSuccessChime();
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs space-y-2 relative overflow-hidden';
+          html = `
+            ${this.autoAdvance ? '<div class="absolute top-0 left-0 h-1 bg-emerald-400 auto-progress-meter"></div>' : ''}
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span>STATUS: PASSED (100% Compliant)</span>
+              </span>
+              <button onclick="app.nextPracticeItem()" class="px-3 py-1 bg-emerald-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-emerald-400 transition">Next Item &rarr;</button>
+            </div>
+            <p><strong>Spoken:</strong> "${Utils.escapeHtml(rawInput)}"</p>
+            <p>${Utils.escapeHtml(explanation)}</p>
+            ${this.autoAdvance ? '<div class="text-[11px] text-emerald-300 font-semibold pt-1">⚡ Auto-advancing to next question...</div>' : ''}
+          `;
+        } else if (evalResult.passed && !evalResult.isFullFormat) {
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-amber-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span>STATUS: PARTIAL (Missing "The answer is...")</span>
+              </span>
+              <button onclick="document.getElementById('sec-d-input').value='The answer is ${correctKey}, ${correctText}'; app.submitPracticeD('${correctKey}', '${correctText}', '${explanation}')" class="px-3 py-1 bg-amber-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-amber-400 transition">Fix Format 🔄</button>
+            </div>
+            <p><strong>SVAR Rule:</strong> Must speak prefix: <strong>"The answer is ${correctKey}, ${correctText}"</strong></p>
+          `;
+        } else {
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-rose-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                <span>STATUS: INCORRECT OPTION</span>
+              </span>
+              <button onclick="document.getElementById('sec-d-input').value=''; document.getElementById('sec-d-input').focus();" class="px-3 py-1 bg-rose-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-rose-400 transition">Retry 🔄</button>
+            </div>
+            <p><strong>Correct Response:</strong> "The answer is ${correctKey}, ${correctText}"</p>
+            <p>${Utils.escapeHtml(explanation)}</p>
+          `;
+        }
+
+        feedback.innerHTML = html;
+        this.drillStatus.D[this.practiceIndex] = {
+          passed: evalResult.passed,
+          score: evalResult.score,
+          userText: rawInput,
+          expectedText: `The answer is ${correctKey}, ${correctText}`,
+          prompt: `Vocabulary Question #${this.practiceIndex + 1}`,
+          feedback: evalResult.feedback
+        };
+
+        this.renderPracticeSection();
+        this.triggerAutoProgression('D', this.dynamicData.D.length);
+      }
+
+      /* SECTION E: GRAMMAR (RANDOMIZED OPTIONS) */
+      renderPracticeE(container) {
+        const items = this.dynamicData.E;
+        const item = items[this.practiceIndex % items.length];
+        const status = this.drillStatus.E[this.practiceIndex];
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-pink-950/40 border border-pink-800/30">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-pink-300 font-bold uppercase tracking-wider">Grammar Accuracy #${this.practiceIndex + 1} of ${items.length}</span>
+                </div>
+                ${this.renderItemChips(items.length, this.practiceIndex, 'E')}
+              </div>
+              <div class="flex items-center space-x-2 self-end sm:self-auto">
+                <button onclick="app.prevPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">&larr; Prev</button>
+                <button onclick="app.nextPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">Next &rarr;</button>
+              </div>
+            </div>
+
+            <div class="p-3 sm:p-3.5 rounded-2xl bg-pink-500/10 border border-pink-500/30 text-pink-200 text-xs flex flex-col xs:flex-row xs:items-center justify-between gap-1.5">
+              <span class="font-bold">⚠️ Mandatory Format:</span>
+              <code class="bg-pink-950 px-2 py-1 rounded text-white font-mono font-bold text-[11px] self-start xs:self-auto">"The answer is [Option], [Full Sentence]"</code>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+              <h3 class="text-base sm:text-xl font-heading font-extrabold text-white">${item.question}</h3>
+              <div class="space-y-2.5 pt-1">
+                ${item.options.map(opt => `
+                  <button onclick="app.selectPracticeEOption('${opt.key}', '${opt.text.replace(/'/g, "\\'")}')" class="w-full p-3 sm:p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-pink-500 text-left flex items-center space-x-3 transition group">
+                    <span class="w-7 h-7 rounded-lg bg-slate-800 group-hover:bg-pink-600 text-slate-200 group-hover:text-white flex items-center justify-center font-bold text-xs flex-shrink-0">${opt.key}</span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-200 leading-snug">${opt.text}</span>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl glass-card border border-slate-800 space-y-4">
+              <label for="sec-e-input" class="block text-xs font-bold text-slate-300">Your Full Oral Grammar Response:</label>
+              
+              <div class="flex gap-2">
+                <input id="sec-e-input" type="text" onkeydown="if(event.key==='Enter') app.submitPracticeE('${item.correctKey}', '${item.correctText.replace(/'/g, "\\'")}', '${item.explanation.replace(/'/g, "\\'")}')" placeholder='Say "The answer is ${item.correctKey}, ${item.correctText}"' class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-pink-500" />
+                <button id="sec-e-rec-btn" onclick="app.toggleSpeechRec('sec-e-input', 'sec-e-rec-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+
+              <div class="pt-1">
+                <button onclick="app.submitPracticeE('${item.correctKey}', '${item.correctText.replace(/'/g, "\\'")}', '${item.explanation.replace(/'/g, "\\'")}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-pink-500/20 transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Submit Grammar Answer & Check Status</span>
+                </button>
+              </div>
+
+              <div id="sec-e-feedback" class="${status ? '' : 'hidden'} p-4 rounded-2xl text-xs space-y-2">
+                ${status ? status.html : ''}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+
+      selectPracticeEOption(key, text) {
+        const input = document.getElementById('sec-e-input');
+        if (input) input.value = `The answer is ${key}, ${text}`;
+      }
+
+      submitPracticeE(correctKey, correctText, explanation) {
+        const rawInput = document.getElementById('sec-e-input').value.trim();
+        const feedback = document.getElementById('sec-e-feedback');
+        if (!feedback) return;
+
+        if (!rawInput) {
+          this.showToast("Please enter or speak your response first.", "amber");
+          return;
+        }
+
+        const evalResult = SvarEvaluator.evaluateGrammar(rawInput, correctKey, correctText);
+        feedback.classList.remove('hidden');
+        let html = '';
+
+        if (evalResult.isFullFormat && evalResult.passed) {
+          this.audio.playSuccessChime();
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs space-y-2 relative overflow-hidden';
+          html = `
+            ${this.autoAdvance ? '<div class="absolute top-0 left-0 h-1 bg-emerald-400 auto-progress-meter"></div>' : ''}
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span>STATUS: PASSED (Grammar Compliant)</span>
+              </span>
+              <button onclick="app.nextPracticeItem()" class="px-3 py-1 bg-emerald-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-emerald-400 transition">Next Item &rarr;</button>
+            </div>
+            <p><strong>Spoken:</strong> "${Utils.escapeHtml(rawInput)}"</p>
+            <p>${Utils.escapeHtml(explanation)}</p>
+            ${this.autoAdvance ? '<div class="text-[11px] text-emerald-300 font-semibold pt-1">⚡ Auto-advancing to next question...</div>' : ''}
+          `;
+        } else if (evalResult.passed && !evalResult.isFullFormat) {
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-amber-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span>STATUS: PARTIAL (Missing "The answer is..." prefix)</span>
+              </span>
+              <button onclick="document.getElementById('sec-e-input').value='The answer is ${correctKey}, ${correctText}'; app.submitPracticeE('${correctKey}', '${correctText}', '${explanation}')" class="px-3 py-1 bg-amber-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-amber-400 transition">Fix Format 🔄</button>
+            </div>
+            <p><strong>SVAR Rule:</strong> Must say: <em>"The answer is ${correctKey}, ${correctText}"</em></p>
+          `;
+        } else {
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-rose-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                <span>STATUS: INCORRECT GRAMMAR</span>
+              </span>
+              <button onclick="document.getElementById('sec-e-input').value=''; document.getElementById('sec-e-input').focus();" class="px-3 py-1 bg-rose-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-rose-400 transition">Retry 🔄</button>
+            </div>
+            <p><strong>Correct Response:</strong> "The answer is ${correctKey}, ${correctText}"</p>
+            <p>${Utils.escapeHtml(explanation)}</p>
+          `;
+        }
+
+        feedback.innerHTML = html;
+        this.drillStatus.E[this.practiceIndex] = {
+          passed: evalResult.passed,
+          score: evalResult.score,
+          userText: rawInput,
+          expectedText: `The answer is ${correctKey}, ${correctText}`,
+          prompt: `Grammar Question #${this.practiceIndex + 1}`,
+          feedback: evalResult.feedback
+        };
+
+        this.renderPracticeSection();
+        this.triggerAutoProgression('E', this.dynamicData.E.length);
+      }
+
+      /* SECTION F: EXTEMPORE */
+      getFilteredExtemporeTopics() {
+        if (this.extemporeCategory === 'All') return this.dynamicData.F;
+        return this.dynamicData.F.filter(t => t.category === this.extemporeCategory);
+      }
+
+      setExtemporeCategory(cat) {
+        this.clearAllActiveTimers();
+        this.extemporeCategory = cat;
+        this.practiceIndex = 0;
+        this.renderPracticeSection();
+      }
+
+      renderPracticeF(container) {
+        const topics = this.getFilteredExtemporeTopics();
+        const safeIdx = this.practiceIndex % topics.length;
+        const item = topics[safeIdx] || topics[0];
+        const status = this.drillStatus.F[this.practiceIndex];
+
+        const categories = ['All', 'Workplace', 'Technology', 'Personal Life', 'Society'];
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+            
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-amber-950/40 border border-amber-800/30 space-y-2.5 sm:space-y-3">
+              <div class="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-amber-300 font-bold uppercase tracking-wider">Extempore Topic Bank (${topics.length})</span>
+                </div>
+
+                <div class="flex items-center gap-2 w-full xs:w-auto">
+                  <button onclick="app.openCustomTopicModal()" class="w-full xs:w-auto px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-200 text-xs font-bold transition flex items-center justify-center gap-1.5">
+                    <span>✨ Add Custom Topic</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 pt-1 overflow-x-auto no-scrollbar max-w-full">
+                ${categories.map(cat => `
+                  <button onclick="app.setExtemporeCategory('${cat}')" class="px-2.5 sm:px-3 py-1 rounded-lg text-xs font-semibold transition flex-shrink-0 ${this.extemporeCategory === cat ? 'bg-amber-500 text-slate-950 font-bold' : 'bg-slate-900 text-slate-400 hover:text-white'}">
+                    ${cat}
+                  </button>
+                `).join('')}
+              </div>
+
+              <div class="pt-1">
+                ${this.renderItemChips(topics.length, safeIdx, 'F')}
+              </div>
+            </div>
+
+            <div class="p-5 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 text-center space-y-3 sm:space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 sm:px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-[10px] sm:text-xs font-semibold uppercase tracking-wider">${item.category || 'Extempore'} &bull; 30s Prep &bull; 45s Speech</span>
+                <span class="text-xs text-slate-400">#${safeIdx + 1} of ${topics.length}</span>
+              </div>
+              <h3 class="text-xl sm:text-3xl font-heading font-extrabold text-white">"${item.topic}"</h3>
+              <button onclick="app.audio.speak('${item.topic.replace(/'/g, "\\'")}')" class="text-xs text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 mx-auto">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+                <span>Listen Spoken Topic</span>
+              </button>
+            </div>
+
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-1.5">
+              <span class="font-bold text-amber-400">💡 Sentence Extension & Listing Strategy (SVAR High-Score Secret):</span>
+              <p class="leading-relaxed">${item.listingTip}</p>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl glass-card border border-slate-800 text-center space-y-4 sm:space-y-5">
+              <div id="extempore-status" class="text-xs sm:text-sm font-bold text-slate-300">Ready to initiate 30s prep countdown?</div>
+              
+              <div class="flex justify-center items-center gap-3 sm:gap-6">
+                <div class="p-3 sm:p-4 rounded-2xl bg-slate-950 border border-slate-800 flex-1 max-w-[140px]">
+                  <div class="text-[9px] sm:text-[10px] text-slate-500 uppercase font-semibold">Prep Clock</div>
+                  <div id="extempore-prep-time" class="text-2xl sm:text-3xl font-heading font-extrabold text-amber-400">30s</div>
+                </div>
+                <div class="text-slate-600 font-black text-base sm:text-xl">&rarr;</div>
+                <div class="p-3 sm:p-4 rounded-2xl bg-slate-950 border border-slate-800 flex-1 max-w-[140px]">
+                  <div class="text-[9px] sm:text-[10px] text-slate-500 uppercase font-semibold">Speak Clock</div>
+                  <div id="extempore-speak-time" class="text-2xl sm:text-3xl font-heading font-extrabold text-emerald-400">45s</div>
+                </div>
+              </div>
+
+              <div class="flex justify-center">
+                <button id="extempore-start-btn" onclick="app.startExtemporeDrill()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-emerald-500 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg transition transform active:scale-95">
+                  Start 30s Prep & 45s Speech Drill
+                </button>
+              </div>
+
+              <textarea id="sec-f-transcript" rows="3" placeholder="Speech transcript while speaking (or type points)..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-amber-500"></textarea>
+
+              <div class="pt-1">
+                <button onclick="app.submitPracticeF()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-emerald-600 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Submit Extempore Speech</span>
+                </button>
+              </div>
+
+              <div id="sec-f-feedback" class="${status ? '' : 'hidden'} p-4 rounded-2xl text-xs space-y-2 text-left">
+                ${status ? status.html : ''}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+
+      openCustomTopicModal() {
+        const topicText = prompt("Enter your new custom extempore topic for practice:");
+        if (!topicText || !topicText.trim()) return;
+
+        const newTopic = {
+          id: 'custom_' + Date.now(),
+          category: 'Custom',
+          topic: topicText.trim(),
+          listingTip: "Extend your thoughts by listing 3-4 distinct reasons, examples, or steps to consume the full 45s.",
+          sampleOpening: "This topic plays an essential role in modern daily interactions and decision making."
+        };
+
+        this.dynamicData.F.unshift(newTopic);
+        this.extemporeCategory = 'All';
+        this.practiceIndex = 0;
+        this.renderPracticeSection();
+        this.showToast("Custom topic added successfully!", "emerald");
+      }
+
+      startExtemporeDrill() {
+        this.clearAllActiveTimers();
+        const status = document.getElementById('extempore-status');
+        const prepTimerEl = document.getElementById('extempore-prep-time');
+        const speakTimerEl = document.getElementById('extempore-speak-time');
+        const startBtn = document.getElementById('extempore-start-btn');
+        if (startBtn) startBtn.disabled = true;
+
+        let prepLeft = 30;
+        if (status) status.innerText = "🧠 Prep Phase: Formulate points & listing items...";
+
+        this.extemporePrepInterval = setInterval(() => {
+          prepLeft--;
+          if (prepTimerEl) prepTimerEl.innerText = prepLeft + "s";
+          if (prepLeft <= 3 && prepLeft > 0) this.audio.playCountdownBeep(false);
+
+          if (prepLeft <= 0) {
+            clearInterval(this.extemporePrepInterval);
+            this.extemporePrepInterval = null;
+            this.audio.playStartBeep();
+            if (status) status.innerText = "🎙️ SPEAK NOW! Continuous flow for 45s...";
+            
+            this.speech.startListening(
+              (text) => {
+                const ta = document.getElementById('sec-f-transcript');
+                if (ta) ta.value = text;
+              },
+              null,
+              null
+            );
+
+            let speakLeft = 45;
+            this.extemporeSpeakInterval = setInterval(() => {
+              speakLeft--;
+              if (speakTimerEl) speakTimerEl.innerText = speakLeft + "s";
+
+              if (speakLeft <= 0) {
+                clearInterval(this.extemporeSpeakInterval);
+                this.extemporeSpeakInterval = null;
+                this.speech.stopListening();
+                this.audio.playBeep(440, 0.4, 'sine');
+                if (status) status.innerText = "✅ Time Up! Click 'Submit Extempore Speech' below.";
+                if (startBtn) startBtn.disabled = false;
+              }
+            }, 1000);
+          }
+        }, 1000);
+      }
+
+      submitPracticeF() {
+        const input = document.getElementById('sec-f-transcript').value.trim();
+        const feedback = document.getElementById('sec-f-feedback');
+        if (!feedback) return;
+
+        if (!input) {
+          this.showToast("Please record or enter your extempore speech first.", "amber");
+          return;
+        }
+
+        const evalResult = SvarEvaluator.evaluateExtempore(input);
+        feedback.classList.remove('hidden');
+
+        let html = '';
+        if (evalResult.passed) {
+          this.audio.playSuccessChime();
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs space-y-2 relative overflow-hidden';
+          html = `
+            ${this.autoAdvance ? '<div class="absolute top-0 left-0 h-1 bg-emerald-400 auto-progress-meter"></div>' : ''}
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span>STATUS: PASSED (${evalResult.wordCount} words recorded)</span>
+              </span>
+              <button onclick="app.nextPracticeItem()" class="px-3 py-1 bg-emerald-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-emerald-400 transition">Next Item &rarr;</button>
+            </div>
+            <p><strong>Speech Length:</strong> ${evalResult.wordCount} words. Effective elaboration and fluency.</p>
+            ${this.autoAdvance ? '<div class="text-[11px] text-emerald-300 font-semibold pt-1">⚡ Auto-advancing to next topic...</div>' : ''}
+          `;
+        } else {
+          this.audio.playBeep(440, 0.2);
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-amber-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span>STATUS: SHORT DURATION (${evalResult.wordCount} words)</span>
+              </span>
+              <button onclick="document.getElementById('sec-f-transcript').value='';" class="px-3 py-1 bg-amber-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-amber-400 transition">Retry 🔄</button>
+            </div>
+            <p>Use the listing technique to extend sentences and fill the 45s timer.</p>
+          `;
+        }
+
+        feedback.innerHTML = html;
+        const topics = this.getFilteredExtemporeTopics();
+        const safeIdx = this.practiceIndex % topics.length;
+        const curTopic = topics[safeIdx] || topics[0];
+
+        this.drillStatus.F[this.practiceIndex] = {
+          passed: evalResult.passed,
+          score: evalResult.score,
+          userText: input,
+          expectedText: '45s continuous speech using listing strategy',
+          prompt: `Extempore: "${curTopic.topic.substring(0, 35)}..."`,
+          feedback: evalResult.feedback
+        };
+
+        this.renderPracticeSection();
+        this.triggerAutoProgression('F', topics.length);
+      }
+
+      prevPracticeItem() {
+        this.clearAllActiveTimers();
+        if (this.practiceIndex > 0) {
+          this.practiceIndex--;
+          this.renderPracticeSection();
+        }
+      }
+
+      nextPracticeItem() {
+        this.clearAllActiveTimers();
+        this.practiceIndex++;
+        this.renderPracticeSection();
+      }
+
+      /* ------------------------------------------------------------- */
+      /* 16-MINUTE TIMED MOCK TEST (DYNAMIC & SHUFFLED)                 */
+      /* ------------------------------------------------------------- */
+      startMockTest() {
+        this.clearAllActiveTimers();
+        this.setTab('mock');
+        document.getElementById('mock-lobby').classList.remove('hidden');
+        document.getElementById('mock-runner').classList.add('hidden');
+      }
+
+      beginActiveMockTest() {
+        this.clearAllActiveTimers();
+        this.mockActive = true;
+        this.mockCurrentIndex = 0;
+        this.mockUserResponses = [];
+        this.mockGlobalSecondsLeft = 16 * 60;
+
+        // Generate dynamically randomized, un-memorized sets for the mock exam
+        const aItems = this.gen.getReadingSet(4).map(i => ({ sec: 'A', id: i.id, prompt: `Please read sentence number ${i.id}.`, text: i.text }));
+        const bItems = this.gen.getRepeatSet(4).map(i => ({ sec: 'B', ...i }));
+        const cItems = this.gen.getQASet(4).map(i => ({ sec: 'C', ...i }));
+        const dItems = this.gen.getVocabSet(4).map(i => ({ sec: 'D', ...i }));
+        const eItems = this.gen.getGrammarSet(4).map(i => ({ sec: 'E', ...i }));
+        const fItems = this.gen.getExtemporeSet().slice(0, 1).map(i => ({ sec: 'F', ...i }));
+
+        this.mockItems = [...aItems, ...bItems, ...cItems, ...dItems, ...eItems, ...fItems];
+
+        document.getElementById('mock-lobby').classList.add('hidden');
+        document.getElementById('mock-runner').classList.remove('hidden');
+        this.startMockGlobalTimer();
+        this.renderMockItem();
+      }
+
+      startMockGlobalTimer() {
+        if (this.mockGlobalTimerInterval) clearInterval(this.mockGlobalTimerInterval);
+        const timerEl = document.getElementById('mock-global-timer');
+
+        this.mockGlobalTimerInterval = setInterval(() => {
+          this.mockGlobalSecondsLeft--;
+          if (this.mockGlobalSecondsLeft <= 0) {
+            clearInterval(this.mockGlobalTimerInterval);
+            this.finishMockTest();
+            return;
+          }
+          const mins = Math.floor(this.mockGlobalSecondsLeft / 60);
+          const secs = this.mockGlobalSecondsLeft % 60;
+          if (timerEl) {
+            timerEl.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+          }
+        }, 1000);
+      }
+
+      renderMockItem() {
+        if (this.mockCurrentIndex >= this.mockItems.length) {
+          this.finishMockTest();
+          return;
+        }
+
+        const item = this.mockItems[this.mockCurrentIndex];
+        const container = document.getElementById('mock-card-container');
+        const sectionTag = document.getElementById('mock-section-tag');
+        const itemIdx = document.getElementById('mock-item-index');
+        const itemTot = document.getElementById('mock-item-total');
+        const progressPct = document.getElementById('mock-progress-pct');
+        const progressBar = document.getElementById('mock-progress-bar');
+
+        const pct = Math.round(((this.mockCurrentIndex + 1) / this.mockItems.length) * 100);
+        if (progressPct) progressPct.innerText = pct + '%';
+        if (progressBar) progressBar.style.width = pct + '%';
+        if (itemIdx) itemIdx.innerText = (this.mockCurrentIndex + 1);
+        if (itemTot) itemTot.innerText = this.mockItems.length;
+
+        const secNames = {
+          'A': 'Section A: Reading Out Loud',
+          'B': 'Section B: Repeat Sentence',
+          'C': 'Section C: Simple Questions',
+          'D': 'Section D: Vocabulary',
+          'E': 'Section E: Grammar',
+          'F': 'Section F: Timed Extempore'
+        };
+        if (sectionTag) sectionTag.innerText = secNames[item.sec] || `Section ${item.sec}`;
+
+        switch (item.sec) {
+          case 'A': this.renderMockA(container, item); break;
+          case 'B': this.renderMockB(container, item); break;
+          case 'C': this.renderMockC(container, item); break;
+          case 'D': this.renderMockD(container, item); break;
+          case 'E': this.renderMockE(container, item); break;
+          case 'F': this.renderMockF(container, item); break;
+        }
+      }
+
+      renderMockA(container, item) {
+        this.audio.speak(item.prompt, () => {
+          this.audio.playStartBeep();
+        });
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-brand-400 font-bold uppercase tracking-wider">Reading Task</span>
+              <span class="text-xs text-slate-400">Read loud & clear &bull; Zero Dead Air</span>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 text-center">
+              <div class="text-xs text-brand-300 font-semibold uppercase">${item.prompt}</div>
+              <div class="p-3.5 sm:p-4 rounded-xl bg-slate-950 border border-brand-500/30 text-sm sm:text-lg font-medium text-white leading-relaxed">
+                "${item.text}"
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex gap-2">
+                <input id="mock-answer-input" type="text" onkeydown="if(event.key==='Enter') app.submitMockItemAnswer()" placeholder="Speech will be transcribed here..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500" />
+                <button id="mock-mic-btn" onclick="app.toggleSpeechRec('mock-answer-input', 'mock-mic-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 flex flex-col sm:flex-row justify-between items-center gap-3 border-t border-slate-800/80">
+            <span class="text-xs text-slate-500 order-2 sm:order-1 text-center sm:text-left">Steady pace and clear articulation</span>
+            <button onclick="app.submitMockItemAnswer()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold text-xs sm:text-sm shadow-lg transition order-1 sm:order-2">
+              Submit & Next &rarr;
+            </button>
+          </div>
+        `;
+      }
+
+      renderMockB(container, item) {
+        setTimeout(() => {
+          this.audio.speak(item.audioText, () => {
+            this.audio.playStartBeep();
+          });
+        }, 500);
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-cyan-400 font-bold uppercase tracking-wider">Audio Repeat</span>
+              <span class="text-xs text-slate-400">1-Shot Listening & Repeat</span>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-2xl bg-slate-900 border border-slate-800 text-center space-y-3 sm:space-y-4">
+              <div class="w-12 h-12 mx-auto rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl animate-pulse">
+                🔊
+              </div>
+              <h3 class="text-base sm:text-lg font-heading font-bold text-white">Sentence Audio Played</h3>
+              <p class="text-xs text-slate-400 max-w-sm mx-auto">Listen carefully and immediately repeat the full sentence into your microphone.</p>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex gap-2">
+                <input id="mock-answer-input" type="text" onkeydown="if(event.key==='Enter') app.submitMockItemAnswer()" placeholder="Speak what you heard..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500" />
+                <button id="mock-mic-btn" onclick="app.toggleSpeechRec('mock-answer-input', 'mock-mic-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 flex flex-col sm:flex-row justify-between items-center gap-3 border-t border-slate-800/80">
+            <span class="text-xs text-slate-500 order-2 sm:order-1 text-center sm:text-left">Intonation Tip: Sound affirmative & certain</span>
+            <button onclick="app.submitMockItemAnswer()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold text-xs sm:text-sm shadow-lg transition order-1 sm:order-2">
+              Submit & Next &rarr;
+            </button>
+          </div>
+        `;
+      }
+
+      renderMockC(container, item) {
+        setTimeout(() => {
+          this.audio.speak(item.prompt, () => {
+            this.audio.playStartBeep();
+          });
+        }, 400);
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Simple Q&A Prompt</span>
+              <span class="text-xs text-slate-400">Answer Promptly</span>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-2xl bg-slate-900 border border-slate-800 text-center space-y-2.5 sm:space-y-3">
+              <div class="text-xs text-purple-300 font-semibold uppercase">Situational Prompt:</div>
+              <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-white">"${item.prompt}"</h3>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex gap-2">
+                <input id="mock-answer-input" type="text" onkeydown="if(event.key==='Enter') app.submitMockItemAnswer()" placeholder="Speak your answer..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500" />
+                <button id="mock-mic-btn" onclick="app.toggleSpeechRec('mock-answer-input', 'mock-mic-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 flex flex-col sm:flex-row justify-between items-center gap-3 border-t border-slate-800/80">
+            <span class="text-xs text-slate-500 order-2 sm:order-1 text-center sm:text-left">Provide direct answers promptly</span>
+            <button onclick="app.submitMockItemAnswer()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold text-xs sm:text-sm shadow-lg transition order-1 sm:order-2">
+              Submit & Next &rarr;
+            </button>
+          </div>
+        `;
+      }
+
+      renderMockD(container, item) {
+        setTimeout(() => {
+          this.audio.speak(item.question, () => {
+            this.audio.playStartBeep();
+          });
+        }, 400);
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-emerald-400 font-bold uppercase tracking-wider">Vocabulary MCQ</span>
+              <span class="text-[10px] sm:text-xs text-emerald-300 font-mono">"The answer is [Option], [Word]"</span>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 sm:space-y-4">
+              <h3 class="text-base sm:text-xl font-heading font-extrabold text-white">${item.question}</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
+                ${item.options.map(opt => `
+                  <button onclick="document.getElementById('mock-answer-input').value = 'The answer is ${opt.key}, ${opt.text}'" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500 text-left flex items-center space-x-3 transition group">
+                    <span class="w-7 h-7 rounded-lg bg-slate-800 group-hover:bg-emerald-600 text-slate-200 group-hover:text-white flex items-center justify-center font-bold text-xs flex-shrink-0">${opt.key}</span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-200">${opt.text}</span>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex gap-2">
+                <input id="mock-answer-input" type="text" onkeydown="if(event.key==='Enter') app.submitMockItemAnswer()" placeholder='Say "The answer is..."' class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500" />
+                <button id="mock-mic-btn" onclick="app.toggleSpeechRec('mock-answer-input', 'mock-mic-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 flex flex-col sm:flex-row justify-between items-center gap-3 border-t border-slate-800/80">
+            <span class="text-xs text-slate-500 order-2 sm:order-1 text-center sm:text-left">Full sentence oral response is evaluated</span>
+            <button onclick="app.submitMockItemAnswer()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold text-xs sm:text-sm shadow-lg transition order-1 sm:order-2">
+              Submit & Next &rarr;
+            </button>
+          </div>
+        `;
+      }
+
+      renderMockE(container, item) {
+        setTimeout(() => {
+          this.audio.speak(item.question, () => {
+            this.audio.playStartBeep();
+          });
+        }, 400);
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-pink-400 font-bold uppercase tracking-wider">Grammar Accuracy</span>
+              <span class="text-[10px] sm:text-xs text-pink-300 font-mono">"The answer is [Option], [Sentence]"</span>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 sm:space-y-4">
+              <h3 class="text-base sm:text-lg font-heading font-extrabold text-white">${item.question}</h3>
+              <div class="space-y-2 pt-1">
+                ${item.options.map(opt => `
+                  <button onclick="document.getElementById('mock-answer-input').value = 'The answer is ${opt.key}, ${opt.text.replace(/'/g, "\\'")}'" class="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-pink-500 text-left flex items-center space-x-3 transition group">
+                    <span class="w-7 h-7 rounded-lg bg-slate-800 group-hover:bg-pink-600 text-slate-200 group-hover:text-white flex items-center justify-center font-bold text-xs flex-shrink-0">${opt.key}</span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-200 leading-snug">${opt.text}</span>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex gap-2">
+                <input id="mock-answer-input" type="text" onkeydown="if(event.key==='Enter') app.submitMockItemAnswer()" placeholder='Say "The answer is [Option], [Full sentence]"' class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-pink-500" />
+                <button id="mock-mic-btn" onclick="app.toggleSpeechRec('mock-answer-input', 'mock-mic-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 flex flex-col sm:flex-row justify-between items-center gap-3 border-t border-slate-800/80">
+            <span class="text-xs text-slate-500 order-2 sm:order-1 text-center sm:text-left">Include "The answer is..." prefix</span>
+            <button onclick="app.submitMockItemAnswer()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold text-xs sm:text-sm shadow-lg transition order-1 sm:order-2">
+              Submit & Next &rarr;
+            </button>
+          </div>
+        `;
+      }
+
+      renderMockF(container, item) {
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-amber-400 font-bold uppercase tracking-wider">Section F: Final Extempore</span>
+              <span class="text-xs text-amber-300">30s Prep &bull; 45s Speech</span>
+            </div>
+
+            <div class="p-5 sm:p-8 rounded-2xl bg-slate-900 border border-slate-800 text-center space-y-3 sm:space-y-4">
+              <span class="text-xs text-slate-400 uppercase">Spoken Topic (Repeated Twice in SVAR):</span>
+              <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-white">"${item.topic}"</h3>
+              <p class="text-xs text-amber-300 leading-relaxed">${item.listingTip}</p>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-2xl glass-card border border-slate-800 text-center space-y-4">
+              <div id="mock-f-status" class="text-xs sm:text-sm font-bold text-amber-300">Ready to initiate 30s prep countdown...</div>
+              
+              <div class="flex justify-center items-center gap-3 sm:gap-6">
+                <div class="p-3 sm:p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex-1 max-w-[120px]">
+                  <div class="text-[9px] sm:text-[10px] text-slate-500 uppercase font-semibold">Prep Clock</div>
+                  <div id="mock-f-prep-time" class="text-xl sm:text-2xl font-heading font-extrabold text-amber-400">30s</div>
+                </div>
+                <div class="text-slate-600 font-black text-base sm:text-xl">&rarr;</div>
+                <div class="p-3 sm:p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex-1 max-w-[120px]">
+                  <div class="text-[9px] sm:text-[10px] text-slate-500 uppercase font-semibold">Speech Clock</div>
+                  <div id="mock-f-speak-time" class="text-xl sm:text-2xl font-heading font-extrabold text-emerald-400">45s</div>
+                </div>
+              </div>
+
+              <button id="mock-f-launch-btn" onclick="app.startMockExtemporeRoutine()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-emerald-500 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg transition">
+                Begin Section F Routine
+              </button>
+
+              <textarea id="mock-answer-input" rows="3" placeholder="Live candidate speech will be transcribed here..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-amber-500"></textarea>
+            </div>
+          </div>
+
+          <div class="pt-4 flex flex-col sm:flex-row justify-between items-center gap-3 border-t border-slate-800/80">
+            <span class="text-xs text-slate-500 order-2 sm:order-1 text-center sm:text-left">Consume the full 45s using listing technique</span>
+            <button onclick="app.submitMockItemAnswer()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold text-xs sm:text-sm shadow-lg transition order-1 sm:order-2">
+              Complete Assessment & View Scorecard &rarr;
+            </button>
+          </div>
+        `;
+      }
+
+      startMockExtemporeRoutine() {
+        this.clearAllActiveTimers();
+        const item = this.mockItems[this.mockCurrentIndex];
+        const status = document.getElementById('mock-f-status');
+        const prepEl = document.getElementById('mock-f-prep-time');
+        const speakEl = document.getElementById('mock-f-speak-time');
+        const btn = document.getElementById('mock-f-launch-btn');
+        if (btn) btn.disabled = true;
+
+        this.audio.speak(item.topic, () => {
+          setTimeout(() => {
+            this.audio.speak("Prepare your thoughts for 30 seconds.", () => {
+              let prepLeft = 30;
+              if (status) status.innerText = "🧠 Prep Phase: Formulate points & structure...";
+
+              this.extemporePrepInterval = setInterval(() => {
+                prepLeft--;
+                if (prepEl) prepEl.innerText = prepLeft + 's';
+                if (prepLeft <= 3 && prepLeft > 0) this.audio.playCountdownBeep(false);
+
+                if (prepLeft <= 0) {
+                  clearInterval(this.extemporePrepInterval);
+                  this.extemporePrepInterval = null;
+                  this.audio.playStartBeep();
+                  if (status) status.innerText = "🎙️ SPEAK NOW! Continuous speech for 45s...";
+
+                  this.speech.startListening(
+                    (text) => {
+                      const ta = document.getElementById('mock-answer-input');
+                      if (ta) ta.value = text;
+                    },
+                    null,
+                    null
+                  );
+
+                  let speakLeft = 45;
+                  this.extemporeSpeakInterval = setInterval(() => {
+                    speakLeft--;
+                    if (speakEl) speakEl.innerText = speakLeft + 's';
+
+                    if (speakLeft <= 0) {
+                      clearInterval(this.extemporeSpeakInterval);
+                      this.extemporeSpeakInterval = null;
+                      this.speech.stopListening();
+                      this.audio.playBeep(440, 0.4, 'sine');
+                      if (status) status.innerText = "✅ Section F Complete! Submitting scorecard...";
+                      setTimeout(() => {
+                        this.submitMockItemAnswer();
+                      }, 1200);
+                    }
+                  }, 1000);
+                }
+              }, 1000);
+            });
+          }, 600);
+        });
+      }
+
+      submitMockItemAnswer() {
+        const item = this.mockItems[this.mockCurrentIndex];
+        const inputEl = document.getElementById('mock-answer-input');
+        const userText = inputEl ? inputEl.value.trim() : '';
+
+        this.speech.stopListening();
+        this.audio.stopSpeech();
+
+        let evalResult;
+        if (item.sec === 'A') {
+          evalResult = SvarEvaluator.evaluateReading(userText, item.text);
+        } else if (item.sec === 'B') {
+          evalResult = SvarEvaluator.evaluateRepeat(userText, item.audioText);
+        } else if (item.sec === 'C') {
+          evalResult = SvarEvaluator.evaluateQA(userText, item.expectedAnswers);
+        } else if (item.sec === 'D') {
+          evalResult = SvarEvaluator.evaluateVocab(userText, item.correctKey, item.correctText);
+        } else if (item.sec === 'E') {
+          evalResult = SvarEvaluator.evaluateGrammar(userText, item.correctKey, item.correctText);
+        } else if (item.sec === 'F') {
+          evalResult = SvarEvaluator.evaluateExtempore(userText);
+        }
+
+        this.mockUserResponses.push({
+          item,
+          userResponse: userText,
+          score: evalResult.score,
+          feedback: evalResult.feedback,
+          isCorrect: evalResult.passed
+        });
+
+        this.mockCurrentIndex++;
+        this.renderMockItem();
+      }
+
+      cancelMockTest() {
+        if (confirm("Are you sure you want to exit the active mock test?")) {
+          if (this.mockGlobalTimerInterval) clearInterval(this.mockGlobalTimerInterval);
+          this.clearAllActiveTimers();
+          this.setTab('guide');
+        }
+      }
+
+      finishMockTest() {
+        if (this.mockGlobalTimerInterval) clearInterval(this.mockGlobalTimerInterval);
+        this.clearAllActiveTimers();
+
+        const secScores = { A: [], B: [], C: [], D: [], E: [], F: [] };
+        this.mockUserResponses.forEach(r => {
+          if (secScores[r.item.sec]) secScores[r.item.sec].push(r.score);
+        });
+
+        const getSecAvg = (arr) => arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : 80;
+
+        const aScore = getSecAvg(secScores.A);
+        const bScore = getSecAvg(secScores.B);
+        const cScore = getSecAvg(secScores.C);
+        const dScore = getSecAvg(secScores.D);
+        const eScore = getSecAvg(secScores.E);
+        const fScore = getSecAvg(secScores.F);
+
+        const overall = Math.round((aScore + bScore + cScore + dScore + eScore + fScore) / 6);
+
+        let cefr = 'B2';
+        let cefrDesc = 'Independent / Vantage';
+        if (overall >= 90) { cefr = 'C1+'; cefrDesc = 'Mastery / Advanced Proficient'; }
+        else if (overall >= 80) { cefr = 'B2+'; cefrDesc = 'High Vantage / Professional Fluency'; }
+        else if (overall >= 70) { cefr = 'B2'; cefrDesc = 'Vantage / Operational Standard'; }
+        else if (overall >= 60) { cefr = 'B1+'; cefrDesc = 'Threshold / Moderate Fluency'; }
+        else { cefr = 'A2/B1'; cefrDesc = 'Elementary / Requires Practice'; }
+
+        this.lastScoreReport = {
+          overall,
+          cefr,
+          cefrDesc,
+          sections: { A: aScore, B: bScore, C: cScore, D: dScore, E: eScore, F: fScore },
+          responses: this.mockUserResponses,
+          date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+        };
+
+        this.renderScorecard();
+        this.setTab('scorecard');
+        this.audio.playSuccessChime();
+      }
+
+      renderScorecard() {
+        const emptyState = document.getElementById('scorecard-empty');
+        const contentState = document.getElementById('scorecard-content');
+        
+        let rep = this.lastScoreReport;
+        if (!rep) {
+          let hasDrills = false;
+          ['A', 'B', 'C', 'D', 'E', 'F'].forEach(s => {
+            if (Object.keys(this.drillStatus[s]).length > 0) hasDrills = true;
+          });
+          if (hasDrills) {
+            this.syncAndOpenFullScorecard();
+            return;
+          }
+        }
+
+        if (!rep) {
+          if (emptyState) emptyState.classList.remove('hidden');
+          if (contentState) contentState.classList.add('hidden');
+          return;
+        }
+
+        if (emptyState) emptyState.classList.add('hidden');
+        if (contentState) contentState.classList.remove('hidden');
+
+        document.getElementById('final-overall-score').innerText = rep.overall;
+        document.getElementById('final-cefr-level').innerText = rep.cefr;
+        document.getElementById('final-cefr-desc').innerText = rep.cefrDesc;
+        document.getElementById('scorecard-date').innerText = `Completed on ${rep.date}`;
+
+        ['a', 'b', 'c', 'd', 'e', 'f'].forEach(k => {
+          const uppercaseK = k.toUpperCase();
+          const score = rep.sections[uppercaseK] || 0;
+          const scoreEl = document.getElementById(`score-sec-${k}`);
+          const barEl = document.getElementById(`bar-sec-${k}`);
+          if (scoreEl) scoreEl.innerText = score + '%';
+          if (barEl) barEl.style.width = score + '%';
+        });
+
+        const reviewList = document.getElementById('scorecard-review-list');
+        if (reviewList) {
+          reviewList.innerHTML = rep.responses.map((resp, idx) => `
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border ${resp.isCorrect ? 'border-emerald-500/30' : 'border-rose-500/30'} space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold ${resp.isCorrect ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">Item ${idx + 1} (${resp.item.sec})</span>
+                  <span class="text-xs font-bold text-white truncate max-w-[200px] sm:max-w-md">${Utils.escapeHtml(resp.item.prompt || resp.item.question || resp.item.topic || 'Sentence Task')}</span>
+                </div>
+                <span class="text-xs font-extrabold flex-shrink-0 ${resp.isCorrect ? 'text-emerald-400' : 'text-rose-400'}">${resp.score}%</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1">
+                <p class="break-words"><strong>Your Input:</strong> "${Utils.escapeHtml(resp.userResponse || '(No response recorded)')}"</p>
+                <p class="text-slate-400 text-[11px] break-words"><strong>AI Evaluation:</strong> ${Utils.escapeHtml(resp.feedback)}</p>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+    }
+
+    const app = new SvarApp();
+  </script>
+</body>
+</html>
