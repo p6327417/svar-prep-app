@@ -213,6 +213,23 @@
     </div>
   </div>
 
+  <!-- INSECURE ORIGIN HTTP WARNING (MOBILE ACCESSED VIA LOCAL IP) -->
+  <div id="insecure-origin-warning" class="hidden bg-rose-50 dark:bg-rose-950/50 border-b border-rose-200 dark:border-rose-800/80 px-3 sm:px-6 py-2.5 text-xs text-rose-900 dark:text-rose-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+    <div class="flex items-center gap-2">
+      <span class="text-base flex-shrink-0">📱</span>
+      <div class="leading-tight">
+        <strong class="text-rose-950 dark:text-white">Mobile Insecure Origin Note:</strong> Mobile browsers restrict microphone access over plain HTTP IP.
+        <span class="hidden sm:inline">Use Chrome/Safari permissions or tap <strong>Mic Ready</strong> above for diagnosis &amp; manual typing.</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
+      <button onclick="app.openMicDiagnosticsModal()" class="px-2.5 py-1 rounded-lg bg-rose-600 text-white font-bold text-[11px] shadow-xs">
+        Fix &amp; Diagnose
+      </button>
+      <button onclick="document.getElementById('insecure-origin-warning').remove()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1" aria-label="Close Notice">✕</button>
+    </div>
+  </div>
+
   <!-- TOP PROFESSIONAL CONTROL BAR & AUDIO STATUS -->
   <div id="audio-status-banner" class="bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 text-[11px] sm:text-xs px-3 sm:px-6 py-2 flex flex-col sm:flex-row items-center justify-between gap-2 text-slate-600 dark:text-slate-300 transition">
     <div class="flex items-center justify-between w-full sm:w-auto gap-3">
@@ -970,7 +987,7 @@
     };
 
     /**
-     * ADVANCED VOICE RECORDER & LIVE CANVAS WAVEFORM VISUALIZER
+     * ADVANCED VOICE RECORDER & LIVE CANVAS WAVEFORM VISUALIZER (CROSS-PLATFORM)
      */
     class VoiceRecorder {
       constructor() {
@@ -984,6 +1001,23 @@
         this.animFrameId = null;
         this.source = null;
         this.stream = null;
+        this.mimeType = this.detectSupportedMimeType();
+      }
+
+      detectSupportedMimeType() {
+        if (typeof MediaRecorder === 'undefined' || !MediaRecorder.isTypeSupported) {
+          return '';
+        }
+        const types = [
+          'audio/webm;codecs=opus',
+          'audio/webm',
+          'audio/mp4;codecs=mp4a.40.2',
+          'audio/mp4',
+          'audio/aac',
+          'audio/ogg;codecs=opus',
+          'audio/wav'
+        ];
+        return types.find(t => MediaRecorder.isTypeSupported(t)) || '';
       }
 
       async startRecording(canvasId) {
@@ -991,11 +1025,27 @@
           this.audioChunks = [];
           this.audioBlob = null;
           this.audioUrl = null;
-          this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+          if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            throw new Error("Microphone access is not supported on this browser.");
+          }
+
+          this.stream = await navigator.mediaDevices.getUserMedia({ 
+            audio: {
+              echoCancellation: true,
+              noiseSuppression: true,
+              autoGainControl: true
+            } 
+          });
 
           const AudioContextClass = window.AudioContext || window.webkitAudioContext;
           if (AudioContextClass) {
-            this.audioContext = new AudioContextClass();
+            if (!this.audioContext) {
+              this.audioContext = new AudioContextClass();
+            }
+            if (this.audioContext.state === 'suspended') {
+              await this.audioContext.resume();
+            }
             this.source = this.audioContext.createMediaStreamSource(this.stream);
             this.analyser = this.audioContext.createAnalyser();
             this.analyser.fftSize = 64;
@@ -1003,9 +1053,12 @@
             if (canvasId) this.drawWaveform(canvasId);
           }
 
-          this.mediaRecorder = new MediaRecorder(this.stream);
+          this.mimeType = this.detectSupportedMimeType();
+          const options = this.mimeType ? { mimeType: this.mimeType } : {};
+          this.mediaRecorder = new MediaRecorder(this.stream, options);
+
           this.mediaRecorder.ondataavailable = (e) => {
-            if (e.data.size > 0) this.audioChunks.push(e.data);
+            if (e.data && e.data.size > 0) this.audioChunks.push(e.data);
           };
           this.mediaRecorder.start(100);
           this.isRecording = true;
@@ -1020,7 +1073,8 @@
         if (this.animFrameId) cancelAnimationFrame(this.animFrameId);
         if (this.mediaRecorder && this.isRecording) {
           this.mediaRecorder.onstop = () => {
-            this.audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
+            const outType = this.mimeType || this.mediaRecorder?.mimeType || 'audio/webm';
+            this.audioBlob = new Blob(this.audioChunks, { type: outType });
             this.audioUrl = URL.createObjectURL(this.audioBlob);
             if (callback) callback(this.audioUrl, this.audioBlob);
           };
@@ -1870,14 +1924,18 @@
     }
 
     /**
-     * SINGLE-INSTANCE PERSISTENT SPEECH CONTROLLER
+     * CROSS-PLATFORM PERSISTENT SPEECH & MICROPHONE CONTROLLER (MOBILE + DESKTOP)
      */
     class PersistentSpeechController {
       constructor() {
         const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
         this.isSupported = !!SpeechRec;
+        this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                        (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer:coarse)').matches);
         this.recognition = null;
         this.isListening = false;
+        this.manualStop = false;
+        this.accumulatedTranscript = '';
         this.activeStream = null;
         this.audioCtx = null;
         this.analyser = null;
@@ -1894,44 +1952,85 @@
       }
 
       initSingleInstance() {
-        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-        this.recognition = new SpeechRec();
-        this.recognition.continuous = true;
-        this.recognition.interimResults = true;
-        this.recognition.lang = 'en-US';
+        try {
+          const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+          this.recognition = new SpeechRec();
+          // On mobile devices, continuous=true causes immediate abortion on iOS/Android WebKit
+          this.recognition.continuous = !this.isMobile;
+          this.recognition.interimResults = true;
+          this.recognition.lang = 'en-US';
+          this.recognition.maxAlternatives = 1;
 
-        this.recognition.onstart = () => {
-          this.isListening = true;
-          this.showMicMeter(true);
-        };
+          this.recognition.onstart = () => {
+            this.isListening = true;
+            this.showMicMeter(true);
+          };
 
-        this.recognition.onresult = (e) => {
-          let interim = '';
-          let final = '';
-          for (let i = 0; i < e.results.length; ++i) {
-            if (e.results[i].isFinal) final += e.results[i][0].transcript + ' ';
-            else interim += e.results[i][0].transcript;
-          }
-          const fullText = (final + interim).trim();
-          if (this.currentOnResult && fullText) {
-            this.currentOnResult(fullText, !!final);
-          }
-        };
+          this.recognition.onresult = (e) => {
+            let interim = '';
+            let currentFinal = '';
 
-        this.recognition.onerror = (err) => {
-          if (err.error === 'no-speech' || err.error === 'aborted') return;
-          this.isListening = false;
-          this.showMicMeter(false);
-          if (this.currentOnError) this.currentOnError(err.error);
-        };
+            for (let i = e.resultIndex; i < e.results.length; ++i) {
+              if (e.results[i].isFinal) {
+                currentFinal += e.results[i][0].transcript + ' ';
+              } else {
+                interim += e.results[i][0].transcript;
+              }
+            }
 
-        this.recognition.onend = () => {
-          this.isListening = false;
-          this.showMicMeter(false);
-          if (this.currentOnEnd) {
-            this.currentOnEnd();
-          }
-        };
+            if (currentFinal) {
+              this.accumulatedTranscript += currentFinal;
+            }
+
+            const fullText = (this.accumulatedTranscript + interim).trim();
+            if (this.currentOnResult && fullText) {
+              this.currentOnResult(fullText, !!currentFinal);
+            }
+          };
+
+          this.recognition.onerror = (err) => {
+            if (err.error === 'no-speech') {
+              // If still listening on mobile and user paused briefly, attempt soft restart
+              if (this.isListening && !this.manualStop && this.isMobile) {
+                try { this.recognition.start(); return; } catch(e) {}
+              }
+              return;
+            }
+            if (err.error === 'aborted') return;
+
+            this.isListening = false;
+            this.showMicMeter(false);
+
+            let humanMessage = err.error;
+            if (err.error === 'not-allowed' || err.error === 'service-not-allowed') {
+              humanMessage = "Microphone access blocked. Please enable microphone permission in your browser/device settings.";
+            } else if (err.error === 'audio-capture') {
+              humanMessage = "Microphone hardware in use or unavailable. Please ensure no other recording app is open.";
+            } else if (err.error === 'network') {
+              humanMessage = "Speech recognition network error. Please check your internet connection.";
+            }
+
+            if (this.currentOnError) this.currentOnError(humanMessage);
+          };
+
+          this.recognition.onend = () => {
+            if (this.isListening && !this.manualStop && this.isMobile) {
+              // Mobile WebKit single-utterance restart loop while user is in active recording mode
+              try {
+                this.recognition.start();
+                return;
+              } catch(e) {}
+            }
+
+            this.isListening = false;
+            this.showMicMeter(false);
+            if (this.currentOnEnd) {
+              this.currentOnEnd();
+            }
+          };
+        } catch(e) {
+          console.warn("PersistentSpeechController init notice:", e);
+        }
       }
 
       showMicMeter(visible) {
@@ -1955,10 +2054,17 @@
       async acquirePersistentStream() {
         if (this.activeStream && this.activeStream.active) return this.activeStream;
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-          throw new Error("Microphone API is not supported in this browser.");
+          throw new Error("Microphone API is not supported in this browser. You can type answers directly.");
         }
 
-        this.activeStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        this.activeStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true
+          },
+          video: false
+        });
         this.permissionGranted = true;
         localStorage.setItem('svar_mic_authorized', 'true');
         this.setupAudioVisualizer(this.activeStream);
@@ -2010,21 +2116,15 @@
 
       async startListening(onResult, onEnd, onError) {
         if (!this.isSupported) {
-          if (onError) onError("Speech Recognition unavailable. You can type directly in the box.");
+          if (onError) onError("Speech Recognition is not supported on this browser (e.g. Firefox Mobile/WebView). You can type directly in the box.");
           return;
         }
 
         this.currentOnResult = onResult;
         this.currentOnEnd = onEnd;
         this.currentOnError = onError;
-
-        if (!this.activeStream || !this.activeStream.active) {
-          try {
-            await this.acquirePersistentStream();
-          } catch (e) {
-            console.warn("Audio stream notice:", e);
-          }
-        }
+        this.manualStop = false;
+        this.accumulatedTranscript = '';
 
         if (this.isListening) {
           try { this.recognition.abort(); } catch(e) {}
@@ -2041,12 +2141,13 @@
             this.showMicMeter(true);
           } else {
             console.warn("SpeechRec start error:", err);
-            if (onError) onError(err.message || "Failed to start speech recognition.");
+            if (onError) onError(err.message || "Failed to start microphone speech recognition.");
           }
         }
       }
 
       stopListening() {
+        this.manualStop = true;
         if (this.recognition && this.isListening) {
           try { this.recognition.stop(); } catch(e) {}
           this.isListening = false;
@@ -3468,17 +3569,19 @@
           if (warning) warning.classList.remove('hidden');
         }
 
+        const isSecureOrigin = window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        if (!isSecureOrigin && window.location.protocol !== 'file:') {
+          const insecureWarning = document.getElementById('insecure-origin-warning');
+          if (insecureWarning) insecureWarning.classList.remove('hidden');
+        }
+
         this.updateAutoAdvanceUi();
         this.updateHeaderProfileBadge();
         this.setTab('guide');
         this.renderPracticeSection();
 
-        if (this.speech.permissionGranted) {
-          this.updateMicUiStatus(true);
-          try {
-            await this.speech.acquirePersistentStream();
-          } catch(e) {}
-        }
+        // Initialize mic UI status from permission cache without forcing lock on mobile
+        this.updateMicUiStatus(this.speech.permissionGranted);
       }
 
       updateHeaderProfileBadge() {
@@ -4063,19 +4166,185 @@
         }
       }
 
-      async ensureMicPermission(showToastOnSuccess = false) {
+      async ensureMicPermission(openModal = true) {
+        if (openModal) {
+          this.openMicDiagnosticsModal();
+          return;
+        }
         try {
           await this.speech.acquirePersistentStream();
           this.updateMicUiStatus(true);
-          if (showToastOnSuccess) {
-            this.showToast("Microphone connected successfully!", "emerald");
-          }
+          this.showToast("Microphone connected successfully! 🎙️", "emerald");
           return true;
         } catch (err) {
           this.updateMicUiStatus(false);
-          this.showToast("Microphone permission note: " + err.message, "rose");
+          this.openMicDiagnosticsModal();
           return false;
         }
+      }
+
+      openMicDiagnosticsModal() {
+        const existing = document.getElementById('mic-diagnostics-modal');
+        if (existing) existing.remove();
+
+        const isHttps = window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const hasSpeech = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+        const hasMedia = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const isAndroid = /Android/i.test(navigator.userAgent);
+
+        const modal = document.createElement('div');
+        modal.id = 'mic-diagnostics-modal';
+        modal.className = 'fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fadeIn';
+        modal.innerHTML = `
+          <div class="glass-panel max-w-lg w-full p-5 sm:p-7 rounded-3xl border border-slate-200 dark:border-brand-500/40 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
+            
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-9 h-9 rounded-xl bg-brand-50 dark:bg-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg border border-brand-200 dark:border-brand-500/30">
+                  🎙️
+                </div>
+                <div>
+                  <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 dark:text-white">Microphone &amp; Mobile Audio Hub</h3>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Diagnosis &amp; Permission Manager</p>
+                </div>
+              </div>
+              <button onclick="document.getElementById('mic-diagnostics-modal').remove()" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white text-xs font-bold" aria-label="Close">
+                ✕
+              </button>
+            </div>
+
+            <!-- COMPATIBILITY CHECKLIST -->
+            <div class="space-y-2">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Environment Health Check</div>
+              
+              <div class="grid grid-cols-1 gap-2 text-xs">
+                <div class="p-2.5 rounded-xl flex items-center justify-between ${isHttps ? 'bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300' : 'bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300'}">
+                  <div class="flex items-center gap-2">
+                    <span>${isHttps ? '🔒' : '⚠️'}</span>
+                    <span><strong>Secure Origin (HTTPS):</strong> ${isHttps ? 'Active & Secure' : 'Insecure (Microphone blocked on mobile HTTP)'}</span>
+                  </div>
+                  <span class="font-bold">${isHttps ? 'PASS' : 'FAIL'}</span>
+                </div>
+
+                <div class="p-2.5 rounded-xl flex items-center justify-between ${hasSpeech ? 'bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300' : 'bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300'}">
+                  <div class="flex items-center gap-2">
+                    <span>${hasSpeech ? '🗣️' : '⚠️'}</span>
+                    <span><strong>Web Speech Recognition:</strong> ${hasSpeech ? 'Supported' : 'Not supported (Use Chrome/Safari or manual typing)'}</span>
+                  </div>
+                  <span class="font-bold">${hasSpeech ? 'READY' : 'LIMITED'}</span>
+                </div>
+
+                <div class="p-2.5 rounded-xl flex items-center justify-between ${hasMedia ? 'bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300' : 'bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300'}">
+                  <div class="flex items-center gap-2">
+                    <span>${hasMedia ? '🎤' : '❌'}</span>
+                    <span><strong>Hardware MediaDevices API:</strong> ${hasMedia ? 'Available' : 'Unavailable'}</span>
+                  </div>
+                  <span class="font-bold">${hasMedia ? 'READY' : 'FAIL'}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- LIVE TEST SECTION -->
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3 text-center">
+              <div class="text-xs font-bold text-slate-800 dark:text-slate-200">Interactive Microphone Test</div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Click below and speak 3-4 words to verify microphone input and recognition.</p>
+              
+              <div id="diag-transcription-box" class="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs min-h-[44px] text-slate-700 dark:text-slate-300 flex items-center justify-center italic">
+                Awaiting test trigger...
+              </div>
+
+              <div class="flex items-center justify-center gap-2">
+                <button id="diag-test-btn" onclick="app.runDiagMicTest()" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5">
+                  <span>🎙️ Test Microphone (Tap &amp; Speak)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- MOBILE TROUBLESHOOTING INSTRUCTIONS -->
+            <div class="p-3.5 rounded-2xl bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800 space-y-2 text-xs text-indigo-950 dark:text-indigo-200">
+              <div class="font-bold flex items-center gap-1.5 text-indigo-900 dark:text-indigo-300">
+                <span>📱</span>
+                <span>Mobile Browser Instructions:</span>
+              </div>
+              <ul class="list-disc list-inside space-y-1 text-[11px] text-indigo-900/80 dark:text-indigo-200/80">
+                ${isIOS ? `
+                  <li><strong>iOS Safari:</strong> Tap the <code>aA</code> icon on the URL bar &rarr; <em>Website Settings</em> &rarr; <em>Microphone</em> &rarr; Set to <strong>Allow</strong>.</li>
+                  <li><strong>iPhone Settings:</strong> Open iPhone Settings &rarr; <em>Safari</em> &rarr; <em>Microphone</em> &rarr; <strong>Allow</strong>.</li>
+                ` : isAndroid ? `
+                  <li><strong>Android Chrome:</strong> Tap the Lock/Settings icon next to the website URL &rarr; <em>Permissions</em> &rarr; <em>Microphone</em> &rarr; Toggle <strong>Allow</strong>.</li>
+                ` : `
+                  <li><strong>Chrome/Edge:</strong> Click the Microphone icon or Tune icon in the address bar &rarr; Select <strong>Always Allow</strong>.</li>
+                  <li><strong>Mobile Safari:</strong> Ensure microphone permissions are allowed in iOS Safari website settings.</li>
+                `}
+                <li><strong>In-App Browsers:</strong> If opened inside Instagram, WhatsApp, or LinkedIn, tap <code>⋮</code> and select <strong>"Open in Chrome / Safari"</strong>.</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+              <button onclick="document.getElementById('mic-diagnostics-modal').remove()" class="px-5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+                Done / Close
+              </button>
+            </div>
+
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
+
+      async runDiagMicTest() {
+        const btn = document.getElementById('diag-test-btn');
+        const box = document.getElementById('diag-transcription-box');
+        if (!box) return;
+
+        if (btn) {
+          btn.disabled = true;
+          btn.className = 'px-5 py-2.5 rounded-xl bg-rose-600 text-white font-bold text-xs shadow-md animate-pulse flex items-center gap-1.5';
+          btn.innerHTML = '<span class="w-2 h-2 rounded-full bg-white animate-ping"></span><span>Listening for 5 seconds... Speak now!</span>';
+        }
+        box.innerText = "Listening... say: 'Testing SVAR speaking system 1 2 3'";
+
+        try {
+          await this.speech.acquirePersistentStream();
+          this.updateMicUiStatus(true);
+        } catch(e) {
+          console.warn("Diag mic notice:", e);
+        }
+
+        let recordedText = '';
+        await this.speech.startListening(
+          (text) => {
+            recordedText = text;
+            box.innerHTML = `<span class="text-emerald-600 dark:text-emerald-400 font-bold">Heard: "${Utils.escapeHtml(text)}" ✅</span>`;
+          },
+          () => {
+            if (btn) {
+              btn.disabled = false;
+              btn.className = 'px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5';
+              btn.innerHTML = '<span>🎙️ Test Microphone (Tap &amp; Speak)</span>';
+            }
+          },
+          (err) => {
+            box.innerHTML = `<span class="text-rose-600 dark:text-rose-400 font-semibold">Speech notice: ${Utils.escapeHtml(err)}</span>`;
+            if (btn) {
+              btn.disabled = false;
+              btn.className = 'px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5';
+              btn.innerHTML = '<span>🎙️ Test Microphone (Tap &amp; Speak)</span>';
+            }
+          }
+        );
+
+        setTimeout(() => {
+          this.speech.stopListening();
+          if (btn) {
+            btn.disabled = false;
+            btn.className = 'px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5';
+            btn.innerHTML = '<span>🎙️ Test Microphone (Tap &amp; Speak)</span>';
+          }
+          if (!recordedText) {
+            box.innerHTML = `<span class="text-amber-600 dark:text-amber-400">Microphone active. (No speech detected during 5s window. Speak louder or closer to mic).</span>`;
+          }
+        }, 5000);
       }
 
       setTab(tabName) {
@@ -6955,6 +7224,23 @@
 
         document.body.appendChild(modal);
       }
+    }
+
+    // Global Mobile User Gesture Audio Unlocker
+    const unlockAudioPipeline = () => {
+      if (typeof window !== 'undefined' && window.app && window.app.audio) {
+        window.app.audio.init();
+      }
+      if (typeof document !== 'undefined' && document.removeEventListener) {
+        ['touchstart', 'touchend', 'click'].forEach(evt => {
+          document.removeEventListener(evt, unlockAudioPipeline);
+        });
+      }
+    };
+    if (typeof document !== 'undefined' && document.addEventListener) {
+      ['touchstart', 'touchend', 'click'].forEach(evt => {
+        document.addEventListener(evt, unlockAudioPipeline, { passive: true, once: true });
+      });
     }
 
     const app = new SvarApp();
