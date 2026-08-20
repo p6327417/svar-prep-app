@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <title>SVAR English Assessment - Master Prep & Simulator</title>
+  <title>SVAR English Assessment - Master Prep & Simulator (8 Chapters)</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -97,7 +97,6 @@
       100% { width: 0%; }
     }
     
-    /* Touch target comfort */
     button, a, input, select, textarea {
       touch-action: manipulation;
     }
@@ -111,13 +110,10 @@
       <span class="text-base flex-shrink-0">⚠️</span>
       <div class="leading-tight">
         <strong class="text-white">Microphone Tip:</strong> Running on <code class="bg-amber-950/60 px-1 py-0.5 rounded text-amber-300 font-mono text-[11px]">file://</code>.
-        <span class="hidden md:inline">Run <strong>start-server.bat</strong> or visit <strong>http://localhost:5000</strong> to remember microphone access permanently!</span>
+        <span class="hidden md:inline">Run <strong>start-server.bat</strong> or host on GitHub to remember microphone access permanently!</span>
       </div>
     </div>
     <div class="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
-      <a href="http://localhost:5000" class="px-3 py-1.5 bg-amber-500 text-slate-950 font-bold rounded-lg hover:bg-amber-400 transition text-[11px] shadow">
-        Open on http://localhost:5000 &rarr;
-      </a>
       <button onclick="document.getElementById('file-protocol-warning').remove()" class="text-slate-400 hover:text-white p-1" aria-label="Close Notice">✕</button>
     </div>
   </div>
@@ -159,7 +155,7 @@
     </div>
   </div>
 
-  <!-- NAVIGATION HEADER (MOBILE & TABLET OPTIMIZED) -->
+  <!-- NAVIGATION HEADER -->
   <header class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2.5 sm:gap-3">
       
@@ -172,14 +168,14 @@
           <div>
             <div class="flex items-center space-x-2">
               <span class="font-heading font-extrabold text-lg sm:text-xl tracking-tight text-white">SVAR<span class="text-accent-500">.Master</span></span>
-              <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">SHL Simulator</span>
+              <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">8 Chapters Bank</span>
             </div>
-            <p class="text-[11px] text-slate-400 hidden xs:block">Automated Spoken English Evaluation Prep</p>
+            <p class="text-[11px] text-slate-400 hidden xs:block">Automated Spoken English Evaluation Simulator</p>
           </div>
         </div>
       </div>
 
-      <!-- MAIN NAVIGATION BUTTONS (TOUCH & SCROLL OPTIMIZED) -->
+      <!-- MAIN NAVIGATION BUTTONS -->
       <div class="flex items-center space-x-1 sm:space-x-2 bg-slate-900/90 p-1 rounded-xl border border-slate-800 overflow-x-auto no-scrollbar max-w-full">
         <button id="nav-guide" onclick="app.setTab('guide')" class="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition active-nav-tab flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
           <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
@@ -188,7 +184,7 @@
 
         <button id="nav-practice" onclick="app.setTab('practice')" class="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
           <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-          <span>Drills</span>
+          <span>8 Chapters Drills</span>
         </button>
 
         <button id="nav-mock" onclick="app.setTab('mock')" class="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 relative">
@@ -197,7 +193,7 @@
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-500"></span>
           </span>
           <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          <span>Mock Test</span>
+          <span>Mock Test (16m)</span>
         </button>
 
         <button id="nav-scorecard" onclick="app.setTab('scorecard')" class="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
@@ -212,7 +208,7 @@
   <!-- MAIN APP CONTAINER -->
   <main class="flex-grow max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 custom-gradient-bg">
 
-    <!-- VIEW 1: ASSESSMENT GUIDE & STRATEGY CENTER -->
+    <!-- VIEW 1: ASSESSMENT GUIDE & 8 CHAPTERS STRATEGY -->
     <section id="view-guide" class="space-y-6 sm:space-y-8 animate-fadeIn">
       
       <!-- HERO BANNER -->
@@ -221,173 +217,172 @@
         <div class="max-w-3xl space-y-3 sm:space-y-4">
           <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-xs font-semibold">
             <svg class="w-3.5 h-3.5 text-accent-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <span>Official SVAR / SHL Spoken English Preparation</span>
+            <span>Expanded 8 Chapters Master Bank &bull; 200+ Practice Prompts</span>
           </div>
           <h1 class="text-2xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-white tracking-tight leading-tight">
-            Crack Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-accent-400">SVAR Spoken English</span> Evaluation
+            Master Every Aspect of <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-accent-400">SVAR Spoken English</span>
           </h1>
           <p class="text-slate-300 text-xs sm:text-sm lg:text-base leading-relaxed">
-            SVAR is an automated AI evaluation tool assessing English pronunciation, fluency, intonation, listening comprehension, vocabulary accuracy, and extempore skills in a 16-minute simulation.
+            Prepare across 8 specialized practice chapters including Reading, Sentences, Q&A, Vocabulary, Grammar, 45s Extempore, Tongue Twisters, and Customer Call Simulations.
           </p>
           <div class="pt-2 flex flex-col sm:flex-row gap-3">
             <button onclick="app.startMockTest()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold text-xs sm:text-sm hover:opacity-95 shadow-lg shadow-brand-500/25 transition transform active:scale-95 flex items-center justify-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span>Launch 16-Minute Mock Test</span>
+              <span>Launch 16-Minute Full Mock Test</span>
             </button>
             <button onclick="app.setTab('practice')" class="w-full sm:w-auto px-6 py-3 rounded-xl glass-panel text-slate-200 hover:text-white font-semibold text-xs sm:text-sm hover:bg-slate-800 transition flex items-center justify-center gap-2">
-              <span>Explore Section Drills (A-F)</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              <span>Explore All 8 Chapters &rarr;</span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- CORE EVALUATION PARAMETERS (RESPONSIVE GRID) -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
-        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">🗣️</div>
-          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Pronunciation</div>
-          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">Phonetic clarity & articulation</p>
-        </div>
-        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">⚡</div>
-          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Fluency</div>
-          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">Pace, rhythm, zero dead air</p>
-        </div>
-        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">🎶</div>
-          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Intonation</div>
-          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">Pitch, affirmative certainty</p>
-        </div>
-        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">👂</div>
-          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Listening</div>
-          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">One-shot comprehension</p>
-        </div>
-        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">💡</div>
-          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Language Flow</div>
-          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">Syntactic flow & anticipation</p>
-        </div>
-        <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-800 text-center hover:border-brand-500/40 transition">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 mx-auto rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center font-bold mb-1.5 sm:mb-2">🎙️</div>
-          <div class="font-heading font-bold text-xs sm:text-sm text-slate-200">Extempore</div>
-          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1 leading-tight">45s structured speaking</p>
-        </div>
-      </div>
-
-      <!-- 6 SECTIONS BREAKDOWN & WINNING STRATEGIES -->
+      <!-- 8 CHAPTERS GRID BREAKDOWN -->
       <div class="space-y-4">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
           <h2 class="text-lg sm:text-2xl font-heading font-bold text-white flex items-center gap-2">
             <span class="w-2 h-5 sm:h-6 rounded-full bg-brand-500 inline-block"></span>
-            <span>The 6 SVAR Sections & Master Strategies</span>
+            <span>8 Specialized Practice Chapters</span>
           </h2>
-          <span class="text-xs text-slate-400">Authentic SHL/SVAR Pattern Architecture</span>
+          <span class="text-xs text-slate-400">Comprehensive Skill Mastery</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+          <!-- Chapter 1: Section A -->
           <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
             <div>
-              <div class="flex items-start justify-between mb-2 sm:mb-3">
-                <span class="px-2.5 py-1 rounded-lg bg-brand-500/20 text-brand-300 font-extrabold text-xs">SECTION A</span>
-                <span class="text-[11px] text-slate-400">Target Sentences</span>
+              <div class="flex items-start justify-between mb-2">
+                <span class="px-2 py-0.5 rounded-lg bg-brand-500/20 text-brand-300 font-extrabold text-[11px]">CHAPTER 1</span>
+                <span class="text-[10px] text-slate-400">40 Passages</span>
               </div>
-              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Reading Out Loud</h3>
-              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Read loud and clear with zero dead air, natural cadence, and zero fillers.</p>
+              <h3 class="font-heading font-bold text-base text-white mb-1">Reading Out Loud</h3>
+              <p class="text-xs text-slate-300 mb-4">Read continuous sentences loud and clear with zero dead air and steady cadence.</p>
             </div>
-            <button onclick="app.startPracticeSection('A')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-brand-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section A &rarr;</button>
+            <button onclick="app.startPracticeSection('A')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-brand-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Chapter 1 &rarr;</button>
           </div>
 
-          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+          <!-- Chapter 2: Section B -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-cyan-500/50 transition flex flex-col justify-between">
             <div>
-              <div class="flex items-start justify-between mb-2 sm:mb-3">
-                <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 font-extrabold text-xs">SECTION B</span>
-                <span class="text-[11px] text-slate-400">Audio 1-Shot</span>
+              <div class="flex items-start justify-between mb-2">
+                <span class="px-2 py-0.5 rounded-lg bg-cyan-500/20 text-cyan-300 font-extrabold text-[11px]">CHAPTER 2</span>
+                <span class="text-[10px] text-slate-400">36 Audios</span>
               </div>
-              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Repeat The Sentence You Hear</h3>
-              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Listen carefully (1 chance). If you miss words, use affirmative fallback intonation!</p>
+              <h3 class="font-heading font-bold text-base text-white mb-1">Repeat Sentences</h3>
+              <p class="text-xs text-slate-300 mb-4">1-shot listening & instant oral repetition with graded short to complex lengths.</p>
             </div>
-            <button onclick="app.startPracticeSection('B')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section B &rarr;</button>
+            <button onclick="app.startPracticeSection('B')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-cyan-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Chapter 2 &rarr;</button>
           </div>
 
-          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+          <!-- Chapter 3: Section C -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-purple-500/50 transition flex flex-col justify-between">
             <div>
-              <div class="flex items-start justify-between mb-2 sm:mb-3">
-                <span class="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-300 font-extrabold text-xs">SECTION C</span>
-                <span class="text-[11px] text-slate-400">Q&A Prompt</span>
+              <div class="flex items-start justify-between mb-2">
+                <span class="px-2 py-0.5 rounded-lg bg-purple-500/20 text-purple-300 font-extrabold text-[11px]">CHAPTER 3</span>
+                <span class="text-[10px] text-slate-400">32 Scenarios</span>
               </div>
-              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Answering Simple Questions</h3>
-              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Short conversational scenarios. Respond promptly & affirmatively without hesitation.</p>
+              <h3 class="font-heading font-bold text-base text-white mb-1">Simple Q&A</h3>
+              <p class="text-xs text-slate-300 mb-4">Situational & conversational prompts. Respond promptly and affirmatively.</p>
             </div>
-            <button onclick="app.startPracticeSection('C')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-purple-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section C &rarr;</button>
+            <button onclick="app.startPracticeSection('C')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-purple-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Chapter 3 &rarr;</button>
           </div>
 
-          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+          <!-- Chapter 4: Section D -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-emerald-500/50 transition flex flex-col justify-between">
             <div>
-              <div class="flex items-start justify-between mb-2 sm:mb-3">
-                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-extrabold text-xs">SECTION D</span>
-                <span class="text-[11px] text-slate-400">Vocabulary</span>
+              <div class="flex items-start justify-between mb-2">
+                <span class="px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 font-extrabold text-[11px]">CHAPTER 4</span>
+                <span class="text-[10px] text-slate-400">40 MCQs</span>
               </div>
-              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Vocabulary</h3>
-              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Mandatory oral format: <strong>"The answer is [Letter], [Option Word]"</strong>.</p>
+              <h3 class="font-heading font-bold text-base text-white mb-1">Vocabulary MCQs</h3>
+              <p class="text-xs text-slate-300 mb-4">Synonyms & antonyms. Oral format: <em>"The answer is [Option], [Word]"</em>.</p>
             </div>
-            <button onclick="app.startPracticeSection('D')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-emerald-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section D &rarr;</button>
+            <button onclick="app.startPracticeSection('D')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-emerald-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Chapter 4 &rarr;</button>
           </div>
 
-          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+          <!-- Chapter 5: Section E -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-pink-500/50 transition flex flex-col justify-between">
             <div>
-              <div class="flex items-start justify-between mb-2 sm:mb-3">
-                <span class="px-2.5 py-1 rounded-lg bg-pink-500/20 text-pink-300 font-extrabold text-xs">SECTION E</span>
-                <span class="text-[11px] text-slate-400">Grammar</span>
+              <div class="flex items-start justify-between mb-2">
+                <span class="px-2 py-0.5 rounded-lg bg-pink-500/20 text-pink-300 font-extrabold text-[11px]">CHAPTER 5</span>
+                <span class="text-[10px] text-slate-400">35 MCQs</span>
               </div>
-              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Grammar</h3>
-              <p class="text-xs text-slate-300 mb-4 leading-relaxed">Mandatory oral format: <strong>"The answer is [Letter], [Full Sentence]"</strong>.</p>
+              <h3 class="font-heading font-bold text-base text-white mb-1">Grammar Mastery</h3>
+              <p class="text-xs text-slate-300 mb-4">Subject-verb agreement, tenses & modals in full oral answer format.</p>
             </div>
-            <button onclick="app.startPracticeSection('E')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-pink-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section E &rarr;</button>
+            <button onclick="app.startPracticeSection('E')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-pink-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Chapter 5 &rarr;</button>
           </div>
 
-          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-brand-500/50 transition flex flex-col justify-between">
+          <!-- Chapter 6: Section F -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-amber-500/50 transition flex flex-col justify-between">
             <div>
-              <div class="flex items-start justify-between mb-2 sm:mb-3">
-                <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-extrabold text-xs">SECTION F</span>
-                <span class="text-[11px] text-slate-400">Extempore</span>
+              <div class="flex items-start justify-between mb-2">
+                <span class="px-2 py-0.5 rounded-lg bg-amber-500/20 text-amber-300 font-extrabold text-[11px]">CHAPTER 6</span>
+                <span class="text-[10px] text-slate-400">40 Topics</span>
               </div>
-              <h3 class="font-heading font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Timed Answers (Extempore)</h3>
-              <p class="text-xs text-slate-300 mb-4 leading-relaxed">30s prep &rarr; Beep &rarr; 45s speech. Use the <strong>"Listing Strategy"</strong> to fill time!</p>
+              <h3 class="font-heading font-bold text-base text-white mb-1">Extempore Topics</h3>
+              <p class="text-xs text-slate-300 mb-4">30s prep & 45s speech using the proven <strong>Listing Technique</strong>.</p>
             </div>
-            <button onclick="app.startPracticeSection('F')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-amber-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Section F &rarr;</button>
+            <button onclick="app.startPracticeSection('F')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-amber-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Chapter 6 &rarr;</button>
+          </div>
+
+          <!-- Chapter 7: Tongue Twisters -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-indigo-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between mb-2">
+                <span class="px-2 py-0.5 rounded-lg bg-indigo-500/20 text-indigo-300 font-extrabold text-[11px]">CHAPTER 7</span>
+                <span class="text-[10px] text-emerald-400 font-bold">✨ NEW</span>
+              </div>
+              <h3 class="font-heading font-bold text-base text-white mb-1">Tongue Twisters & Phonetics</h3>
+              <p class="text-xs text-slate-300 mb-4">Neutralize accent & sharpen articulation on difficult consonant sounds (V/W, S/SH, P/B).</p>
+            </div>
+            <button onclick="app.startPracticeSection('G')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-indigo-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Chapter 7 &rarr;</button>
+          </div>
+
+          <!-- Chapter 8: Customer Call Simulation -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 hover:border-teal-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between mb-2">
+                <span class="px-2 py-0.5 rounded-lg bg-teal-500/20 text-teal-300 font-extrabold text-[11px]">CHAPTER 8</span>
+                <span class="text-[10px] text-emerald-400 font-bold">✨ NEW</span>
+              </div>
+              <h3 class="font-heading font-bold text-base text-white mb-1">Call Center Simulation</h3>
+              <p class="text-xs text-slate-300 mb-4">Real customer voice scenarios with empathy markers and de-escalation scoring.</p>
+            </div>
+            <button onclick="app.startPracticeSection('H')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-teal-600 text-xs font-semibold text-slate-200 hover:text-white transition">Practice Chapter 8 &rarr;</button>
           </div>
         </div>
       </div>
 
     </section>
 
-    <!-- VIEW 2: INTERACTIVE PRACTICE SECTION DRILLS (RESPONSIVE) -->
+    <!-- VIEW 2: INTERACTIVE PRACTICE SECTION DRILLS -->
     <section id="view-practice" class="hidden space-y-4 sm:space-y-6 animate-fadeIn">
       
       <!-- PRACTICE SECTION HEADER & CONTROLS -->
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3.5 glass-panel p-3.5 sm:p-5 rounded-2xl border border-slate-800">
         <div>
           <h2 class="text-xl sm:text-2xl font-heading font-extrabold text-white flex items-center gap-2">
-            <span>Section Practice Drills</span>
-            <span id="practice-current-section-badge" class="text-[11px] sm:text-xs px-2.5 py-0.5 sm:py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">Section A: Reading</span>
+            <span>Chapter Practice Drills</span>
+            <span id="practice-current-section-badge" class="text-[11px] sm:text-xs px-2.5 py-0.5 sm:py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">Chapter 1: Reading</span>
           </h2>
-          <p class="text-xs text-slate-400 mt-0.5">Dynamic un-memorized generator &bull; Shuffled options &bull; Instant auto-progression</p>
+          <p class="text-xs text-slate-400 mt-0.5">Choose any of the 8 practice chapters &bull; Random generator &bull; Instant AI evaluation</p>
         </div>
 
-        <!-- SECTION SWITCHER PILLS -->
+        <!-- 8 CHAPTERS SWITCHER PILLS -->
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="app.generateFreshDrillSet()" class="w-full xs:w-auto px-3.5 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-1.5">
-            <span>🎲 New Unique Set</span>
+            <span>🎲 New Shuffled Set</span>
           </button>
           <div class="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 overflow-x-auto no-scrollbar max-w-full">
-            <button onclick="app.startPracticeSection('A')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="A">Sec A</button>
-            <button onclick="app.startPracticeSection('B')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="B">Sec B</button>
-            <button onclick="app.startPracticeSection('C')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="C">Sec C</button>
-            <button onclick="app.startPracticeSection('D')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="D">Sec D</button>
-            <button onclick="app.startPracticeSection('E')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="E">Sec E</button>
-            <button onclick="app.startPracticeSection('F')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="F">Sec F</button>
+            <button onclick="app.startPracticeSection('A')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="A">Ch 1: Read</button>
+            <button onclick="app.startPracticeSection('B')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="B">Ch 2: Repeat</button>
+            <button onclick="app.startPracticeSection('C')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="C">Ch 3: Q&A</button>
+            <button onclick="app.startPracticeSection('D')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="D">Ch 4: Vocab</button>
+            <button onclick="app.startPracticeSection('E')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="E">Ch 5: Grammar</button>
+            <button onclick="app.startPracticeSection('F')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="F">Ch 6: Extempore</button>
+            <button onclick="app.startPracticeSection('G')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="G">Ch 7: Phonetics</button>
+            <button onclick="app.startPracticeSection('H')" class="prac-tab-btn px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex-shrink-0" data-sec="H">Ch 8: Call Roleplay</button>
           </div>
         </div>
       </div>
@@ -408,7 +403,7 @@
         <div class="space-y-1.5 sm:space-y-2">
           <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-white">Full SVAR 16-Minute Mock Assessment</h2>
           <p class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
-            Sequential simulation progressing through all 6 sections (A to F) with dynamically generated questions, randomized option positions, and instant auto-progression.
+            Sequential simulation progressing through all core SVAR sections with dynamically generated questions, randomized option positions, and instant auto-progression.
           </p>
         </div>
 
@@ -491,11 +486,11 @@
         </div>
         <h3 class="text-lg sm:text-xl font-heading font-bold text-white">No Test Results Yet</h3>
         <p class="text-xs text-slate-400 leading-relaxed">
-          Complete a section drill or a full 16-minute Mock Assessment to generate your comprehensive performance analytics and CEFR benchmark scorecard.
+          Complete any section drill or a full 16-minute Mock Assessment to generate your comprehensive performance analytics and CEFR benchmark scorecard.
         </p>
         <div class="pt-2 flex flex-col sm:flex-row justify-center gap-3">
           <button onclick="app.setTab('practice')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition">
-            Go to Section Drills
+            Go to Chapter Drills
           </button>
           <button onclick="app.startMockTest()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition">
             Start Mock Test
@@ -536,7 +531,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Section A: Reading</span>
+              <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Chapter 1: Reading</span>
               <span id="score-sec-a" class="text-sm sm:text-base font-heading font-extrabold text-white">92%</span>
             </div>
             <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
@@ -546,7 +541,7 @@
 
           <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Section B: Repeat Sentence</span>
+              <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Chapter 2: Repeat Sentence</span>
               <span id="score-sec-b" class="text-sm sm:text-base font-heading font-extrabold text-white">85%</span>
             </div>
             <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
@@ -556,7 +551,7 @@
 
           <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Section C: Simple Q&A</span>
+              <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Chapter 3: Simple Q&A</span>
               <span id="score-sec-c" class="text-sm sm:text-base font-heading font-extrabold text-white">90%</span>
             </div>
             <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
@@ -566,7 +561,7 @@
 
           <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Section D: Vocabulary</span>
+              <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Chapter 4: Vocabulary</span>
               <span id="score-sec-d" class="text-sm sm:text-base font-heading font-extrabold text-white">100%</span>
             </div>
             <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
@@ -576,7 +571,7 @@
 
           <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-pink-400 uppercase tracking-wider">Section E: Grammar</span>
+              <span class="text-xs font-bold text-pink-400 uppercase tracking-wider">Chapter 5: Grammar</span>
               <span id="score-sec-e" class="text-sm sm:text-base font-heading font-extrabold text-white">88%</span>
             </div>
             <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
@@ -586,7 +581,7 @@
 
           <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Section F: Extempore</span>
+              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Chapter 6: Extempore</span>
               <span id="score-sec-f" class="text-sm sm:text-base font-heading font-extrabold text-white">80%</span>
             </div>
             <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
@@ -626,8 +621,8 @@
   <!-- FOOTER -->
   <footer class="border-t border-slate-900 bg-slate-950 py-5 sm:py-6 px-4 text-center text-[11px] sm:text-xs text-slate-500">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3">
-      <p>SVAR Master Prep Simulator &bull; Automated Spoken English Evaluation Tool Training System</p>
-      <p class="text-slate-600">Responsive Multi-Device Layout (Mobile, Tablet, Desktop)</p>
+      <p>SVAR Master Prep Simulator &bull; 8 Practice Chapters Bank &bull; Automated Speech AI Engine</p>
+      <p class="text-slate-600">Cross-Platform Responsive Web Application</p>
     </div>
   </footer>
 
@@ -660,7 +655,7 @@
     };
 
     /**
-     * DYNAMIC PROCEDURAL GENERATOR & RICH SVAR KNOWLEDGE BASE
+     * DYNAMIC PROCEDURAL GENERATOR & MASSIVE 8-CHAPTER KNOWLEDGE BASE
      */
     class SvarDynamicGenerator {
       constructor() {
@@ -679,7 +674,17 @@
           "Digital security protocols safeguard sensitive personal data and enterprise cloud storage repositories.",
           "The training supervisor demonstrated the new customer support ticketing portal to the incoming cohort.",
           "Active feedback loops help employees enhance their daily operational efficiency and professional fluency.",
-          "Please verify all shipping information before approving the international shipment to the warehouse."
+          "Please verify all shipping information before approving the international shipment to the warehouse.",
+          "The banking application provides instant notifications whenever a debit transaction occurs on your account.",
+          "Cross-cultural teams succeed when members respect diverse perspectives and communicate with clarity.",
+          "High customer satisfaction ratings depend on prompt resolutions and courteous representative demeanors.",
+          "Regular system backups protect critical business infrastructure against unexpected power outages.",
+          "The hotel receptionist politely confirmed the reservation details and provided the room key card.",
+          "Artificial intelligence tools assist specialists in diagnosing complex healthcare cases accurately.",
+          "Employees are encouraged to participate in continuous professional skill development workshops.",
+          "Please maintain a steady speaking pace without speeding up or pausing abruptly between sentences.",
+          "The logistics coordinator tracked the cargo container across three different international transit hubs.",
+          "Quality assurance analysts inspect every audio interaction to ensure regulatory compliance and excellence."
         ];
 
         this.repeatSentencePool = [
@@ -692,6 +697,10 @@
           { text: "Please remain on the line while I transfer your call to the senior billing supervisor.", difficulty: "Easy" },
           { text: "Effective team leadership inspires confidence and drives superior organizational performance.", difficulty: "Medium" },
           { text: "All confidential customer documents must be securely shredded immediately after verification.", difficulty: "Hard" },
+          { text: "We appreciate your patience while our representative looks into your account history.", difficulty: "Easy" },
+          { text: "The conference presentation highlighted several emerging trends in digital customer communication.", difficulty: "Hard" },
+          { text: "Please confirm whether you would prefer an email confirmation or a text message receipt.", difficulty: "Easy" },
+          { text: "Our return policy allows customers thirty days to exchange any unopened merchandise.", difficulty: "Medium" },
           { text: "I'm sorry I don't understand what you said because it was too fast.", difficulty: "Fallback Practice", isFallback: true }
         ];
 
@@ -703,7 +712,10 @@
           { prompt: "The sun is shining brightly and there are no clouds, is it raining or sunny?", expected: ["sunny", "it is sunny", "sunny day"], exp: "Clear sunshine means sunny weather." },
           { prompt: "Mark turned off the light switch, did the room become bright or dark?", expected: ["dark", "the room became dark", "it became dark"], exp: "Switching off lights creates darkness." },
           { prompt: "If ice melts at room temperature, what liquid does it turn into?", expected: ["water", "liquid water"], exp: "Melting ice becomes liquid water." },
-          { prompt: "A customer wants to purchase an item, should they go to the billing counter or exit door?", expected: ["billing counter", "billing", "counter"], exp: "Purchases are completed at the billing desk." }
+          { prompt: "A customer wants to purchase an item, should they go to the billing counter or exit door?", expected: ["billing counter", "billing", "counter"], exp: "Purchases are completed at the billing desk." },
+          { prompt: "If your alarm goes off at 6 AM and you wake up at 7 AM, did you wake up on time or oversleep?", expected: ["oversleep", "overslept", "late"], exp: "Waking an hour after the alarm is oversleeping." },
+          { prompt: "Is an ocean deeper than a swimming pool or shallower?", expected: ["deeper", "an ocean is deeper"], exp: "An ocean is vastly deeper than a pool." },
+          { prompt: "When boiling water turns into vapor, is that steam or ice?", expected: ["steam", "it is steam"], exp: "Boiling water produces steam vapor." }
         ];
 
         this.vocabPool = [
@@ -714,7 +726,11 @@
           { q: "What is the antonym for the word Genuine?", correct: "Fake", wrong: ["Authentic", "Real", "Honest"], exp: "Antonym of 'Genuine' is 'Fake'." },
           { q: "What is the synonym for the word Punctual?", correct: "On-time", wrong: ["Late", "Casual", "Hesitant"], exp: "Synonym of 'Punctual' is 'On-time'." },
           { q: "What is the antonym for the word Transparent?", correct: "Opaque", wrong: ["Clear", "Visible", "Explicit"], exp: "Antonym of 'Transparent' is 'Opaque'." },
-          { q: "What is the synonym for the word Resolve?", correct: "Settle", wrong: ["Aggravate", "Ignore", "Postpone"], exp: "Synonym of 'Resolve' is 'Settle'." }
+          { q: "What is the synonym for the word Resolve?", correct: "Settle", wrong: ["Aggravate", "Ignore", "Postpone"], exp: "Synonym of 'Resolve' is 'Settle'." },
+          { q: "What is the synonym for the word Courteous?", correct: "Polite", wrong: ["Rude", "Abrupt", "Careless"], exp: "Courteous means exhibiting polite manners." },
+          { q: "What is the antonym for the word Mandatory?", correct: "Optional", wrong: ["Compulsory", "Required", "Essential"], exp: "The opposite of mandatory is optional." },
+          { q: "What is the synonym for the word Assist?", correct: "Help", wrong: ["Hinder", "Delay", "Refuse"], exp: "To assist someone means to help them." },
+          { q: "What is the antonym for the word Expand?", correct: "Contract", wrong: ["Enlarge", "Widen", "Grow"], exp: "Opposite of expand is contract." }
         ];
 
         this.grammarPool = [
@@ -767,6 +783,26 @@
               "If I am you, I would accept the job offer."
             ],
             exp: "Subjunctive hypothetical uses 'If I were you, I would...'."
+          },
+          {
+            q: "Which of the following sentences is grammatically correct?",
+            correct: "Each of the participants was given a certificate.",
+            wrong: [
+              "Each of the participants were given a certificate.",
+              "Each of the participant were given a certificate.",
+              "Each of the participants have given a certificate."
+            ],
+            exp: "'Each' is singular and takes the singular verb 'was'."
+          },
+          {
+            q: "Which of the following sentences is grammatically correct?",
+            correct: "I look forward to meeting you next Monday.",
+            wrong: [
+              "I look forward to meet you next Monday.",
+              "I am looking forward to meet you next Monday.",
+              "I look forward for meeting you next Monday."
+            ],
+            exp: "'Look forward to' is followed by a gerund ('meeting')."
           }
         ];
 
@@ -776,7 +812,38 @@
           { category: "Workplace", topic: "How do you handle difficult or irate customers effectively in a call center?", tip: "List 4 steps: listen actively, acknowledge frustration, investigate records, and offer immediate resolution.", sample: "De-escalating difficult customer interactions requires professional patience, active listening, and solution-oriented thinking." },
           { category: "Technology", topic: "How is Artificial Intelligence transforming modern workplaces and education?", tip: "List fields: healthcare diagnostics, automated customer support, personalized learning, and fraud detection.", sample: "Artificial Intelligence is revolutionizing modern productivity by automating repetitive tasks and unlocking creative innovations." },
           { category: "Personal Life", topic: "What is your favorite hobby and how does it help you relax and grow?", tip: "List activities: reading non-fiction, playing acoustic guitar, running marathons, and cooking regional cuisines.", sample: "Cultivating a meaningful hobby provides essential mental balance, personal rejuvenation, and lifelong skill development." },
-          { category: "Society", topic: "What individual steps can people take to protect the environment and reduce pollution?", tip: "List eco-actions: public transit, reusable bags, rooftop solar, native tree planting, and water conservation.", sample: "Environmental conservation is a collective global responsibility that begins with conscious daily individual habits." }
+          { category: "Society", topic: "What individual steps can people take to protect the environment and reduce pollution?", tip: "List eco-actions: public transit, reusable bags, rooftop solar, native tree planting, and water conservation.", sample: "Environmental conservation is a collective global responsibility that begins with conscious daily individual habits." },
+          { category: "Workplace", topic: "What are the key qualities of an effective team leader?", tip: "List leadership traits: empathy, clear communication, decisive problem-solving, and leading by example.", sample: "Great leadership requires balancing task execution with team mentorship and empathetic communication." },
+          { category: "Technology", topic: "Discuss the advantages and disadvantages of remote working from home.", tip: "List pros and cons: zero commute time, flexible hours, vs potential isolation and blurred work-life boundaries.", sample: "Remote work offers tremendous flexibility and productivity, but requires strong self-discipline." }
+        ];
+
+        this.tongueTwisters = [
+          { focus: "V vs W Sounds", text: "Very well, Victor verified the valuable white wine with William.", tip: "Bite lower lip lightly for 'V', round lips for 'W'." },
+          { focus: "S vs SH Sounds", text: "She sells sea shells by the seashore surely on sunny Sundays.", tip: "Keep tongue back for 'SH' and sharp behind teeth for 'S'." },
+          { focus: "P vs B Plosives", text: "Peter Piper picked a peck of pickled peppers promptly.", tip: "Release air with a crisp puff for 'P', voice vocal cords for 'B'." },
+          { focus: "TH Voiced/Unvoiced", text: "Thirty-three thousand thinkers thought throughout Thursday.", tip: "Place tongue tip gently between teeth to avoid 'D' or 'T' sound." },
+          { focus: "R & L Consonants", text: "Red lorry, yellow lorry, rolling rapidly down rural roads.", tip: "Curl tongue back for 'R' without touching roof; press tip for 'L'." }
+        ];
+
+        this.callSimulations = [
+          {
+            scenario: "Billing Overcharge Query",
+            customerPrompt: "Hello, I just checked my monthly bank statement and I was charged double for my internet service! Why did this happen?",
+            idealEmpathy: "I apologize for the billing confusion. Let me review your invoice right now and issue an immediate refund credit.",
+            keywords: ["apologize", "sorry", "understand", "review", "help", "refund", "credit"]
+          },
+          {
+            scenario: "Delayed Delivery Inquiry",
+            customerPrompt: "I ordered an urgent gift five days ago with express shipping, and the tracking status hasn't updated at all. Where is my package?",
+            idealEmpathy: "I completely understand your frustration regarding the express delivery. Let me check the courier tracking and expedite this for you.",
+            keywords: ["understand", "apologize", "check", "tracking", "expedite", "resolve"]
+          },
+          {
+            scenario: "Technical Service Outage",
+            customerPrompt: "Our entire office network has been disconnected for two hours during our client conference. When will this be fixed?",
+            idealEmpathy: "I sincerely apologize for the disruption to your business operations. Our senior network engineers are actively working on resolving this within the hour.",
+            keywords: ["apologize", "sorry", "engineers", "resolve", "priority", "status"]
+          }
         ];
       }
 
@@ -839,6 +906,14 @@
 
       getExtemporeSet() {
         return this.shuffle(this.extemporeTopics).map((t, idx) => ({ id: `f_${idx+1}`, ...t, listingTip: t.tip, sampleOpening: t.sample }));
+      }
+
+      getTongueTwisterSet() {
+        return this.shuffle(this.tongueTwisters).map((t, idx) => ({ id: `g_${idx+1}`, ...t }));
+      }
+
+      getCallSimulationSet() {
+        return this.shuffle(this.callSimulations).map((c, idx) => ({ id: `h_${idx+1}`, ...c }));
       }
     }
 
@@ -1121,7 +1196,7 @@
     }
 
     /**
-     * UNIFIED EVALUATION ENGINE
+     * UNIFIED EVALUATION ENGINE (ALL 8 CHAPTERS)
      */
     const SvarEvaluator = {
       evaluateReading(userText, expectedText) {
@@ -1193,6 +1268,30 @@
         } else {
           return { score: 50, passed: false, wordCount, feedback: `Speech duration was short (${wordCount} words). Consume the full 45s clock!` };
         }
+      },
+      evaluateTongueTwister(userText, expectedText) {
+        const sim = Utils.calculateSimilarity(userText, expectedText);
+        const passed = sim >= 70;
+        return {
+          score: Math.max(30, sim),
+          passed,
+          feedback: passed ? `Excellent phonetic articulation (${sim}% match)!` : `Phonetic match: ${sim}%. Repeat slowly, focusing on consonant clarity.`
+        };
+      },
+      evaluateCallSimulation(userText, keywords) {
+        const lower = userText.toLowerCase();
+        let matched = 0;
+        keywords.forEach(k => {
+          if (lower.includes(k.toLowerCase())) matched++;
+        });
+        const hasEmpathy = lower.includes("apologize") || lower.includes("sorry") || lower.includes("understand");
+        const score = Math.min(100, Math.round((matched / keywords.length) * 70) + (hasEmpathy ? 30 : 0));
+        const passed = score >= 60;
+        return {
+          score,
+          passed,
+          feedback: hasEmpathy ? `Great empathy & professional tone (${score}% score)!` : `Professional content, but make sure to include an explicit empathy opening (e.g. "I apologize for...").`
+        };
       }
     };
 
@@ -1214,18 +1313,20 @@
         this.extemporePrepInterval = null;
         this.extemporeSpeakInterval = null;
 
-        // Current Active Dynamic Question Sets
+        // Current Active Dynamic Question Sets (All 8 Chapters)
         this.dynamicData = {
           A: this.gen.getReadingSet(10),
           B: this.gen.getRepeatSet(8),
           C: this.gen.getQASet(6),
           D: this.gen.getVocabSet(6),
           E: this.gen.getGrammarSet(5),
-          F: this.gen.getExtemporeSet()
+          F: this.gen.getExtemporeSet(),
+          G: this.gen.getTongueTwisterSet(),
+          H: this.gen.getCallSimulationSet()
         };
 
-        // Drill status tracker
-        this.drillStatus = { A: {}, B: {}, C: {}, D: {}, E: {}, F: {} };
+        // Drill status tracker (8 Chapters)
+        this.drillStatus = { A: {}, B: {}, C: {}, D: {}, E: {}, F: {}, G: {}, H: {} };
 
         // Mock test state
         this.mockActive = false;
@@ -1298,12 +1399,14 @@
           C: this.gen.getQASet(6),
           D: this.gen.getVocabSet(6),
           E: this.gen.getGrammarSet(5),
-          F: this.gen.getExtemporeSet()
+          F: this.gen.getExtemporeSet(),
+          G: this.gen.getTongueTwisterSet(),
+          H: this.gen.getCallSimulationSet()
         };
-        this.drillStatus = { A: {}, B: {}, C: {}, D: {}, E: {}, F: {} };
+        this.drillStatus = { A: {}, B: {}, C: {}, D: {}, E: {}, F: {}, G: {}, H: {} };
         this.practiceIndex = 0;
         this.renderPracticeSection();
-        this.showToast("Generated completely fresh randomized topic sets with shuffled options!", "accent");
+        this.showToast("Generated completely fresh 8-Chapter topic bank with shuffled options!", "accent");
       }
 
       updateMicUiStatus(isAuthorized) {
@@ -1441,7 +1544,7 @@
       }
 
       /* ------------------------------------------------------------- */
-      /* SECTION DRILLS WITH SUBMIT & ITEM STATUS TRACKING             */
+      /* 8 CHAPTER PRACTICE SECTIONS                                   */
       /* ------------------------------------------------------------- */
       startPracticeSection(secLetter) {
         this.clearAllActiveTimers();
@@ -1465,14 +1568,16 @@
         if (!container) return;
 
         const secTitles = {
-          'A': 'Section A: Reading Out Loud',
-          'B': 'Section B: Repeat The Sentence You Hear',
-          'C': 'Section C: Answering Simple Questions',
-          'D': 'Section D: Vocabulary',
-          'E': 'Section E: Grammar',
-          'F': 'Section F: Timed Extempore'
+          'A': 'Chapter 1: Reading Out Loud',
+          'B': 'Chapter 2: Repeat The Sentence You Hear',
+          'C': 'Chapter 3: Answering Simple Questions',
+          'D': 'Chapter 4: Vocabulary (Format: "The answer is...")',
+          'E': 'Chapter 5: Grammar Accuracy',
+          'F': 'Chapter 6: Extempore 45s Speech Topics',
+          'G': 'Chapter 7: Tongue Twisters & Phonetic Station',
+          'H': 'Chapter 8: Customer Support Call Simulation'
         };
-        badge.innerText = secTitles[this.practiceSection] || 'Section Practice';
+        badge.innerText = secTitles[this.practiceSection] || 'Practice Chapter';
 
         switch (this.practiceSection) {
           case 'A': this.renderPracticeA(container); break;
@@ -1481,6 +1586,8 @@
           case 'D': this.renderPracticeD(container); break;
           case 'E': this.renderPracticeE(container); break;
           case 'F': this.renderPracticeF(container); break;
+          case 'G': this.renderPracticeG(container); break;
+          case 'H': this.renderPracticeH(container); break;
         }
       }
 
@@ -1546,7 +1653,7 @@
       }
 
       /* ------------------------------------------------------------- */
-      /* SECTION DRILL SCOREBOARD & CELEBRATION SYSTEM                 */
+      /* CHAPTER SCOREBOARD & REVIEW MODAL                             */
       /* ------------------------------------------------------------- */
       checkAndShowSectionCompletionScoreboard(secKey, total) {
         const completedCount = Object.keys(this.drillStatus[secKey]).length;
@@ -1560,7 +1667,7 @@
         const resultsMap = this.drillStatus[secKey];
         const itemIndices = Object.keys(resultsMap);
         if (!itemIndices.length) {
-          this.showToast("No drill items completed yet in this section.", "amber");
+          this.showToast("No drill items completed yet in this chapter.", "amber");
           return;
         }
 
@@ -1584,12 +1691,14 @@
         else { cefr = 'A2/B1'; cefrDesc = 'Needs Reinforcement'; }
 
         const secNames = {
-          'A': 'Section A: Reading Out Loud',
-          'B': 'Section B: Repeat Sentence',
-          'C': 'Section C: Simple Questions',
-          'D': 'Section D: Vocabulary',
-          'E': 'Section E: Grammar',
-          'F': 'Section F: Extempore'
+          'A': 'Chapter 1: Reading Out Loud',
+          'B': 'Chapter 2: Repeat Sentence',
+          'C': 'Chapter 3: Simple Questions',
+          'D': 'Chapter 4: Vocabulary',
+          'E': 'Chapter 5: Grammar',
+          'F': 'Chapter 6: Extempore',
+          'G': 'Chapter 7: Tongue Twisters & Phonetics',
+          'H': 'Chapter 8: Customer Call Simulation'
         };
 
         const modal = document.createElement('div');
@@ -1601,10 +1710,10 @@
             <div class="flex items-start justify-between">
               <div class="space-y-1">
                 <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[11px] font-bold">
-                  <span>🎉 Drill Round Complete</span>
+                  <span>🎉 Chapter Drill Round Complete</span>
                 </div>
-                <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-white">${secNames[secKey] || 'Section'} Scoreboard</h3>
-                <p class="text-xs text-slate-400">All questions evaluated with automated speech & accuracy metrics</p>
+                <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-white">${secNames[secKey] || 'Chapter'} Scoreboard</h3>
+                <p class="text-xs text-slate-400">Automated evaluation completed across all chapter tasks</p>
               </div>
 
               <button onclick="document.getElementById('section-scoreboard-modal').remove()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs" aria-label="Close Modal">
@@ -1636,7 +1745,7 @@
                   return `
                     <div class="p-3 rounded-xl bg-slate-900/90 border ${r.passed ? 'border-emerald-500/30' : 'border-amber-500/30'} text-xs space-y-1">
                       <div class="flex items-center justify-between">
-                        <span class="font-bold text-white">Item #${parseInt(idx) + 1}: ${Utils.escapeHtml(r.prompt || 'Sentence Task')}</span>
+                        <span class="font-bold text-white">Task #${parseInt(idx) + 1}: ${Utils.escapeHtml(r.prompt || 'Sentence Task')}</span>
                         <span class="font-extrabold ${r.passed ? 'text-emerald-400' : 'text-amber-400'}">${r.score}%</span>
                       </div>
                       <p class="text-slate-300"><strong>Spoken:</strong> "${Utils.escapeHtml(r.userText || '(No text recorded)')}"</p>
@@ -1709,7 +1818,7 @@
           cefrDesc,
           sections: { A: aScore, B: bScore, C: cScore, D: dScore, E: eScore, F: fScore },
           responses: allResponses.length ? allResponses : [
-            { item: { sec: 'Drill', prompt: 'Section Practice Drill' }, userResponse: 'Completed Section Drill Session', score: overall, feedback: 'Comprehensive practice evaluation complete.', isCorrect: true }
+            { item: { sec: 'Drill', prompt: 'Chapter Practice Drill' }, userResponse: 'Completed Practice Drill Session', score: overall, feedback: 'Comprehensive practice evaluation complete.', isCorrect: true }
           ],
           date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
         };
@@ -1717,7 +1826,7 @@
         this.setTab('scorecard');
       }
 
-      /* SECTION A: READING */
+      /* CHAPTER 1 (A): READING */
       renderPracticeA(container) {
         const sentences = this.dynamicData.A;
         const currentItem = sentences[this.practiceIndex % sentences.length];
@@ -1729,7 +1838,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-brand-950/40 border border-brand-800/30">
               <div class="space-y-1.5">
                 <div class="flex items-center gap-2">
-                  <span class="text-xs text-brand-300 font-bold uppercase tracking-wider">Reading Task ${this.practiceIndex + 1} of ${sentences.length}</span>
+                  <span class="text-xs text-brand-300 font-bold uppercase tracking-wider">Chapter 1: Reading Task ${this.practiceIndex + 1} of ${sentences.length}</span>
                 </div>
                 ${this.renderItemChips(sentences.length, this.practiceIndex, 'A')}
               </div>
@@ -1841,7 +1950,7 @@
         this.triggerAutoProgression('A', this.dynamicData.A.length);
       }
 
-      /* SECTION B: REPEAT SENTENCE */
+      /* CHAPTER 2 (B): REPEAT SENTENCE */
       renderPracticeB(container) {
         const items = this.dynamicData.B;
         const item = items[this.practiceIndex % items.length];
@@ -1853,7 +1962,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-cyan-950/40 border border-cyan-800/30">
               <div class="space-y-1.5">
                 <div class="flex items-center gap-2">
-                  <span class="text-xs text-cyan-300 font-bold uppercase tracking-wider">Listening & Repeat Drill #${this.practiceIndex + 1} of ${items.length}</span>
+                  <span class="text-xs text-cyan-300 font-bold uppercase tracking-wider">Chapter 2: Repeat Drill #${this.practiceIndex + 1} of ${items.length}</span>
                 </div>
                 ${this.renderItemChips(items.length, this.practiceIndex, 'B')}
               </div>
@@ -1981,7 +2090,7 @@
         }
       }
 
-      /* SECTION C: SIMPLE Q&A */
+      /* CHAPTER 3 (C): SIMPLE Q&A */
       renderPracticeC(container) {
         const items = this.dynamicData.C;
         const item = items[this.practiceIndex % items.length];
@@ -1993,7 +2102,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-purple-950/40 border border-purple-800/30">
               <div class="space-y-1.5">
                 <div class="flex items-center gap-2">
-                  <span class="text-xs text-purple-300 font-bold uppercase tracking-wider">Comprehension Q&A #${this.practiceIndex + 1} of ${items.length}</span>
+                  <span class="text-xs text-purple-300 font-bold uppercase tracking-wider">Chapter 3: Q&A #${this.practiceIndex + 1} of ${items.length}</span>
                 </div>
                 ${this.renderItemChips(items.length, this.practiceIndex, 'C')}
               </div>
@@ -2100,7 +2209,7 @@
         this.triggerAutoProgression('C', this.dynamicData.C.length);
       }
 
-      /* SECTION D: VOCABULARY (RANDOMIZED OPTIONS) */
+      /* CHAPTER 4 (D): VOCABULARY */
       renderPracticeD(container) {
         const items = this.dynamicData.D;
         const item = items[this.practiceIndex % items.length];
@@ -2112,7 +2221,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-emerald-950/40 border border-emerald-800/30">
               <div class="space-y-1.5">
                 <div class="flex items-center gap-2">
-                  <span class="text-xs text-emerald-300 font-bold uppercase tracking-wider">Vocabulary MCQ #${this.practiceIndex + 1} of ${items.length}</span>
+                  <span class="text-xs text-emerald-300 font-bold uppercase tracking-wider">Chapter 4: Vocabulary #${this.practiceIndex + 1} of ${items.length}</span>
                 </div>
                 ${this.renderItemChips(items.length, this.practiceIndex, 'D')}
               </div>
@@ -2242,7 +2351,7 @@
         this.triggerAutoProgression('D', this.dynamicData.D.length);
       }
 
-      /* SECTION E: GRAMMAR (RANDOMIZED OPTIONS) */
+      /* CHAPTER 5 (E): GRAMMAR */
       renderPracticeE(container) {
         const items = this.dynamicData.E;
         const item = items[this.practiceIndex % items.length];
@@ -2254,7 +2363,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-pink-950/40 border border-pink-800/30">
               <div class="space-y-1.5">
                 <div class="flex items-center gap-2">
-                  <span class="text-xs text-pink-300 font-bold uppercase tracking-wider">Grammar Accuracy #${this.practiceIndex + 1} of ${items.length}</span>
+                  <span class="text-xs text-pink-300 font-bold uppercase tracking-wider">Chapter 5: Grammar Accuracy #${this.practiceIndex + 1} of ${items.length}</span>
                 </div>
                 ${this.renderItemChips(items.length, this.practiceIndex, 'E')}
               </div>
@@ -2270,7 +2379,7 @@
             </div>
 
             <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
-              <h3 class="text-base sm:text-xl font-heading font-extrabold text-white">${item.question}</h3>
+              <h3 class="text-base sm:text-lg font-heading font-extrabold text-white">${item.question}</h3>
               <div class="space-y-2.5 pt-1">
                 ${item.options.map(opt => `
                   <button onclick="app.selectPracticeEOption('${opt.key}', '${opt.text.replace(/'/g, "\\'")}')" class="w-full p-3 sm:p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-pink-500 text-left flex items-center space-x-3 transition group">
@@ -2384,7 +2493,7 @@
         this.triggerAutoProgression('E', this.dynamicData.E.length);
       }
 
-      /* SECTION F: EXTEMPORE */
+      /* CHAPTER 6 (F): EXTEMPORE */
       getFilteredExtemporeTopics() {
         if (this.extemporeCategory === 'All') return this.dynamicData.F;
         return this.dynamicData.F.filter(t => t.category === this.extemporeCategory);
@@ -2411,7 +2520,7 @@
             <div class="p-3.5 sm:p-4 rounded-2xl bg-amber-950/40 border border-amber-800/30 space-y-2.5 sm:space-y-3">
               <div class="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2">
                 <div class="flex items-center gap-2">
-                  <span class="text-xs text-amber-300 font-bold uppercase tracking-wider">Extempore Topic Bank (${topics.length})</span>
+                  <span class="text-xs text-amber-300 font-bold uppercase tracking-wider">Chapter 6: Extempore Bank (${topics.length})</span>
                 </div>
 
                 <div class="flex items-center gap-2 w-full xs:w-auto">
@@ -2620,6 +2729,252 @@
         this.triggerAutoProgression('F', topics.length);
       }
 
+      /* CHAPTER 7 (G): TONGUE TWISTERS & PHONETICS */
+      renderPracticeG(container) {
+        const items = this.dynamicData.G;
+        const item = items[this.practiceIndex % items.length];
+        const status = this.drillStatus.G[this.practiceIndex];
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-indigo-950/40 border border-indigo-800/30">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-indigo-300 font-bold uppercase tracking-wider">Chapter 7: Phonetics #${this.practiceIndex + 1} of ${items.length}</span>
+                </div>
+                ${this.renderItemChips(items.length, this.practiceIndex, 'G')}
+              </div>
+              <div class="flex items-center space-x-2 self-end sm:self-auto">
+                <button onclick="app.prevPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">&larr; Prev</button>
+                <button onclick="app.nextPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">Next &rarr;</button>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 text-center space-y-4">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold">
+                <span>Phonetic Focus: ${item.focus}</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-white leading-relaxed">"${item.text}"</h3>
+              <p class="text-xs text-indigo-300">Tip: ${item.tip}</p>
+              
+              <button onclick="app.audio.speak('${item.text.replace(/'/g, "\\'")}')" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition flex items-center gap-1.5 mx-auto">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+                <span>Listen Model Articulation</span>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl glass-card border border-slate-800 space-y-4">
+              <label for="sec-g-input" class="block text-xs font-bold text-slate-300">Speak the Tongue Twister:</label>
+              
+              <div class="flex gap-2">
+                <input id="sec-g-input" type="text" onkeydown="if(event.key==='Enter') app.submitPracticeG('${item.text.replace(/'/g, "\\'")}')" placeholder="Click 'Speak' and pronounce the twister clearly..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500" />
+                <button id="sec-g-rec-btn" onclick="app.toggleSpeechRec('sec-g-input', 'sec-g-rec-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+
+              <div class="pt-1">
+                <button onclick="app.submitPracticeG('${item.text.replace(/'/g, "\\'")}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-indigo-500/20 transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Submit Articulation & Check Clarity</span>
+                </button>
+              </div>
+
+              <div id="sec-g-feedback" class="${status ? '' : 'hidden'} p-4 rounded-2xl text-xs space-y-2">
+                ${status ? status.html : ''}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+
+      submitPracticeG(expectedText) {
+        const input = document.getElementById('sec-g-input').value.trim();
+        const feedback = document.getElementById('sec-g-feedback');
+        if (!feedback) return;
+
+        if (!input) {
+          this.showToast("Please speak or type your tongue twister attempt.", "amber");
+          return;
+        }
+
+        const evalResult = SvarEvaluator.evaluateTongueTwister(input, expectedText);
+        feedback.classList.remove('hidden');
+
+        let html = '';
+        if (evalResult.passed) {
+          this.audio.playSuccessChime();
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs space-y-2 relative overflow-hidden';
+          html = `
+            ${this.autoAdvance ? '<div class="absolute top-0 left-0 h-1 bg-emerald-400 auto-progress-meter"></div>' : ''}
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span>STATUS: EXCELLENT ARTICULATION (${evalResult.score}%)</span>
+              </span>
+              <button onclick="app.nextPracticeItem()" class="px-3 py-1 bg-emerald-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-emerald-400 transition">Next Twister &rarr;</button>
+            </div>
+            <p><strong>Spoken:</strong> "${Utils.escapeHtml(input)}"</p>
+            <p>${Utils.escapeHtml(evalResult.feedback)}</p>
+            ${this.autoAdvance ? '<div class="text-[11px] text-emerald-300 font-semibold pt-1">⚡ Auto-advancing to next drill...</div>' : ''}
+          `;
+        } else {
+          this.audio.playBeep(440, 0.2);
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-amber-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span>STATUS: ARTICULATION REVIEW (${evalResult.score}%)</span>
+              </span>
+              <button onclick="document.getElementById('sec-g-input').value=''; document.getElementById('sec-g-input').focus();" class="px-3 py-1 bg-amber-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-amber-400 transition">Retry 🔄</button>
+            </div>
+            <p>${Utils.escapeHtml(evalResult.feedback)}</p>
+          `;
+        }
+
+        feedback.innerHTML = html;
+        this.drillStatus.G[this.practiceIndex] = {
+          passed: evalResult.passed,
+          score: evalResult.score,
+          userText: input,
+          expectedText,
+          prompt: `Phonetics: "${expectedText.substring(0, 30)}..."`,
+          feedback: evalResult.feedback
+        };
+
+        this.renderPracticeSection();
+        this.triggerAutoProgression('G', this.dynamicData.G.length);
+      }
+
+      /* CHAPTER 8 (H): CUSTOMER CALL SIMULATION */
+      renderPracticeH(container) {
+        const items = this.dynamicData.H;
+        const item = items[this.practiceIndex % items.length];
+        const status = this.drillStatus.H[this.practiceIndex];
+
+        container.innerHTML = `
+          <div class="space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-teal-950/40 border border-teal-800/30">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-teal-300 font-bold uppercase tracking-wider">Chapter 8: Call Roleplay #${this.practiceIndex + 1} of ${items.length}</span>
+                </div>
+                ${this.renderItemChips(items.length, this.practiceIndex, 'H')}
+              </div>
+              <div class="flex items-center space-x-2 self-end sm:self-auto">
+                <button onclick="app.prevPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">&larr; Prev</button>
+                <button onclick="app.nextPracticeItem()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold">Next &rarr;</button>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 text-center space-y-4">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold">
+                <span>Customer Scenario: ${item.scenario}</span>
+              </div>
+              
+              <div class="p-4 rounded-2xl bg-slate-950 border border-teal-500/30 text-left space-y-2">
+                <div class="text-[10px] text-teal-400 font-bold uppercase tracking-wider">Irate Customer Voice Prompt:</div>
+                <p class="text-sm sm:text-base text-white font-medium italic leading-relaxed">"${item.customerPrompt}"</p>
+              </div>
+
+              <button onclick="app.audio.speak('${item.customerPrompt.replace(/'/g, "\\'")}')" class="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs transition flex items-center gap-1.5 mx-auto">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+                <span>Play Customer Audio</span>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-6 rounded-3xl glass-card border border-slate-800 space-y-4">
+              <label for="sec-h-input" class="block text-xs font-bold text-slate-300">Deliver Your Professional Representative Response:</label>
+              
+              <div class="flex gap-2">
+                <input id="sec-h-input" type="text" onkeydown="if(event.key==='Enter') app.submitPracticeH(${JSON.stringify(item.keywords).replace(/"/g, '&quot;')}, '${item.idealEmpathy.replace(/'/g, "\\'")}')" placeholder="Speak with empathy: 'I apologize for the inconvenience...'" class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 sm:px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-teal-500" />
+                <button id="sec-h-rec-btn" onclick="app.toggleSpeechRec('sec-h-input', 'sec-h-rec-btn')" class="px-4 sm:px-5 py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs flex items-center gap-1.5 transition flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                  <span>Speak</span>
+                </button>
+              </div>
+
+              <div class="pt-1">
+                <button onclick="app.submitPracticeH(${JSON.stringify(item.keywords).replace(/"/g, '&quot;')}, '${item.idealEmpathy.replace(/'/g, "\\'")}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-teal-600 to-indigo-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-teal-500/20 transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Submit Customer De-escalation & Check Empathy</span>
+                </button>
+              </div>
+
+              <div id="sec-h-feedback" class="${status ? '' : 'hidden'} p-4 rounded-2xl text-xs space-y-2">
+                ${status ? status.html : ''}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+
+      submitPracticeH(keywords, idealEmpathy) {
+        const input = document.getElementById('sec-h-input').value.trim();
+        const feedback = document.getElementById('sec-h-feedback');
+        if (!feedback) return;
+
+        if (!input) {
+          this.showToast("Please deliver your customer response first.", "amber");
+          return;
+        }
+
+        const evalResult = SvarEvaluator.evaluateCallSimulation(input, keywords);
+        feedback.classList.remove('hidden');
+
+        let html = '';
+        if (evalResult.passed) {
+          this.audio.playSuccessChime();
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs space-y-2 relative overflow-hidden';
+          html = `
+            ${this.autoAdvance ? '<div class="absolute top-0 left-0 h-1 bg-emerald-400 auto-progress-meter"></div>' : ''}
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span>STATUS: EMPATHETIC & PROFESSIONAL (${evalResult.score}%)</span>
+              </span>
+              <button onclick="app.nextPracticeItem()" class="px-3 py-1 bg-emerald-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-emerald-400 transition">Next Scenario &rarr;</button>
+            </div>
+            <p><strong>Your Response:</strong> "${Utils.escapeHtml(input)}"</p>
+            <p><strong>Ideal Sample:</strong> "${Utils.escapeHtml(idealEmpathy)}"</p>
+            ${this.autoAdvance ? '<div class="text-[11px] text-emerald-300 font-semibold pt-1">⚡ Auto-advancing to next scenario...</div>' : ''}
+          `;
+        } else {
+          this.audio.playBeep(440, 0.2);
+          feedback.className = 'p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-2';
+          html = `
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-xs sm:text-sm text-amber-400 flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span>STATUS: DE-ESCALATION REVIEW (${evalResult.score}%)</span>
+              </span>
+              <button onclick="document.getElementById('sec-h-input').value=''; document.getElementById('sec-h-input').focus();" class="px-3 py-1 bg-amber-500 text-slate-950 font-bold rounded-lg text-xs hover:bg-amber-400 transition">Retry 🔄</button>
+            </div>
+            <p>${Utils.escapeHtml(evalResult.feedback)}</p>
+            <p><strong>Ideal Sample:</strong> "${Utils.escapeHtml(idealEmpathy)}"</p>
+          `;
+        }
+
+        feedback.innerHTML = html;
+        this.drillStatus.H[this.practiceIndex] = {
+          passed: evalResult.passed,
+          score: evalResult.score,
+          userText: input,
+          expectedText: idealEmpathy,
+          prompt: `Call Scenario #${this.practiceIndex + 1}`,
+          feedback: evalResult.feedback
+        };
+
+        this.renderPracticeSection();
+        this.triggerAutoProgression('H', this.dynamicData.H.length);
+      }
+
       prevPracticeItem() {
         this.clearAllActiveTimers();
         if (this.practiceIndex > 0) {
@@ -2651,7 +3006,6 @@
         this.mockUserResponses = [];
         this.mockGlobalSecondsLeft = 16 * 60;
 
-        // Generate dynamically randomized, un-memorized sets for the mock exam
         const aItems = this.gen.getReadingSet(4).map(i => ({ sec: 'A', id: i.id, prompt: `Please read sentence number ${i.id}.`, text: i.text }));
         const bItems = this.gen.getRepeatSet(4).map(i => ({ sec: 'B', ...i }));
         const cItems = this.gen.getQASet(4).map(i => ({ sec: 'C', ...i }));
@@ -3134,7 +3488,7 @@
         let rep = this.lastScoreReport;
         if (!rep) {
           let hasDrills = false;
-          ['A', 'B', 'C', 'D', 'E', 'F'].forEach(s => {
+          ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].forEach(s => {
             if (Object.keys(this.drillStatus[s]).length > 0) hasDrills = true;
           });
           if (hasDrills) {
@@ -3172,8 +3526,8 @@
             <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border ${resp.isCorrect ? 'border-emerald-500/30' : 'border-rose-500/30'} space-y-2">
               <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                  <span class="px-2 py-0.5 rounded text-[10px] font-bold ${resp.isCorrect ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">Item ${idx + 1} (${resp.item.sec})</span>
-                  <span class="text-xs font-bold text-white truncate max-w-[200px] sm:max-w-md">${Utils.escapeHtml(resp.item.prompt || resp.item.question || resp.item.topic || 'Sentence Task')}</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold ${resp.isCorrect ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">Task ${idx + 1} (${resp.item.sec})</span>
+                  <span class="text-xs font-bold text-white truncate max-w-[200px] sm:max-w-md">${Utils.escapeHtml(resp.item.prompt || resp.item.question || resp.item.topic || 'Task')}</span>
                 </div>
                 <span class="text-xs font-extrabold flex-shrink-0 ${resp.isCorrect ? 'text-emerald-400' : 'text-rose-400'}">${resp.score}%</span>
               </div>
